@@ -3,324 +3,465 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="અમૃતમ વોટર સપ્લાયસ - મોરબી, ગુજરાતમાં ૧૬ વર્ષથી વિશ્વસનીય પાણી પુરવઠો. અમૃતમ ના પાણી માં અમૃત નો એહસાસ.">
-    <title>અમૃતમ વોટર સપ્લાયસ | મોરબી</title>
-    <!-- Tailwind CSS + Google Fonts -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Noto+Sans+Gujarati:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 -->
+    <meta name="description" content="અમૃતમ વોટર સપ્લાયસ - મોરબી, ગુજરાતમાં ૧૬ વર્ષથી વિશ્વસનીય પાણી પુરવઠો">
+    <meta name="keywords" content="Water Supply Morbi, Amrutam Water, 20L Bottle, Cold Jar">
+    <meta name="author" content="Amrutam Water Supplys">
+    <title>અમૃતમ વોટર સપ્લાયસ | Premium Water Supply Morbi</title>
+    
+    <!-- CSS Files -->
+    <link rel="icon" type="image/jpg" href="favicon.jpg">
+    <link rel="stylesheet" href="animations.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Gujarati:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- AOS Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="icon" type="image/png" href="favicon.jpg">
-    <style>
-        * { font-family: 'Inter', 'Noto Sans Gujarati', system-ui, sans-serif; }
-        html { scroll-behavior: smooth; }
-        body { background-color: #f8fafc; overflow-x: hidden; }
-        .premium-shadow { box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(59,130,246,0.1); }
-        .glass-card { background: rgba(255, 255, 255, 0.98); transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1); }
-        .glass-card:hover { transform: translateY(-8px); box-shadow: 0 30px 40px -20px rgba(0, 0, 0, 0.25); }
-        @keyframes softPulse { 0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.4); } 70% { box-shadow: 0 0 0 12px rgba(34,197,94,0); } 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); } }
-        .pulse-wa { animation: softPulse 1.8s infinite; }
-        .slider-container { height: 600px; }
-        @media (max-width: 768px) { .slider-container { height: 400px; } }
-        .slider-track { display: flex; transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94); height: 100%; }
-        .slider-slide { min-width: 100%; height: 100%; background-size: cover; background-position: center; background-repeat: no-repeat; position: relative; }
-        .floating-icon { animation: float 3s ease-in-out infinite; }
-        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
-        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, #25D366, #128C7E); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 15px 25px -8px rgba(0,0,0,0.3); z-index: 100; transition: all 0.3s ease; cursor: pointer; }
-        .whatsapp-float:hover { transform: scale(1.12); }
-        .ai-chat-btn { position: fixed; bottom: 30px; left: 30px; background: linear-gradient(135deg, #1e3a8a, #0a5eaa); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 15px 25px -8px rgba(0,0,0,0.3); z-index: 100; cursor: pointer; transition: all 0.3s; }
-        .ai-chat-btn:hover { transform: scale(1.12); }
-        .chat-window { position: fixed; bottom: 110px; left: 30px; width: 360px; background: white; border-radius: 28px; box-shadow: 0 25px 45px -12px rgba(0,0,0,0.4); z-index: 101; display: none; flex-direction: column; overflow: hidden; border: 1px solid rgba(255,255,255,0.3); }
-        @media (max-width: 640px) { .chat-window { width: 300px; left: 16px; bottom: 90px; } .whatsapp-float { width: 52px; height: 52px; bottom: 20px; right: 20px; } .ai-chat-btn { width: 52px; height: 52px; bottom: 20px; left: 20px; } }
-        .modal-overlay { background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(8px); transition: all 0.3s ease; }
-        body.modal-open { overflow: hidden; }
-    </style>
 </head>
 <body>
 
-    <!-- Welcome Modal -->
-    <div id="welcomeModal" class="fixed inset-0 flex items-center justify-center z-50 modal-overlay transition-all">
-        <div class="bg-white rounded-3xl p-8 max-w-md mx-4 text-center transform transition-all scale-100 shadow-2xl border border-blue-200" data-aos="zoom-in">
-            <div class="floating-icon"><i class="fas fa-tint text-6xl text-blue-500 mb-4"></i></div>
-            <h2 class="text-3xl font-extrabold text-gray-800 mb-2">સ્વાગત છે!</h2>
-            <p class="text-gray-600 mb-3">અમૃતમ વોટર સપ્લાયસમાં તમારું હાર્દિક સ્વાગત છે. <br> <span class="font-semibold text-blue-700">"અમૃતમ ના પાણી માં અમૃત નો એહસાસ"</span></p>
-            <p class="text-sm text-gray-500 mb-5">૧૬ વર્ષથી મોરબીમાં શુદ્ધ પાણી પૂરું પાડીએ છીએ.</p>
-            <button id="closeWelcomeBtn" class="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300">શરૂ કરો →</button>
+    <!-- Premium Preloader -->
+    <div id="preloader">
+        <div class="loader-container">
+            <div class="water-drop"></div>
+            <div class="loader-text">અમૃતમ</div>
         </div>
     </div>
 
-    <!-- Navigation -->
-    <nav class="bg-white/90 backdrop-blur-md shadow-lg sticky top-0 z-40 border-b border-blue-100 transition-all duration-300">
-        <div class="container mx-auto px-4 py-3 flex flex-wrap items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <i class="fas fa-tint text-3xl text-blue-600 floating-icon"></i>
-                <span class="font-black text-xl text-blue-900 tracking-tight">અમૃતમ વોટર</span>
+    <!-- Welcome Modal -->
+    <div id="welcomeModal" class="welcome-modal">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-tint"></i>
             </div>
-            <div class="block lg:hidden">
-                <button id="mobileMenuBtn" class="text-blue-800 text-2xl focus:outline-none"><i class="fas fa-bars"></i></button>
-            </div>
-            <div id="navLinks" class="hidden lg:flex space-x-8 font-medium">
-                <a href="#home" class="text-gray-700 hover:text-blue-700 transition">હોમ</a>
-                <a href="#products" class="text-gray-700 hover:text-blue-700 transition">ઉત્પાદનો</a>
-                <a href="#about" class="text-gray-700 hover:text-blue-700 transition">અમારી વાર્તા</a>
-                <a href="#whyus" class="text-gray-700 hover:text-blue-700 transition">શા માટે અમે?</a>
-                <a href="#service" class="text-gray-700 hover:text-blue-700 transition">સર્વિસ એરિયા</a>
-                <a href="#contact" class="text-gray-700 hover:text-blue-700 transition">સંપર્ક</a>
-                <a href="#calculator" class="text-gray-700 hover:text-blue-700 transition">કેલ્ક્યુલેટર</a>
-            </div>
+            <h2>સ્વાગત છે!</h2>
+            <p>અમૃતમ વોટર સપ્લાયસમાં તમારું હાર્દિક સ્વાગત છે.</p>
+            <p class="tagline">✨ "અમૃતમ ના પાણી માં અમૃત નો એહસાસ" ✨</p>
+            <button id="closeWelcomeBtn" class="premium-btn">શરૂ કરો →</button>
         </div>
-        <div id="mobileMenu" class="hidden lg:hidden bg-white/95 backdrop-blur-md border-t py-4 px-5 flex flex-col space-y-4 shadow-inner">
-            <a href="#home" class="text-gray-800 font-medium">હોમ</a>
-            <a href="#products" class="text-gray-800 font-medium">ઉત્પાદનો</a>
-            <a href="#about" class="text-gray-800 font-medium">અમારી વાર્તા</a>
-            <a href="#whyus" class="text-gray-800 font-medium">શા માટે અમે?</a>
-            <a href="#service" class="text-gray-800 font-medium">સર્વિસ એરિયા</a>
-            <a href="#contact" class="text-gray-800 font-medium">સંપર્ક</a>
-            <a href="#calculator" class="text-gray-800 font-medium">કેલ્ક્યુલેટર</a>
-        </div>
-    </nav>
+    </div>
 
-    <main>
-        <!-- Hero Slider with local images -->
-        <section id="home" class="relative">
-            <div class="slider-container relative w-full overflow-hidden">
+    <!-- Main Content -->
+    <div id="mainContent" style="display: none;">
+        
+        <!-- Premium Navigation -->
+        <nav class="premium-nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <i class="fas fa-tint"></i>
+                    <span>અમૃતમ વોટર</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#home">હોમ</a>
+                    <a href="#products">ઉત્પાદનો</a>
+                    <a href="#about">અમારી વાર્તા</a>
+                    <a href="#whyus">શા માટે અમે?</a>
+                    <a href="#service">સર્વિસ એરિયા</a>
+                    <a href="#gallery">ગેલેરી</a>
+                    <a href="#contact">સંપર્ક</a>
+                    <a href="#calculator">કેલ્ક્યુલેટર</a>
+                </div>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Slider Section -->
+        <section id="home" class="hero-section">
+            <div class="slider-container">
                 <div class="slider-track" id="sliderTrack">
-                    <div class="slider-slide" style="background-image: url('slider1.jpg');"></div>
-                    <div class="slider-slide" style="background-image: url('slider2.jpg');"></div>
-                    <div class="slider-slide" style="background-image: url('slider3.jpg');"></div>
+                    <div class="slide" style="background-image: url('images/slider1.jpg');">
+                        <div class="slide-overlay"></div>
+                    </div>
+                    <div class="slide" style="background-image: url('images/slider2.jpg');">
+                        <div class="slide-overlay"></div>
+                    </div>
+                    <div class="slide" style="background-image: url('images/slider3.jpg');">
+                        <div class="slide-overlay"></div>
+                    </div>
                 </div>
-                <button id="prevSlide" class="absolute left-5 top-1/2 transform -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm"><i class="fas fa-chevron-left text-xl"></i></button>
-                <button id="nextSlide" class="absolute right-5 top-1/2 transform -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm"><i class="fas fa-chevron-right text-xl"></i></button>
+                <button class="slider-btn prev" id="prevSlide"><i class="fas fa-chevron-left"></i></button>
+                <button class="slider-btn next" id="nextSlide"><i class="fas fa-chevron-right"></i></button>
+                <div class="slider-dots" id="sliderDots"></div>
             </div>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-center justify-center">
-                <div class="text-center px-4 max-w-3xl" data-aos="fade-up" data-aos-duration="1000">
-                    <h1 class="text-5xl md:text-7xl font-black mb-4 text-white drop-shadow-2xl">અમૃતમ વોટર</h1>
-                    <p class="text-2xl md:text-3xl font-semibold text-amber-200 mb-3">✨ "અમૃતમ કે પાણી માં અમૃત નો એહસાસ" ✨</p>
-                    <p class="text-xl text-white/90 mb-6">૧૬ વર્ષનો અતૂટ વિશ્વાસ | મોરબી, ગુજરાત</p>
-                    <a href="https://wa.me/919537906611?text=હેલો, મને ઓર્ડર આપવો છે." target="_blank" class="inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white font-bold py-4 px-10 rounded-full text-lg transition-all duration-300 shadow-xl pulse-wa"><i class="fab fa-whatsapp text-2xl"></i> ઓર્ડર કરો</a>
-                </div>
+            <div class="hero-content">
+                <h1 data-aos="fade-up">અમૃતમ વોટર સપ્લાયસ</h1>
+                <p class="hero-tagline" data-aos="fade-up" data-aos-delay="100">✨ "અમૃતમ ના પાણી માં અમૃત નો એહસાસ" ✨</p>
+                <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">૧૬ વર્ષનો અતૂટ વિશ્વાસ | મોરબી, ગુજરાત</p>
+                <a href="https://wa.me/919537906611" class="cta-btn pulse-effect" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fab fa-whatsapp"></i> ઓર્ડર કરો
+                </a>
             </div>
         </section>
 
-        <!-- Products Section with product images and separate order buttons -->
-        <section id="products" class="py-20 bg-white">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-14" data-aos="fade-up">
-                    <h2 class="text-4xl md:text-5xl font-extrabold text-blue-900">💧 અમારા ઉત્પાદનો</h2>
-                    <p class="text-gray-500 text-lg mt-3">સ્વચ્છતા અને શુદ્ધતા — તમારી પસંદગી અમારી જવાબદારી</p>
-                </div>
-                <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-                    <!-- 20L BOTTLE -->
-                    <div class="glass-card rounded-3xl overflow-hidden bg-white border border-blue-100 premium-shadow" data-aos="flip-left">
-                        <div class="h-64 bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center relative">
-                            <img src="bottle.jpg" alt="20 લિટર બોટલ" class="h-52 w-auto object-contain floating-icon" onerror="this.src='https://placehold.co/400x300/0a5eaa/ffffff?text=20L+Water+Bottle'">
-                            <div class="absolute top-4 right-4 bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-bold">બેસ્ટ સેલર</div>
-                        </div>
-                        <div class="p-7">
-                            <h3 class="text-2xl font-bold text-gray-800">20 લિટર બોટલ</h3>
-                            <p class="text-gray-500 mt-2">શુદ્ધ પાણી, ઘરે ડિલિવરી</p>
-                            <div class="mt-5 space-y-3 border-t pt-4">
-                                <div class="flex justify-between items-center"><span class="font-semibold">નિયમિત ગ્રાહક (મફત ડિલિવરી)</span><span class="text-3xl font-black text-blue-800">₹15</span></div>
-                                <div class="flex justify-between items-center"><span class="font-semibold">જથ્થાબંધ (ડિલિવરી ચાર્જ અલગ)</span><span class="text-3xl font-black text-blue-800">₹20</span></div>
-                            </div>
-                            <a href="https://wa.me/919537906611?text=20 લિટર બોટલ ઓર્ડર કરવી છે - નિયમિત/જથ્થાબંધ" class="mt-6 block w-full text-center bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl transition-all duration-300 shadow-md">📞 WhatsApp પર ઓર્ડર કરો</a>
-                        </div>
-                    </div>
-                    <!-- COLD JAR -->
-                    <div class="glass-card rounded-3xl overflow-hidden bg-white border border-blue-100 premium-shadow" data-aos="flip-right">
-                        <div class="h-64 bg-gradient-to-br from-indigo-100 to-sky-100 flex items-center justify-center relative">
-                            <img src="jar.jpg" alt="કોલ્ડ જાર" class="h-52 w-auto object-contain floating-icon" onerror="this.src='https://placehold.co/400x300/1e3a8a/ffffff?text=Cold+Jar'">
-                            <div class="absolute top-4 right-4 bg-indigo-600 text-white px-4 py-1 rounded-full text-sm font-bold">તાજગી ખાસ</div>
-                        </div>
-                        <div class="p-7">
-                            <h3 class="text-2xl font-bold text-gray-800">કોલ્ડ જાર</h3>
-                            <p class="text-gray-500 mt-2">ઠંડુ અને તાજું પાણી, ઉનાળા માટે શ્રેષ્ઠ</p>
-                            <div class="mt-5 space-y-3 border-t pt-4">
-                                <div class="flex justify-between items-center"><span class="font-semibold">નિયમિત ગ્રાહક (મફત ડિલિવરી)</span><span class="text-3xl font-black text-indigo-800">₹35</span></div>
-                                <div class="flex justify-between items-center"><span class="font-semibold">જથ્થાબંધ (ડિલિવરી ચાર્જ અલગ)</span><span class="text-3xl font-black text-indigo-800">₹45</span></div>
-                            </div>
-                            <a href="https://wa.me/919537906611?text=કોલ્ડ જાર ઓર્ડર કરવો છે - નિયમિત/જથ્થાબંધ" class="mt-6 block w-full text-center bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl transition-all duration-300 shadow-md">🧊 WhatsApp પર ઓર્ડર કરો</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About + Why Choose Us -->
-        <section id="about" class="py-20 bg-gradient-to-br from-blue-50 via-white to-blue-50">
-            <div class="container mx-auto px-4 max-w-5xl">
-                <div class="bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-xl border border-blue-200" data-aos="zoom-in-up">
-                    <h3 class="text-3xl font-bold text-blue-900 text-center mb-5">📖 અમારી વાર્તા — ૧૬ વર્ષની વિરાસત</h3>
-                    <p class="text-gray-700 leading-relaxed text-center text-lg">મોરબીના પ્રતિષ્ઠિત ઉદ્યોગપતિ <strong>રાજક ભાઈ</strong> દ્વારા સ્થાપિત, અમૃતમ વોટર સપ્લાયસ છેલ્લા ૧૬ વર્ષથી શુદ્ધ અને સ્વાસ્થ્યપ્રદ પીવાનું પાણી પૂરું પાડે છે. અમારી ફિલોસોફી <span class="text-blue-700 font-bold">"સેવા, શુદ્ધતા અને વિશ્વાસ"</span> છે. દરેક બુંદ અમૃત સમાન.</p>
+        <!-- Products Section with Detailed Cards -->
+        <section id="products" class="products-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>💧 અમારા ઉત્પાદનો</h2>
+                    <p>સ્વચ્છતા અને શુદ્ધતા — તમારી પસંદગી અમારી જવાબદારી</p>
                 </div>
                 
-                <!-- Why Choose Us Section -->
-                <div id="whyus" class="mt-12" data-aos="fade-up">
-                    <h3 class="text-3xl font-bold text-center text-blue-900 mb-8">🌟 શા માટે અમૃતમ વોટર?</h3>
-                    <div class="grid md:grid-cols-3 gap-6">
-                        <div class="bg-white p-6 rounded-2xl shadow-lg text-center"><i class="fas fa-certificate text-4xl text-blue-600 mb-3"></i><h4 class="text-xl font-bold">૧૬ વર્ષનો વિશ્વાસ</h4><p class="text-gray-600">મોરબીમાં સૌથી વધુ વિશ્વસનીય પાણી પુરવઠો.</p></div>
-                        <div class="bg-white p-6 rounded-2xl shadow-lg text-center"><i class="fas fa-flask text-4xl text-blue-600 mb-3"></i><h4 class="text-xl font-bold">RO શુદ્ધિકરણ</h4><p class="text-gray-600">અદ્યતન ટેકનોલોજીથી ૧૦૦% શુદ્ધ પાણી.</p></div>
-                        <div class="bg-white p-6 rounded-2xl shadow-lg text-center"><i class="fas fa-clock text-4xl text-blue-600 mb-3"></i><h4 class="text-xl font-bold">સમયસર ડિલિવરી</h4><p class="text-gray-600">સવારે 6:00 થી સાંજે 4:00 સુધી ઝડપી સેવા.</p></div>
-                        <div class="bg-white p-6 rounded-2xl shadow-lg text-center"><i class="fas fa-hand-holding-heart text-4xl text-blue-600 mb-3"></i><h4 class="text-xl font-bold">ગ્રાહક પ્રથમ</h4><p class="text-gray-600">તમારો સંતોષ અમારી પ્રાથમિકતા.</p></div>
-                        <div class="bg-white p-6 rounded-2xl shadow-lg text-center"><i class="fas fa-truck-fast text-4xl text-blue-600 mb-3"></i><h4 class="text-xl font-bold">નિયમિત ગ્રાહકો માટે મફત ડિલિવરી</h4><p class="text-gray-600">કોઈ વધારાનો ખર્ચ નહીં.</p></div>
-                        <div class="bg-white p-6 rounded-2xl shadow-lg text-center"><i class="fas fa-smile text-4xl text-blue-600 mb-3"></i><h4 class="text-xl font-bold">સ્ટાફ પ્રત્યે આદર</h4><p class="text-gray-600">અમારી ટીમ સાથે સન્માનથી વર્તો.</p></div>
+                <div class="products-grid">
+                    <!-- Product 1: 20L Water Bottle -->
+                    <div class="product-card premium-card" data-aos="flip-left">
+                        <div class="product-badge">બેસ્ટ સેલર</div>
+                        <div class="product-image">
+                            <img src="images/bottle.jpg" alt="20 લિટર બોટલ">
+                            <div class="product-overlay">
+                                <a href="https://wa.me/919537906611?text=20 લિટર બોટલ ઓર્ડર કરવી છે" class="quick-order"><i class="fab fa-whatsapp"></i> ઝડપી ઓર્ડર</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>20 લિટર બોટલ</h3>
+                            <p class="product-desc">શુદ્ધ RO પાણી, BPA-ફ્રી બોટલ, ઘરે ડિલિવરી</p>
+                            <div class="price-tag">
+                                <div class="price-card">
+                                    <span class="price-type">નિયમિત ગ્રાહક</span>
+                                    <span class="price">₹15</span>
+                                    <span class="delivery-badge">મફત ડિલિવરી</span>
+                                </div>
+                                <div class="price-card">
+                                    <span class="price-type">જથ્થાબંધ</span>
+                                    <span class="price">₹20</span>
+                                    <span class="delivery-badge">ડિલિવરી ચાર્જ અલગ</span>
+                                </div>
+                            </div>
+                            <div class="product-features">
+                                <span><i class="fas fa-check-circle"></i> RO Purified</span>
+                                <span><i class="fas fa-check-circle"></i> BPA Free</span>
+                                <span><i class="fas fa-check-circle"></i> 100% Safe</span>
+                            </div>
+                            <a href="https://wa.me/919537906611?text=20 લિટર બોટલ ઓર્ડર કરવી છે" class="order-btn">
+                                <i class="fab fa-whatsapp"></i> WhatsApp પર ઓર્ડર કરો
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Product 2: Cold Jar -->
+                    <div class="product-card premium-card" data-aos="flip-right">
+                        <div class="product-badge premium-badge">તાજગી ખાસ</div>
+                        <div class="product-image">
+                            <img src="images/jar.jpg" alt="કોલ્ડ જાર">
+                            <div class="product-overlay">
+                                <a href="https://wa.me/919537906611?text=કોલ્ડ જાર ઓર્ડર કરવો છે" class="quick-order"><i class="fab fa-whatsapp"></i> ઝડપી ઓર્ડર</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>કોલ્ડ જાર</h3>
+                            <p class="product-desc">ઠંડુ અને તાજું પાણી, ઉનાળા માટે શ્રેષ્ઠ</p>
+                            <div class="price-tag">
+                                <div class="price-card">
+                                    <span class="price-type">નિયમિત ગ્રાહક</span>
+                                    <span class="price">₹35</span>
+                                    <span class="delivery-badge">મફત ડિલિવરી</span>
+                                </div>
+                                <div class="price-card">
+                                    <span class="price-type">જથ્થાબંધ</span>
+                                    <span class="price">₹45</span>
+                                    <span class="delivery-badge">ડિલિવરી ચાર્જ અલગ</span>
+                                </div>
+                            </div>
+                            <div class="product-features">
+                                <span><i class="fas fa-check-circle"></i> Cold Storage</span>
+                                <span><i class="fas fa-check-circle"></i> Fresh Taste</span>
+                                <span><i class="fas fa-check-circle"></i> Summer Special</span>
+                            </div>
+                            <a href="https://wa.me/919537906611?text=કોલ્ડ જાર ઓર્ડર કરવો છે" class="order-btn">
+                                <i class="fab fa-whatsapp"></i> WhatsApp પર ઓર્ડર કરો
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Respect Policy -->
-                <div class="mt-10 bg-red-50 border-l-[12px] border-red-600 p-7 rounded-2xl shadow-md" data-aos="fade-right">
-                    <div class="flex items-center gap-4"><i class="fas fa-handshake text-4xl text-red-700"></i><h3 class="text-2xl font-bold text-red-800">અમારા સ્ટાફ પ્રત્યેનો આદર — અનિવાર્ય</h3></div>
-                    <p class="mt-4 text-gray-800 text-lg">🚫 અમારા સ્ટાફ સાથે અપમાનજનક ભાષા, મારામારી અથવા અભદ્ર વર્તન બિલકુલ સહન કરવામાં આવશે નહીં. કોઈપણ પ્રકારનો અનાદર કે ઝઘડો કરનાર ગ્રાહકની સેવા તાત્કાલિક બંધ કરવામાં આવશે. 🙏 અમે તમારી સાથે સન્માનથી વર્તીએ છીએ, તેવી જ અપેક્ષા રાખીએ છીએ.</p>
+                <!-- Bulk Order Section -->
+                <div class="bulk-section" data-aos="zoom-in">
+                    <div class="bulk-content">
+                        <i class="fas fa-boxes"></i>
+                        <h3>જથ્થાબંધ ઓર્ડર માટે વિશેષ ઑફર</h3>
+                        <p>જથ્થાબંધ ઓર્ડર પર વિશેષ ડિસ્કાઉન્ટ મેળવો. વધુ માહિતી માટે સંપર્ક કરો.</p>
+                        <a href="https://wa.me/919537906611?text=જથ્થાબંધ ઓર્ડર માટે સંપર્ક કરવો છે" class="bulk-btn">જથ્થાબંધ ઓર્ડર માટે ક્લિક કરો →</a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Service Area with Correct Morbi Map -->
-        <section id="service" class="py-20 bg-white">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-10" data-aos="fade-down"><h2 class="text-4xl font-bold text-blue-900">📍 સર્વિસ એરિયા - સંપૂર્ણ મોરબી</h2><p class="text-gray-500 text-lg">"Delivery all over Morbi" — અમે સમગ્ર મોરબી શહેરમાં ડિલિવરી આપીએ છીએ.</p></div>
-                <div class="grid md:grid-cols-2 gap-10 items-center">
-                    <div class="bg-blue-100/60 p-7 rounded-2xl" data-aos="fade-right">
-                        <i class="fas fa-map-marked-alt text-5xl text-blue-700 mb-4"></i>
-                        <h3 class="text-2xl font-bold">ડિલિવરી ઝોન</h3>
-                        <ul class="mt-4 space-y-3 text-lg">
-                            <li><i class="fas fa-check-circle text-green-600 mr-3"></i> મોરબી સિટી (તમામ વોર્ડ)</li>
-                            <li><i class="fas fa-check-circle text-green-600 mr-3"></i> જયભાવની નગર, લાખા પાટી</li>
-                            <li><i class="fas fa-check-circle text-green-600 mr-3"></i> ગુંદાસર રોડ, 80 ફૂટ રોડ</li>
-                            <li><i class="fas fa-check-circle text-green-600 mr-3"></i> ટ્રાન્સપોર્ટ નગર, મકાન નગર</li>
-                        </ul>
-                        <p class="mt-6 font-black text-blue-800 text-xl">✅ "Delivery all over Morbi"</p>
+        <!-- About Section with Owner Name -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-content" data-aos="fade-right">
+                        <h2>📖 અમારી વાર્તા</h2>
+                        <h3>૧૬ વર્ષની વિરાસત</h3>
+                        <p>મોરબીના પ્રતિષ્ઠિત ઉદ્યોગપતિ <strong class="owner-name">રજાક ભાઈ</strong> દ્વારા સ્થાપિત, અમૃતમ વોટર સપ્લાયસ છેલ્લા ૧૬ વર્ષથી શુદ્ધ અને સ્વાસ્થ્યપ્રદ પીવાનું પાણી પૂરું પાડે છે.</p>
+                        <p class="philosophy">અમારી ફિલોસોફી: <span>"સેવા, શુદ્ધતા અને વિશ્વાસ"</span></p>
+                        <div class="stats">
+                            <div class="stat">
+                                <span class="stat-number">16+</span>
+                                <span class="stat-label">વર્ષનો અનુભવ</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">10k+</span>
+                                <span class="stat-label">સંતુષ્ટ ગ્રાહકો</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">24/7</span>
+                                <span class="stat-label">સર્વિસ</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="rounded-2xl overflow-hidden shadow-2xl h-96" data-aos="fade-left">
+                    <div class="about-image" data-aos="fade-left">
+                        <div class="image-wrapper">
+                            <img src="images/about.jpg" alt="About Amrutam Water" onerror="this.src='https://placehold.co/500x500/0a5eaa/ffffff?text=Amrutam+Water'">
+                            <div class="experience-badge">
+                                <span>16+</span>
+                                <p>વર્ષનો<br>અનુભવ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section id="whyus" class="whyus-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>🌟 શા માટે અમૃતમ વોટર?</h2>
+                    <p>અમે શા માટે મોરબીનો સૌથી વિશ્વસનીય પાણી પુરવઠો છીએ</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="0">
+                        <div class="feature-icon"><i class="fas fa-certificate"></i></div>
+                        <h3>૧૬ વર્ષનો વિશ્વાસ</h3>
+                        <p>મોરબીમાં સૌથી વધુ વિશ્વસનીય પાણી પુરવઠો</p>
+                    </div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="feature-icon"><i class="fas fa-flask"></i></div>
+                        <h3>RO શુદ્ધિકરણ</h3>
+                        <p>અદ્યતન ટેકનોલોજીથી ૧૦૦% શુદ્ધ પાણી</p>
+                    </div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-icon"><i class="fas fa-truck-fast"></i></div>
+                        <h3>મફત ડિલિવરી</h3>
+                        <p>નિયમિત ગ્રાહકો માટે સંપૂર્ણ મફત ડિલિવરી</p>
+                    </div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="feature-icon"><i class="fas fa-clock"></i></div>
+                        <h3>સમયસર સેવા</h3>
+                        <p>સવારે 6:00 થી સાંજે 4:00 સુધી</p>
+                    </div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="feature-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                        <h3>ગ્રાહક પ્રથમ</h3>
+                        <p>તમારો સંતોષ અમારી પ્રાથમિકતા</p>
+                    </div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+                        <div class="feature-icon"><i class="fas fa-smile"></i></div>
+                        <h3>સ્ટાફ પ્રત્યે આદર</h3>
+                        <p>અમારી ટીમ સાથે સન્માનથી વર્તો</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Respect Policy Banner -->
+        <section class="respect-banner">
+            <div class="container">
+                <div class="respect-content" data-aos="zoom-in">
+                    <i class="fas fa-handshake"></i>
+                    <h3>અમારા સ્ટાફ પ્રત્યેનો આદર — અનિવાર્ય</h3>
+                    <p>🚫 અમારા સ્ટાફ સાથે અપમાનજનક ભાષા, મારામારી અથવા અભદ્ર વર્તન બિલકુલ સહન કરવામાં આવશે નહીં. કોઈપણ પ્રકારનો અનાદર કે ઝઘડો કરનાર ગ્રાહકની સેવા તાત્કાલિક બંધ કરવામાં આવશે. 🙏</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Area Section -->
+        <section id="service" class="service-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>📍 સર્વિસ એરિયા</h2>
+                    <p>અમે સમગ્ર મોરબી શહેરમાં ડિલિવરી આપીએ છીએ</p>
+                </div>
+                <div class="service-grid">
+                    <div class="service-areas" data-aos="fade-right">
+                        <div class="area-list">
+                            <h3><i class="fas fa-map-marker-alt"></i> ડિલિવરી ઝોન</h3>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> મોરબી સિટી (તમામ વોર્ડ)</li>
+                                <li><i class="fas fa-check-circle"></i> જયભાવની નગર, લાખા પાટી</li>
+                                <li><i class="fas fa-check-circle"></i> ગુંદાસર રોડ, 80 ફૂટ રોડ</li>
+                                <li><i class="fas fa-check-circle"></i> ટ્રાન્સપોર્ટ નગર, મકાન નગર</li>
+                                <li><i class="fas fa-check-circle"></i> નવી મોરબી, ઓલ્ડ મોરબી</li>
+                                <li><i class="fas fa-check-circle"></i> ઇન્ડસ્ટ્રીયલ એરિયા</li>
+                            </ul>
+                            <p class="delivery-note"><i class="fas fa-truck"></i> "Delivery all over Morbi"</p>
+                        </div>
+                    </div>
+                    <div class="service-map" data-aos="fade-left">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117905.89695548132!2d70.77418772285118!3d22.817384640258147!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3958697d0b1d2e2b%3A0x8b6c7e0f6d0b1f2a!2sMorbi%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1711711711711!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Gallery Section -->
+        <section id="gallery" class="gallery-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>📸 ગેલેરી</h2>
+                    <p>અમારી સેવાની ઝલક</p>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-aos="zoom-in"><img src="images/gallery1.jpg" alt="Gallery 1" onerror="this.src='https://placehold.co/400x300/0a5eaa/ffffff?text=Water+Supply'"></div>
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100"><img src="images/gallery2.jpg" alt="Gallery 2" onerror="this.src='https://placehold.co/400x300/0a5eaa/ffffff?text=Delivery'"></div>
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200"><img src="images/gallery3.jpg" alt="Gallery 3" onerror="this.src='https://placehold.co/400x300/0a5eaa/ffffff?text=Bottles'"></div>
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300"><img src="images/gallery4.jpg" alt="Gallery 4" onerror="this.src='https://placehold.co/400x300/0a5eaa/ffffff?text=Team'"></div>
+                </div>
+            </div>
+        </section>
+
         <!-- Water Intake Calculator -->
-        <section id="calculator" class="py-20 bg-gradient-to-r from-blue-100 to-indigo-100">
-            <div class="container mx-auto px-4 max-w-2xl">
-                <div class="bg-white rounded-3xl shadow-2xl p-8 transition-all" data-aos="flip-up">
-                    <div class="text-center"><i class="fas fa-calculator text-5xl text-blue-700 floating-icon"></i><h2 class="text-3xl font-bold text-blue-900 mt-3">💧 પાણીના સેવનનું કેલ્ક્યુલેટર</h2><p class="text-gray-500">તમારા વજન અને પ્રવૃત્તિ પ્રમાણે દૈનિક પાણીની જરૂરિયાત જાણો</p></div>
-                    <div class="mt-6 space-y-5"><div><label class="font-semibold text-lg">વજન (કિલોગ્રામ)</label><input type="number" id="weight" class="w-full border-2 border-blue-200 rounded-xl p-3 mt-1 focus:ring-2 focus:ring-blue-400" placeholder="દા.ત. 70"></div><div><label class="font-semibold text-lg">પ્રવૃત્તિ સ્તર</label><select id="activity" class="w-full border-2 border-blue-200 rounded-xl p-3 mt-1"><option value="1.2">ઓછી (બેઠાડુ)</option><option value="1.4">મધ્યમ (વ્યાયામ)</option><option value="1.6">ઉચ્ચ (સખત કસરત)</option></select></div><button id="calcBtn" class="w-full bg-gradient-to-r from-blue-700 to-indigo-700 text-white py-3 rounded-xl font-bold text-xl transition-all hover:scale-105">ગણતરી કરો</button><div id="result" class="text-center text-xl font-semibold p-4 bg-blue-100 rounded-xl text-blue-900"></div></div>
+        <section id="calculator" class="calculator-section">
+            <div class="container">
+                <div class="calculator-card" data-aos="flip-up">
+                    <div class="calculator-icon"><i class="fas fa-calculator"></i></div>
+                    <h2>💧 પાણીના સેવનનું કેલ્ક્યુલેટર</h2>
+                    <p>તમારા વજન અને પ્રવૃત્તિ પ્રમાણે દૈનિક પાણીની જરૂરિયાત જાણો</p>
+                    <div class="calculator-form">
+                        <div class="input-group">
+                            <label>વજન (કિલોગ્રામ)</label>
+                            <input type="number" id="weight" placeholder="દા.ત. 70">
+                        </div>
+                        <div class="input-group">
+                            <label>પ્રવૃત્તિ સ્તર</label>
+                            <select id="activity">
+                                <option value="1.2">ઓછી (બેઠાડુ)</option>
+                                <option value="1.4">મધ્યમ (વ્યાયામ)</option>
+                                <option value="1.6">ઉચ્ચ (સખત કસરત)</option>
+                            </select>
+                        </div>
+                        <button id="calcBtn" class="calc-btn">ગણતરી કરો</button>
+                        <div id="result" class="result-box"></div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-20 bg-white">
-            <div class="container mx-auto px-4 max-w-5xl">
-                <div class="text-center mb-10" data-aos="fade-up"><h2 class="text-4xl font-bold text-blue-900">📞 સંપર્ક / પ્રતિસાદ</h2></div>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-3xl text-center shadow-lg" data-aos="zoom-in-right"><i class="fas fa-phone-alt text-4xl text-blue-700"></i><h3 class="text-2xl font-bold mt-3">કૉલ / WhatsApp</h3><p class="text-3xl font-extrabold mt-2 text-blue-800">+91 95379 06611</p><p class="text-gray-600">સવારે 6:00 - સાંજે 4:00</p><a href="https://wa.me/919537906611" class="inline-flex items-center gap-2 mt-5 bg-green-600 hover:bg-green-700 text-white px-7 py-3 rounded-full transition-all"><i class="fab fa-whatsapp text-xl"></i> WhatsApp પર સંપર્ક કરો</a></div>
-                    <div class="bg-white border-2 border-blue-200 p-7 rounded-3xl shadow-xl" data-aos="zoom-in-left"><form id="feedbackForm"><input type="text" placeholder="નામ" class="w-full border rounded-xl p-3 mb-4 focus:ring-2" id="name" required><input type="tel" placeholder="મોબાઇલ" class="w-full border rounded-xl p-3 mb-4" id="mobile"><textarea rows="3" placeholder="સંદેશ / પ્રતિસાદ" class="w-full border rounded-xl p-3 mb-4" id="message" required></textarea><button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-800 text-white py-3 rounded-xl font-bold text-lg transition-all hover:shadow-xl">WhatsApp પર મોકલો</button></form></div>
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>📞 સંપર્ક કરો</h2>
+                    <p>કોઈપણ પ્રશ્નો માટે અમારો સંપર્ક કરો</p>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-info" data-aos="fade-right">
+                        <div class="info-card">
+                            <i class="fas fa-phone-alt"></i>
+                            <h3>કૉલ કરો</h3>
+                            <p>+91 95379 06611</p>
+                            <small>સવારે 6:00 - સાંજે 4:00</small>
+                        </div>
+                        <div class="info-card">
+                            <i class="fab fa-whatsapp"></i>
+                            <h3>WhatsApp</h3>
+                            <p>+91 95379 06611</p>
+                            <a href="https://wa.me/919537906611" class="whatsapp-link">અહીં ક્લિક કરો</a>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <h3>સરનામું</h3>
+                            <p>મોરબી, ગુજરાત</p>
+                        </div>
+                    </div>
+                    <div class="contact-form" data-aos="fade-left">
+                        <form id="feedbackForm">
+                            <input type="text" placeholder="તમારું નામ" id="name" required>
+                            <input type="tel" placeholder="મોબાઇલ નંબર" id="mobile">
+                            <textarea rows="5" placeholder="તમારો સંદેશ..." id="message" required></textarea>
+                            <button type="submit" class="submit-btn">
+                                <i class="fab fa-whatsapp"></i> WhatsApp પર મોકલો
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
-    </main>
 
-    <footer class="bg-slate-900 text-white py-12">
-        <div class="container mx-auto px-4 grid md:grid-cols-3 gap-8"><div><h3 class="text-2xl font-bold">અમૃતમ વોટર સપ્લાયસ</h3><p class="text-blue-200 mt-2">૧૬ વર્ષનો અતૂટ વિશ્વાસ | મોરબી, ગુજરાત</p><p class="text-amber-300 mt-2 italic">"અમૃતમ કે પાણી માં અમૃત નો એહસાસ"</p></div><div><h3 class="font-semibold text-xl">ઝડપી લિંક્સ</h3><ul class="mt-2 space-y-1"><li><a href="#home" class="text-blue-200 hover:text-white">હોમ</a></li><li><a href="#products" class="text-blue-200 hover:text-white">ઉત્પાદનો</a></li><li><a href="#calculator" class="text-blue-200 hover:text-white">કેલ્ક્યુલેટર</a></li></ul></div><div><h3 class="font-semibold text-xl">કાનૂની</h3><p class="text-blue-300 text-sm">વેબસાઇટ લાઇસન્સ: © 2026 અમૃતમ વોટર સપ્લાયસ</p><p class="text-sm text-blue-300 mt-4">બિઝનેસ લાઇસન્સ માટે સંપર્ક કરો</p></div></div>
-    </footer>
-
-    <a href="https://wa.me/919537906611?text=નમસ્તે, મને ઓર્ડર કરવો છે." class="whatsapp-float"><i class="fab fa-whatsapp text-3xl text-white"></i></a>
-    <div class="ai-chat-btn" id="aiChatBtn"><i class="fas fa-robot text-2xl text-white"></i></div>
-
-    <!-- Intelligent AI Chat Window -->
-    <div id="aiChatWindow" class="chat-window">
-        <div class="bg-gradient-to-r from-blue-800 to-indigo-900 text-white p-4 flex justify-between items-center"><span><i class="fas fa-brain mr-2"></i> અમૃતમ AI સહાયક</span><button id="closeChatBtn" class="text-white"><i class="fas fa-times"></i></button></div>
-        <div id="chatMessages" class="h-80 overflow-y-auto p-3 bg-gray-50 space-y-2"></div>
-        <div class="p-3 border-t flex"><input type="text" id="chatInput" placeholder="તમારો પ્રશ્ન પૂછો..." class="flex-1 border rounded-l-xl p-2 focus:outline-none"><button id="sendChatBtn" class="bg-blue-700 text-white px-4 rounded-r-xl"><i class="fas fa-paper-plane"></i></button></div>
+        <!-- Premium Footer -->
+        <footer class="premium-footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-about">
+                        <h3>અમૃતમ વોટર સપ્લાયસ</h3>
+                        <p>૧૬ વર્ષનો અતૂટ વિશ્વાસ | મોરબી, ગુજરાત</p>
+                        <p class="footer-tagline">"અમૃતમ ના પાણી માં અમૃત નો એહસાસ"</p>
+                    </div>
+                    <div class="footer-links">
+                        <h3>ઝડપી લિંક્સ</h3>
+                        <ul>
+                            <li><a href="#home"><i class="fas fa-chevron-right"></i> હોમ</a></li>
+                            <li><a href="#products"><i class="fas fa-chevron-right"></i> ઉત્પાદનો</a></li>
+                            <li><a href="#about"><i class="fas fa-chevron-right"></i> અમારી વાર્તા</a></li>
+                            <li><a href="#whyus"><i class="fas fa-chevron-right"></i> શા માટે અમે?</a></li>
+                            <li><a href="#service"><i class="fas fa-chevron-right"></i> સર્વિસ એરિયા</a></li>
+                            <li><a href="#gallery"><i class="fas fa-chevron-right"></i> ગેલેરી</a></li>
+                            <li><a href="#contact"><i class="fas fa-chevron-right"></i> સંપર્ક</a></li>
+                            <li><a href="#calculator"><i class="fas fa-chevron-right"></i> કેલ્ક્યુલેટર</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-services">
+                        <h3>અમારી સેવાઓ</h3>
+                        <ul>
+                            <li><i class="fas fa-tint"></i> 20 લિટર બોટલ</li>
+                            <li><i class="fas fa-jug-detergent"></i> કોલ્ડ જાર</li>
+                            <li><i class="fas fa-truck"></i> મફત ડિલિવરી</li>
+                            <li><i class="fas fa-clock"></i> સમયસર સેવા</li>
+                            <li><i class="fas fa-hand-holding-heart"></i> ગ્રાહક સપોર્ટ</li>
+                        </ul>
+                    </div>
+                    <div class="footer-legal">
+                        <h3>કાનૂની</h3>
+                        <a href="https://rehan-sandhi.blogspot.com/2026/02/my-license.html" target="_blank" class="license-link">
+                            <i class="fas fa-certificate"></i> વેબસાઇટ લાઇસન્સ
+                        </a>
+                        <p class="copyright"><i class="fas fa-copyright"></i> 2026 અમૃતમ વોટર સપ્લાયસ</p>
+                        <p class="rights">All Rights Reserved</p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>અમૃતમ વોટર સપ્લાયસ - મોરબીનો વિશ્વાસ | સ્વચ્છ પાણી, સ્વસ્થ જીવન</p>
+                </div>
+            </div>
+        </footer>
     </div>
 
+    <!-- Floating Buttons -->
+    <a href="https://wa.me/919537906611" class="whatsapp-float" id="whatsappFloat">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <div class="ai-chat-float" id="aiChatFloat">
+        <i class="fas fa-robot"></i>
+    </div>
+
+    <!-- AI Chat Window -->
+    <div id="aiChatWindow" class="ai-chat-window">
+        <div class="chat-header">
+            <i class="fas fa-brain"></i>
+            <span>અમૃતમ AI સહાયક</span>
+            <button id="closeChatBtn"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="chatMessages" class="chat-messages"></div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="તમારો પ્રશ્ન પૂછો...">
+            <button id="sendChatBtn"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ duration: 800, once: true, offset: 100 });
-        
-        // Welcome Modal - body scroll lock and load website after click
-        const modalElem = document.getElementById('welcomeModal');
-        const closeWelcome = document.getElementById('closeWelcomeBtn');
-        function closeModalAndEnableScroll() {
-            modalElem.style.display = 'none';
-            document.body.classList.remove('modal-open');
-            document.body.style.overflow = '';
-        }
-        closeWelcome?.addEventListener('click', closeModalAndEnableScroll);
-        document.body.classList.add('modal-open');
-        document.body.style.overflow = 'hidden';
-
-        // Slider with local images (slider1.jpg, slider2.jpg, slider3.jpg)
-        const track = document.querySelector('.slider-track');
-        const slides = document.querySelectorAll('.slider-slide');
-        const prev = document.getElementById('prevSlide');
-        const next = document.getElementById('nextSlide');
-        let index = 0;
-        if(track && slides.length) {
-            const update = () => track.style.transform = `translateX(-${index * 100}%)`;
-            next?.addEventListener('click', () => { index = (index + 1) % slides.length; update(); });
-            prev?.addEventListener('click', () => { index = (index - 1 + slides.length) % slides.length; update(); });
-            setInterval(() => { index = (index + 1) % slides.length; update(); }, 5000);
-        }
-
-        // Calculator
-        document.getElementById('calcBtn')?.addEventListener('click', () => { 
-            let w = parseFloat(document.getElementById('weight').value); 
-            if(isNaN(w) || w<=0) { document.getElementById('result').innerHTML = "માન્ય વજન દાખલ કરો"; return; } 
-            let act = parseFloat(document.getElementById('activity').value); 
-            let total = (w * 0.033 * act).toFixed(1); 
-            document.getElementById('result').innerHTML = `💧 તમારા માટે દૈનિક ${total} લિટર પાણી જરૂરી છે.`; 
-        });
-
-        // Feedback form
-        document.getElementById('feedbackForm')?.addEventListener('submit', (e) => { 
-            e.preventDefault(); 
-            let name = document.getElementById('name').value; 
-            let mobile = document.getElementById('mobile').value; 
-            let msg = document.getElementById('message').value; 
-            if(!name || !msg) { alert("નામ અને સંદેશ ભરો"); return; } 
-            let text = `નામ: ${name}%0Aમોબાઇલ: ${mobile || 'N/A'}%0Aસંદેશ: ${msg}`; 
-            window.open(`https://wa.me/919537906611?text=${text}`, '_blank'); 
-            e.target.reset(); 
-            alert("સંદેશ WhatsApp પર મોકલાઈ ગયો!"); 
-        });
-
-        // Mobile menu
-        const menuBtn = document.getElementById('mobileMenuBtn'); 
-        const mobileMenu = document.getElementById('mobileMenu');
-        menuBtn?.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-
-        // Intelligent Amrutam AI
-        const aiBtn = document.getElementById('aiChatBtn'); 
-        const chatWin = document.getElementById('aiChatWindow'); 
-        const closeChat = document.getElementById('closeChatBtn'); 
-        const chatInput = document.getElementById('chatInput'); 
-        const sendBtn = document.getElementById('sendChatBtn'); 
-        const chatMessages = document.getElementById('chatMessages');
-
-        function addBotMessage(text) { let div = document.createElement('div'); div.className = 'bg-blue-100 text-blue-900 p-2 rounded-lg mb-2 self-start shadow-sm'; div.innerHTML = `<i class="fas fa-robot mr-1"></i> ${text}`; chatMessages.appendChild(div); chatMessages.scrollTop = chatMessages.scrollHeight; }
-        function addUserMessage(text) { let div = document.createElement('div'); div.className = 'bg-gray-200 text-gray-800 p-2 rounded-lg mb-2 self-end text-right'; div.innerHTML = `<i class="fas fa-user mr-1"></i> ${text}`; chatMessages.appendChild(div); chatMessages.scrollTop = chatMessages.scrollHeight; }
-
-        function intelligentAI(query) {
-            let q = query.toLowerCase();
-            if(q.includes('ભાવ') || q.includes('કિંમત') || q.includes('price')) return "📊 20L બોટલ: નિયમિત ₹15 (મફત ડિલિવરી), જથ્થાબંધ ₹20 (ડિલિવરી ચાર્જ અલગ). કોલ્ડ જાર: નિયમિત ₹35 (મફત ડિલિવરી), જથ્થાબંધ ₹45.";
-            if(q.includes('ઓર્ડર') || q.includes('order')) return "🛒 ઓર્ડર માટે WhatsApp બટન દબાવો અથવા +91 95379 06611 પર કૉલ કરો. તમે ઉત્પાદન પસંદ કરીને સીધો સંદેશ મોકલી શકો છો.";
-            if(q.includes('મફત ડિલિવરી') || q.includes('free delivery')) return "🚚 હા, નિયમિત ગ્રાહકો માટે મફત ડિલિવરી છે. જથ્થાબંધ ઓર્ડર પર ડિલિવરી ચાર્જ લાગુ પડે છે.";
-            if(q.includes('સમય') || q.includes('time')) return "⏰ અમારા સેવા કલાક: સવારે 6:00 થી સાંજે 4:00.";
-            if(q.includes('આદર') || q.includes('respect')) return "🙏 અમારા સ્ટાફ પ્રત્યે આદર રાખવો ફરજિયાત છે. અપમાનજનક વર્તન પર સેવા બંધ કરવામાં આવશે.";
-            if(q.includes('મોરબી') || q.includes('delivery area')) return "📍 અમે સંપૂર્ણ મોરબી શહેરમાં ડિલિવરી આપીએ છીએ. તમારા વિસ્તારમાં મફત ડિલિવરી ઉપલબ્ધ છે.";
-            if(q.includes('શુદ્ધ') || q.includes('quality')) return "💧 અમારું પાણી RO અને UV શુદ્ધિકરણ પ્રક્રિયા પસાર કરે છે. ૧૬ વર્ષથી ગુણવત્તામાં કોઈ સમાધાન નથી.";
-            if(q.includes('સ્ટાફ') || q.includes('staff')) return "અમારો સ્ટાફ પ્રશિક્ષિત અને સૌજન્યશીલ છે. તમારા સહકારની અપેક્ષા રાખીએ છીએ.";
-            return "આપના પ્રશ્ન માટે આભાર. કૃપા કરીને વધુ માહિતી માટે +91 95379 06611 પર સંપર્ક કરો. હું અમૃતમ AI તમારી હંમેશા મદદ માટે તૈયાર છું.";
-        }
-
-        aiBtn?.addEventListener('click', () => { chatWin.style.display = (chatWin.style.display === 'flex') ? 'none' : 'flex'; if(chatMessages.children.length === 0) addBotMessage("નમસ્તે! હું અમૃતમ AI. હું તમને ભાવ, ઓર્ડર, ડિલિવરી, શુદ્ધતા અને નિયમો વિશે માહિતી આપી શકું છું. કૃપા કરીને પૂછો."); });
-        closeChat?.addEventListener('click', () => chatWin.style.display = 'none');
-        function sendMsg() { let txt = chatInput.value.trim(); if(!txt) return; addUserMessage(txt); setTimeout(() => { let reply = intelligentAI(txt); addBotMessage(reply); }, 300); chatInput.value = ''; }
-        sendBtn?.addEventListener('click', sendMsg);
-        chatInput?.addEventListener('keypress', (e) => { if(e.key === 'Enter') sendMsg(); });
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
