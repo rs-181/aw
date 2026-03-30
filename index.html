@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="અમૃતમ વોટર સપ્લાયસ - મોરબી, ગુજરાતમાં ૧૬ વર્ષથી વિશ્વસનીય પાણી પુરવઠો">
     <title>અમૃતમ વોટર સપ્લાયસ | Premium Water Supply Morbi</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpg" href="images/favicon.jpg">
+    <link rel="shortcut icon" type="image/jpg" href="images/favicon.jpg">
     
     <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -24,47 +29,23 @@
 
         /* ========== ANIMATIONS ========== */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         @keyframes zoomIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         @keyframes float {
@@ -77,35 +58,16 @@
             50% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
         }
 
-        @keyframes shimmer {
-            0% { background-position: -1000px 0; }
-            100% { background-position: 1000px 0; }
-        }
-
         @keyframes spin {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
 
-        .animate-fadeUp {
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        .animate-fadeLeft {
-            animation: fadeInLeft 0.8s ease forwards;
-        }
-
-        .animate-fadeRight {
-            animation: fadeInRight 0.8s ease forwards;
-        }
-
-        .animate-zoom {
-            animation: zoomIn 0.6s ease forwards;
-        }
-
-        .float-animation {
-            animation: float 3s ease-in-out infinite;
-        }
+        .animate-fadeUp { animation: fadeInUp 0.8s ease forwards; }
+        .animate-fadeLeft { animation: fadeInLeft 0.8s ease forwards; }
+        .animate-fadeRight { animation: fadeInRight 0.8s ease forwards; }
+        .animate-zoom { animation: zoomIn 0.6s ease forwards; }
+        .float-animation { animation: float 3s ease-in-out infinite; }
 
         /* Scroll Reveal */
         .reveal {
@@ -113,11 +75,7 @@
             transform: translateY(30px);
             transition: all 0.8s ease;
         }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
         /* ========== PRELOADER ========== */
         #preloader {
@@ -131,13 +89,8 @@
             justify-content: center;
             align-items: center;
             z-index: 10000;
-            transition: opacity 0.5s;
         }
-
-        .loader {
-            text-align: center;
-        }
-
+        .loader { text-align: center; }
         .loader-circle {
             width: 70px;
             height: 70px;
@@ -147,13 +100,7 @@
             animation: spin 1s linear infinite;
             margin: 0 auto 20px;
         }
-
-        .loader-text {
-            color: white;
-            font-size: 20px;
-            font-weight: 600;
-            letter-spacing: 2px;
-        }
+        .loader-text { color: white; font-size: 20px; font-weight: 600; }
 
         /* ========== WELCOME MODAL ========== */
         .welcome-modal {
@@ -169,7 +116,6 @@
             align-items: center;
             z-index: 9999;
         }
-
         .modal-card {
             background: white;
             padding: 50px;
@@ -179,26 +125,9 @@
             margin: 20px;
             animation: zoomIn 0.5s ease;
         }
-
-        .modal-card i {
-            font-size: 70px;
-            color: #3b82f6;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .modal-card h2 {
-            font-size: 32px;
-            margin: 20px 0 10px;
-            color: #1e3a8a;
-        }
-
-        .modal-card .tagline {
-            font-size: 18px;
-            color: #f59e0b;
-            font-weight: 600;
-            margin: 15px 0;
-        }
-
+        .modal-card i { font-size: 70px; color: #3b82f6; animation: float 3s ease-in-out infinite; }
+        .modal-card h2 { font-size: 32px; margin: 20px 0 10px; color: #1e3a8a; }
+        .modal-card .tagline { font-size: 18px; color: #f59e0b; font-weight: 600; margin: 15px 0; }
         .start-btn {
             background: linear-gradient(135deg, #3b82f6, #1e3a8a);
             color: white;
@@ -209,13 +138,9 @@
             border-radius: 50px;
             cursor: pointer;
             margin-top: 20px;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s;
         }
-
-        .start-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 25px rgba(59,130,246,0.4);
-        }
+        .start-btn:hover { transform: scale(1.05); }
 
         /* ========== NAVIGATION ========== */
         .navbar {
@@ -227,7 +152,6 @@
             z-index: 1000;
             padding: 15px 0;
         }
-
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -236,49 +160,13 @@
             justify-content: space-between;
             align-items: center;
         }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo i {
-            font-size: 28px;
-            color: #3b82f6;
-        }
-
-        .logo span {
-            font-size: 22px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #374151;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #3b82f6;
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 28px;
-            cursor: pointer;
-        }
-
+        .logo { display: flex; align-items: center; gap: 10px; }
+        .logo i { font-size: 28px; color: #3b82f6; }
+        .logo span { font-size: 22px; font-weight: 800; background: linear-gradient(135deg, #1e3a8a, #3b82f6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { text-decoration: none; color: #374151; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: #3b82f6; }
+        .mobile-menu { display: none; font-size: 28px; cursor: pointer; }
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -293,33 +181,14 @@
                 gap: 15px;
                 box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             }
-            .nav-links.active {
-                display: flex;
-            }
-            .mobile-menu {
-                display: block;
-            }
+            .nav-links.active { display: flex; }
+            .mobile-menu { display: block; }
         }
 
         /* ========== HERO SLIDER ========== */
-        .hero {
-            position: relative;
-            height: 600px;
-            overflow: hidden;
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                height: 450px;
-            }
-        }
-
-        .slider {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
-
+        .hero { position: relative; height: 600px; overflow: hidden; }
+        @media (max-width: 768px) { .hero { height: 450px; } }
+        .slider { width: 100%; height: 100%; position: relative; }
         .slide {
             position: absolute;
             top: 0;
@@ -331,15 +200,12 @@
             opacity: 0;
             transition: opacity 0.8s ease;
         }
-
-        .slide.active {
-            opacity: 1;
-        }
-
-        .slide1 { background-image: linear-gradient(135deg, #1e3a8a, #3b82f6), url('slide1.jpg'); background-blend-mode: overlay; background-size: cover; }
-        .slide2 { background-image: linear-gradient(135deg, #0f766e, #14b8a6), url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3R5bGU9InN0b3AtY29sb3I6IzBmNzY2ZTsiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxNGI4YTY7Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNnKSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iNDAiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Q09MRCBKQVIgRlJFU0hORVNTIDwvdGV4dD48L3N2Zz4='); background-blend-mode: overlay; background-size: cover; }
-        .slide3 { background-image: linear-gradient(135deg, #86198f, #d946ef), url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3R5bGU9InN0b3AtY29sb3I6Izg2MTk4ZjsiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNkOTQ2ZWY7Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNnKSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iNDAiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+TU9SQkkgV0lERSBERUxJVkVSWTwvdGV4dD48L3N2Zz4='); background-blend-mode: overlay; background-size: cover; }
-
+        .slide.active { opacity: 1; }
+        /* Your local images - put them in images folder */
+        .slide1 { background-image: url('images/slider1.jpg'); }
+        .slide2 { background-image: url('images/slider2.jpg'); }
+        .slide3 { background-image: url('images/slider3.jpg'); }
+        
         .slider-btn {
             position: absolute;
             top: 50%;
@@ -356,14 +222,10 @@
             z-index: 10;
             transition: all 0.3s;
         }
-
-        .slider-btn:hover {
-            background: #3b82f6;
-        }
-
+        .slider-btn:hover { background: #3b82f6; }
         .prev { left: 20px; }
         .next { right: 20px; }
-
+        
         .hero-content {
             position: absolute;
             top: 50%;
@@ -374,26 +236,11 @@
             z-index: 10;
             width: 100%;
             padding: 0 20px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
         }
-
-        .hero-content h1 {
-            font-size: 56px;
-            font-weight: 800;
-            margin-bottom: 20px;
-        }
-
-        .hero-tagline {
-            font-size: 28px;
-            font-weight: 600;
-            color: #fbbf24;
-            margin-bottom: 15px;
-        }
-
-        .hero-subtitle {
-            font-size: 20px;
-            margin-bottom: 30px;
-        }
-
+        .hero-content h1 { font-size: 56px; font-weight: 800; margin-bottom: 20px; }
+        .hero-tagline { font-size: 28px; font-weight: 600; color: #fbbf24; margin-bottom: 15px; }
+        .hero-subtitle { font-size: 20px; margin-bottom: 30px; }
         .cta-btn {
             display: inline-flex;
             align-items: center;
@@ -407,11 +254,7 @@
             transition: all 0.3s;
             animation: pulse 2s infinite;
         }
-
-        .cta-btn:hover {
-            transform: translateY(-3px);
-        }
-
+        .cta-btn:hover { transform: translateY(-3px); }
         @media (max-width: 768px) {
             .hero-content h1 { font-size: 32px; }
             .hero-tagline { font-size: 20px; }
@@ -419,16 +262,8 @@
         }
 
         /* ========== SECTIONS ========== */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        section {
-            padding: 80px 0;
-        }
-
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        section { padding: 80px 0; }
         .section-title {
             text-align: center;
             font-size: 42px;
@@ -439,49 +274,21 @@
             color: transparent;
             margin-bottom: 15px;
         }
-
-        .section-subtitle {
-            text-align: center;
-            color: #6b7280;
-            font-size: 18px;
-            margin-bottom: 50px;
-        }
+        .section-subtitle { text-align: center; color: #6b7280; font-size: 18px; margin-bottom: 50px; }
 
         /* Products Grid */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-        }
-
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
         .product-card {
             background: white;
             border-radius: 25px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             transition: all 0.4s;
-            cursor: pointer;
         }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        }
-
-        .product-img {
-            height: 280px;
-            background: linear-gradient(135deg, #dbeafe, #eff6ff);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .product-img i {
-            font-size: 100px;
-            color: #3b82f6;
-        }
-
+        .product-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+        .product-img { height: 280px; overflow: hidden; position: relative; }
+        .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .product-card:hover .product-img img { transform: scale(1.1); }
         .product-badge {
             position: absolute;
             top: 20px;
@@ -492,30 +299,12 @@
             border-radius: 20px;
             font-size: 12px;
             font-weight: 600;
+            z-index: 5;
         }
-
-        .product-info {
-            padding: 25px;
-        }
-
-        .product-info h3 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .product-desc {
-            color: #6b7280;
-            margin-bottom: 20px;
-        }
-
-        .price-row {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
+        .product-info { padding: 25px; }
+        .product-info h3 { font-size: 24px; font-weight: 700; margin-bottom: 10px; }
+        .product-desc { color: #6b7280; margin-bottom: 20px; }
+        .price-row { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
         .price-box {
             flex: 1;
             background: #f3f4f6;
@@ -523,23 +312,9 @@
             border-radius: 12px;
             text-align: center;
         }
-
-        .price-label {
-            font-size: 12px;
-            color: #6b7280;
-        }
-
-        .price-value {
-            font-size: 28px;
-            font-weight: 800;
-            color: #1e3a8a;
-        }
-
-        .free-delivery {
-            font-size: 11px;
-            color: #10b981;
-        }
-
+        .price-label { font-size: 12px; color: #6b7280; }
+        .price-value { font-size: 28px; font-weight: 800; color: #1e3a8a; }
+        .free-delivery { font-size: 11px; color: #10b981; }
         .order-wa-btn {
             display: flex;
             align-items: center;
@@ -553,18 +328,10 @@
             font-weight: 600;
             transition: all 0.3s;
         }
-
-        .order-wa-btn:hover {
-            transform: scale(1.02);
-        }
+        .order-wa-btn:hover { transform: scale(1.02); }
 
         /* Features Grid */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
         .feature-card {
             background: white;
             padding: 30px;
@@ -573,12 +340,7 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.05);
             transition: all 0.3s;
         }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
         .feature-icon {
             width: 80px;
             height: 80px;
@@ -589,86 +351,20 @@
             justify-content: center;
             margin: 0 auto 20px;
         }
-
-        .feature-icon i {
-            font-size: 40px;
-            color: #3b82f6;
-        }
-
-        .feature-card h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-
-        .feature-card p {
-            color: #6b7280;
-        }
+        .feature-icon i { font-size: 40px; color: #3b82f6; }
+        .feature-card h3 { font-size: 20px; margin-bottom: 10px; }
+        .feature-card p { color: #6b7280; }
 
         /* About Section */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .about-content h2 {
-            font-size: 42px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .owner-name {
-            font-size: 28px;
-            color: #3b82f6;
-            font-weight: 700;
-            margin: 20px 0;
-        }
-
-        .philosophy {
-            font-size: 18px;
-            border-left: 4px solid #3b82f6;
-            padding-left: 20px;
-            margin: 20px 0;
-            font-style: italic;
-        }
-
-        .stats {
-            display: flex;
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-num {
-            font-size: 36px;
-            font-weight: 800;
-            color: #3b82f6;
-        }
-
-        .about-image {
-            background: linear-gradient(135deg, #dbeafe, #eff6ff);
-            border-radius: 20px;
-            padding: 40px;
-            text-align: center;
-        }
-
-        .about-image i {
-            font-size: 150px;
-            color: #3b82f6;
-        }
-
-        @media (max-width: 768px) {
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .about-content h2 { font-size: 42px; font-weight: 800; background: linear-gradient(135deg, #1e3a8a, #3b82f6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .owner-name { font-size: 28px; color: #3b82f6; font-weight: 700; margin: 20px 0; }
+        .philosophy { font-size: 18px; border-left: 4px solid #3b82f6; padding-left: 20px; margin: 20px 0; font-style: italic; }
+        .stats { display: flex; gap: 30px; margin-top: 30px; }
+        .stat { text-align: center; }
+        .stat-num { font-size: 36px; font-weight: 800; color: #3b82f6; }
+        .about-image img { width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
 
         /* Respect Banner */
         .respect-banner {
@@ -678,68 +374,19 @@
             text-align: center;
             margin: 40px 0;
         }
-
-        .respect-banner i {
-            font-size: 50px;
-            color: #dc2626;
-            margin-bottom: 20px;
-        }
-
-        .respect-banner h3 {
-            font-size: 28px;
-            color: #991b1b;
-            margin-bottom: 20px;
-        }
+        .respect-banner i { font-size: 50px; color: #dc2626; margin-bottom: 20px; }
+        .respect-banner h3 { font-size: 28px; color: #991b1b; margin-bottom: 20px; }
 
         /* Service Area */
-        .service-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-
-        .area-list {
-            background: #eff6ff;
-            padding: 30px;
-            border-radius: 20px;
-        }
-
-        .area-list h3 {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        .area-list ul {
-            list-style: none;
-        }
-
-        .area-list li {
-            padding: 10px 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .area-list li i {
-            color: #10b981;
-        }
-
-        .service-map {
-            height: 400px;
-            background: #e5e7eb;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            color: #6b7280;
-        }
-
-        @media (max-width: 768px) {
-            .service-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        .service-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .area-list { background: #eff6ff; padding: 30px; border-radius: 20px; }
+        .area-list h3 { font-size: 24px; margin-bottom: 20px; }
+        .area-list ul { list-style: none; }
+        .area-list li { padding: 10px 0; display: flex; align-items: center; gap: 10px; }
+        .area-list li i { color: #10b981; }
+        .service-map iframe { width: 100%; height: 100%; border-radius: 20px; }
+        .service-map { height: 400px; border-radius: 20px; overflow: hidden; }
+        @media (max-width: 768px) { .service-grid { grid-template-columns: 1fr; } }
 
         /* Calculator */
         .calculator-card {
@@ -751,7 +398,6 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             text-align: center;
         }
-
         .calculator-card input, .calculator-card select {
             width: 100%;
             padding: 12px 15px;
@@ -760,7 +406,6 @@
             border-radius: 12px;
             font-size: 16px;
         }
-
         .calc-btn {
             background: linear-gradient(135deg, #3b82f6, #1e3a8a);
             color: white;
@@ -773,57 +418,16 @@
             cursor: pointer;
             transition: all 0.3s;
         }
-
-        .calc-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        .result {
-            margin-top: 20px;
-            padding: 15px;
-            background: #eff6ff;
-            border-radius: 12px;
-            font-weight: 600;
-        }
+        .calc-btn:hover { transform: translateY(-2px); }
+        .result { margin-top: 20px; padding: 15px; background: #eff6ff; border-radius: 12px; font-weight: 600; }
 
         /* Contact */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .info-card {
-            background: #f9fafb;
-            padding: 25px;
-            border-radius: 20px;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .info-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        .info-card i {
-            font-size: 40px;
-            color: #3b82f6;
-            margin-bottom: 15px;
-        }
-
-        .contact-form {
-            background: #f9fafb;
-            padding: 30px;
-            border-radius: 20px;
-        }
-
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .contact-info { display: flex; flex-direction: column; gap: 20px; }
+        .info-card { background: #f9fafb; padding: 25px; border-radius: 20px; text-align: center; transition: all 0.3s; }
+        .info-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .info-card i { font-size: 40px; color: #3b82f6; margin-bottom: 15px; }
+        .contact-form { background: #f9fafb; padding: 30px; border-radius: 20px; }
         .contact-form input, .contact-form textarea {
             width: 100%;
             padding: 12px;
@@ -831,7 +435,6 @@
             border: 2px solid #e5e7eb;
             border-radius: 12px;
         }
-
         .submit-btn {
             background: linear-gradient(135deg, #25D366, #128C7E);
             color: white;
@@ -842,12 +445,7 @@
             font-weight: 600;
             cursor: pointer;
         }
-
-        @media (max-width: 768px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
 
         /* Footer */
         .footer {
@@ -855,48 +453,12 @@
             color: white;
             padding: 60px 0 20px;
         }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-grid h3 {
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-grid h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background: #3b82f6;
-        }
-
-        .footer-grid a {
-            color: #9ca3af;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 10px;
-            transition: color 0.3s;
-        }
-
-        .footer-grid a:hover {
-            color: #3b82f6;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #374151;
-            color: #6b7280;
-        }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-grid h3 { margin-bottom: 20px; position: relative; padding-bottom: 10px; }
+        .footer-grid h3::after { content: ''; position: absolute; bottom: 0; left: 0; width: 50px; height: 2px; background: #3b82f6; }
+        .footer-grid a { color: #9ca3af; text-decoration: none; display: block; margin-bottom: 10px; transition: color 0.3s; }
+        .footer-grid a:hover { color: #3b82f6; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #374151; color: #6b7280; }
 
         /* Floating Buttons */
         .whatsapp-float {
@@ -918,7 +480,6 @@
             transition: all 0.3s;
             animation: float 3s ease-in-out infinite;
         }
-
         .ai-float {
             position: fixed;
             bottom: 30px;
@@ -938,7 +499,6 @@
             transition: all 0.3s;
             animation: float 3s ease-in-out infinite;
         }
-
         .ai-chat-window {
             position: fixed;
             bottom: 110px;
@@ -952,7 +512,6 @@
             flex-direction: column;
             overflow: hidden;
         }
-
         .chat-header {
             background: linear-gradient(135deg, #1e3a8a, #3b82f6);
             color: white;
@@ -961,60 +520,13 @@
             justify-content: space-between;
             align-items: center;
         }
-
-        .chat-messages {
-            height: 300px;
-            overflow-y: auto;
-            padding: 15px;
-            background: #f9fafb;
-        }
-
-        .bot-msg {
-            background: #eff6ff;
-            padding: 10px 15px;
-            border-radius: 15px;
-            margin-bottom: 10px;
-            color: #1e3a8a;
-        }
-
-        .user-msg {
-            background: #3b82f6;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 15px;
-            margin-bottom: 10px;
-            text-align: right;
-            margin-left: auto;
-            max-width: 80%;
-        }
-
-        .chat-input {
-            display: flex;
-            padding: 10px;
-            border-top: 1px solid #e5e7eb;
-        }
-
-        .chat-input input {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #e5e7eb;
-            border-radius: 10px;
-        }
-
-        .chat-input button {
-            background: #3b82f6;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 10px;
-            margin-left: 10px;
-            cursor: pointer;
-        }
-
-        @media (max-width: 768px) {
-            .ai-chat-window { width: 300px; left: 20px; }
-            .whatsapp-float, .ai-float { width: 50px; height: 50px; font-size: 24px; }
-        }
+        .chat-messages { height: 300px; overflow-y: auto; padding: 15px; background: #f9fafb; }
+        .bot-msg { background: #eff6ff; padding: 10px 15px; border-radius: 15px; margin-bottom: 10px; color: #1e3a8a; }
+        .user-msg { background: #3b82f6; color: white; padding: 10px 15px; border-radius: 15px; margin-bottom: 10px; text-align: right; margin-left: auto; max-width: 80%; }
+        .chat-input { display: flex; padding: 10px; border-top: 1px solid #e5e7eb; }
+        .chat-input input { flex: 1; padding: 10px; border: 1px solid #e5e7eb; border-radius: 10px; }
+        .chat-input button { background: #3b82f6; color: white; border: none; padding: 10px 15px; border-radius: 10px; margin-left: 10px; cursor: pointer; }
+        @media (max-width: 768px) { .ai-chat-window { width: 300px; left: 20px; } .whatsapp-float, .ai-float { width: 50px; height: 50px; font-size: 24px; } }
     </style>
 </head>
 <body>
@@ -1063,7 +575,7 @@
     </div>
 </nav>
 
-<!-- Hero Slider -->
+<!-- Hero Slider with YOUR images -->
 <section id="home" class="hero">
     <div class="slider">
         <div class="slide slide1 active"></div>
@@ -1080,7 +592,7 @@
     </div>
 </section>
 
-<!-- Products Section -->
+<!-- Products Section with YOUR images -->
 <section id="products">
     <div class="container">
         <h2 class="section-title reveal">💧 અમારા ઉત્પાદનો</h2>
@@ -1090,52 +602,34 @@
             <!-- Product 1: 20L Bottle -->
             <div class="product-card reveal">
                 <div class="product-img">
-                    <i class="fas fa-tint"></i>
+                    <img src="images/bottle.jpg" alt="20 લિટર બોટલ" onerror="this.src='https://placehold.co/500x500/0a5eaa/ffffff?text=20L+Bottle'">
                     <div class="product-badge">બેસ્ટ સેલર</div>
                 </div>
                 <div class="product-info">
                     <h3>20 લિટર બોટલ</h3>
                     <p class="product-desc">શુદ્ધ RO પાણી, BPA-ફ્રી બોટલ, ઘરે ડિલિવરી</p>
                     <div class="price-row">
-                        <div class="price-box">
-                            <div class="price-label">નિયમિત ગ્રાહક</div>
-                            <div class="price-value">₹15</div>
-                            <div class="free-delivery"><i class="fas fa-truck"></i> મફત ડિલિવરી</div>
-                        </div>
-                        <div class="price-box">
-                            <div class="price-label">જથ્થાબંધ</div>
-                            <div class="price-value">₹20</div>
-                        </div>
+                        <div class="price-box"><div class="price-label">નિયમિત ગ્રાહક</div><div class="price-value">₹15</div><div class="free-delivery"><i class="fas fa-truck"></i> મફત ડિલિવરી</div></div>
+                        <div class="price-box"><div class="price-label">જથ્થાબંધ</div><div class="price-value">₹20</div></div>
                     </div>
-                    <a href="https://wa.me/919537906611?text=20 લિટર બોટલ ઓર્ડર કરવી છે" class="order-wa-btn">
-                        <i class="fab fa-whatsapp"></i> WhatsApp પર ઓર્ડર કરો
-                    </a>
+                    <a href="https://wa.me/919537906611?text=20 લિટર બોટલ ઓર્ડર કરવી છે" class="order-wa-btn"><i class="fab fa-whatsapp"></i> WhatsApp પર ઓર્ડર કરો</a>
                 </div>
             </div>
 
             <!-- Product 2: Cold Jar -->
             <div class="product-card reveal">
                 <div class="product-img">
-                    <i class="fas fa-jug-detergent"></i>
+                    <img src="images/jar.jpg" alt="કોલ્ડ જાર" onerror="this.src='https://placehold.co/500x500/1e3a8a/ffffff?text=Cold+Jar'">
                     <div class="product-badge" style="background: linear-gradient(135deg, #f59e0b, #d97706);">તાજગી ખાસ</div>
                 </div>
                 <div class="product-info">
                     <h3>કોલ્ડ જાર</h3>
                     <p class="product-desc">ઠંડુ અને તાજું પાણી, ઉનાળા માટે શ્રેષ્ઠ</p>
                     <div class="price-row">
-                        <div class="price-box">
-                            <div class="price-label">નિયમિત ગ્રાહક</div>
-                            <div class="price-value">₹35</div>
-                            <div class="free-delivery"><i class="fas fa-truck"></i> મફત ડિલિવરી</div>
-                        </div>
-                        <div class="price-box">
-                            <div class="price-label">જથ્થાબંધ</div>
-                            <div class="price-value">₹45</div>
-                        </div>
+                        <div class="price-box"><div class="price-label">નિયમિત ગ્રાહક</div><div class="price-value">₹35</div><div class="free-delivery"><i class="fas fa-truck"></i> મફત ડિલિવરી</div></div>
+                        <div class="price-box"><div class="price-label">જથ્થાબંધ</div><div class="price-value">₹45</div></div>
                     </div>
-                    <a href="https://wa.me/919537906611?text=કોલ્ડ જાર ઓર્ડર કરવો છે" class="order-wa-btn">
-                        <i class="fab fa-whatsapp"></i> WhatsApp પર ઓર્ડર કરો
-                    </a>
+                    <a href="https://wa.me/919537906611?text=કોલ્ડ જાર ઓર્ડર કરવો છે" class="order-wa-btn"><i class="fab fa-whatsapp"></i> WhatsApp પર ઓર્ડર કરો</a>
                 </div>
             </div>
         </div>
@@ -1151,15 +645,10 @@
                 <div class="owner-name">રજાક ભાઈ</div>
                 <p>મોરબીના પ્રતિષ્ઠિત ઉદ્યોગપતિ <strong>રજાક ભાઈ</strong> દ્વારા સ્થાપિત, અમૃતમ વોટર સપ્લાયસ છેલ્લા ૧૬ વર્ષથી શુદ્ધ અને સ્વાસ્થ્યપ્રદ પીવાનું પાણી પૂરું પાડે છે.</p>
                 <p class="philosophy">અમારી ફિલોસોફી: <strong>"સેવા, શુદ્ધતા અને વિશ્વાસ"</strong></p>
-                <div class="stats">
-                    <div class="stat"><div class="stat-num">16+</div><div>વર્ષનો અનુભવ</div></div>
-                    <div class="stat"><div class="stat-num">10k+</div><div>સંતુષ્ટ ગ્રાહકો</div></div>
-                    <div class="stat"><div class="stat-num">24/7</div><div>સર્વિસ</div></div>
-                </div>
+                <div class="stats"><div class="stat"><div class="stat-num">16+</div><div>વર્ષનો અનુભવ</div></div><div class="stat"><div class="stat-num">1.5k+</div><div>સંતુષ્ટ ગ્રાહકો</div></div><div class="stat"><div class="stat-num">24/7</div><div>સર્વિસ</div></div></div>
             </div>
             <div class="about-image reveal">
-                <i class="fas fa-tint float-animation"></i>
-                <p style="margin-top: 20px; color: #1e3a8a; font-weight: 600;">૧૬ વર્ષથી વિશ્વાસની પાયા</p>
+                <img src="images/about.jpg" alt="અમૃતમ વોટર" onerror="this.src='https://placehold.co/500x500/0a5eaa/ffffff?text=Amrutam+Water'">
             </div>
         </div>
     </div>
@@ -1170,7 +659,6 @@
     <div class="container">
         <h2 class="section-title reveal">🌟 શા માટે અમૃતમ વોટર?</h2>
         <p class="section-subtitle reveal">અમે શા માટે મોરબીનો સૌથી વિશ્વસનીય પાણી પુરવઠો છીએ</p>
-        
         <div class="features-grid">
             <div class="feature-card reveal"><div class="feature-icon"><i class="fas fa-certificate"></i></div><h3>૧૬ વર્ષનો વિશ્વાસ</h3><p>મોરબીમાં સૌથી વધુ વિશ્વસનીય પાણી પુરવઠો</p></div>
             <div class="feature-card reveal"><div class="feature-icon"><i class="fas fa-flask"></i></div><h3>RO શુદ્ધિકરણ</h3><p>અદ્યતન ટેકનોલોજીથી ૧૦૦% શુદ્ધ પાણી</p></div>
@@ -1196,22 +684,14 @@
     <div class="container">
         <h2 class="section-title reveal">📍 સર્વિસ એરિયા</h2>
         <p class="section-subtitle reveal">અમે સમગ્ર મોરબી શહેરમાં ડિલિવરી આપીએ છીએ</p>
-        
         <div class="service-grid">
             <div class="area-list reveal">
                 <h3><i class="fas fa-map-marker-alt"></i> ડિલિવરી ઝોન</h3>
-                <ul>
-                    <li><i class="fas fa-check-circle"></i> મોરબી સિટી (તમામ વોર્ડ)</li>
-                    <li><i class="fas fa-check-circle"></i> જયભાવની નગર, લાખા પાટી</li>
-                    <li><i class="fas fa-check-circle"></i> ગુંદાસર રોડ, 80 ફૂટ રોડ</li>
-                    <li><i class="fas fa-check-circle"></i> ટ્રાન્સપોર્ટ નગર, મકાન નગર</li>
-                    <li><i class="fas fa-check-circle"></i> નવી મોરબી, ઓલ્ડ મોરબી</li>
-                </ul>
+                <ul><li><i class="fas fa-check-circle"></i> મોરબી સિટી</li><li><i class="fas fa-check-circle"></i> રવાપર રોડ </li><li><i class="fas fa-check-circle"></i> નવું બસ સ્ટેન્ડ </li><li><i class="fas fa-check-circle"></i>લાતી પ્લોટ </li></ul>
                 <p style="margin-top: 20px; font-weight: 600; color: #1e3a8a;"><i class="fas fa-truck"></i> "Delivery all over Morbi"</p>
             </div>
             <div class="service-map reveal">
-                <i class="fas fa-map" style="font-size: 50px; color: #9ca3af;"></i>
-                <span style="margin-left: 10px;">મોરબી, ગુજરાત</span>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117905.89695548132!2d70.77418772285118!3d22.817384640258147!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3958697d0b1d2e2b%3A0x8b6c7e0f6d0b1f2a!2sMorbi%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1711711711711!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     </div>
@@ -1225,11 +705,7 @@
             <h2>💧 પાણીના સેવનનું કેલ્ક્યુલેટર</h2>
             <p>તમારા વજન અને પ્રવૃત્તિ પ્રમાણે દૈનિક પાણીની જરૂરિયાત જાણો</p>
             <input type="number" id="weight" placeholder="વજન (કિલોગ્રામ)">
-            <select id="activity">
-                <option value="1.2">ઓછી (બેઠાડુ)</option>
-                <option value="1.4">મધ્યમ (વ્યાયામ)</option>
-                <option value="1.6">ઉચ્ચ (સખત કસરત)</option>
-            </select>
+            <select id="activity"><option value="1.2">ઓછી (બેઠાડુ)</option><option value="1.4">મધ્યમ (વ્યાયામ)</option><option value="1.6">ઉચ્ચ (સખત કસરત)</option></select>
             <button class="calc-btn" id="calcBtn">ગણતરી કરો</button>
             <div class="result" id="result"></div>
         </div>
@@ -1241,7 +717,6 @@
     <div class="container">
         <h2 class="section-title reveal">📞 સંપર્ક કરો</h2>
         <p class="section-subtitle reveal">કોઈપણ પ્રશ્નો માટે અમારો સંપર્ક કરો</p>
-        
         <div class="contact-grid">
             <div class="contact-info">
                 <div class="info-card reveal"><i class="fas fa-phone-alt"></i><h3>કૉલ કરો</h3><p>+91 95379 06611</p><small>સવારે 6:00 - સાંજે 4:00</small></div>
@@ -1287,68 +762,36 @@
 
 <script>
 // Preloader
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        document.getElementById('preloader').style.display = 'none';
-    }, 1000);
-});
+window.addEventListener('load', () => { setTimeout(() => { document.getElementById('preloader').style.display = 'none'; }, 1000); });
 
 // Welcome Modal
 const modal = document.getElementById('welcomeModal');
 const startBtn = document.getElementById('startBtn');
 const mainContent = document.getElementById('mainContent');
-
-startBtn.addEventListener('click', () => {
-    modal.style.display = 'none';
-    mainContent.style.display = 'block';
-    document.body.style.overflow = 'auto';
-});
+startBtn.addEventListener('click', () => { modal.style.display = 'none'; mainContent.style.display = 'block'; document.body.style.overflow = 'auto'; });
 document.body.style.overflow = 'hidden';
 
-// Slider
+// Slider with YOUR images
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 const totalSlides = slides.length;
-
-function showSlide(index) {
-    slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
-    });
-}
-
-function nextSlide() {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    showSlide(currentSlide);
-}
-
-function prevSlide() {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    showSlide(currentSlide);
-}
-
+function showSlide(index) { slides.forEach((slide, i) => { slide.classList.toggle('active', i === index); }); }
+function nextSlide() { currentSlide = (currentSlide + 1) % totalSlides; showSlide(currentSlide); }
+function prevSlide() { currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; showSlide(currentSlide); }
 document.getElementById('prevSlide')?.addEventListener('click', prevSlide);
 document.getElementById('nextSlide')?.addEventListener('click', nextSlide);
 setInterval(nextSlide, 5000);
 
 // Scroll Reveal
 const reveals = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-        }
-    });
-}, { threshold: 0.1 });
+const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); }); }, { threshold: 0.1 });
 reveals.forEach(el => observer.observe(el));
 
 // Calculator
 document.getElementById('calcBtn')?.addEventListener('click', () => {
     const weight = parseFloat(document.getElementById('weight').value);
     const activity = parseFloat(document.getElementById('activity').value);
-    if (isNaN(weight) || weight <= 0) {
-        document.getElementById('result').innerHTML = '❌ માન્ય વજન દાખલ કરો';
-        return;
-    }
+    if (isNaN(weight) || weight <= 0) { document.getElementById('result').innerHTML = '❌ માન્ય વજન દાખલ કરો'; return; }
     const water = (weight * 0.033 * activity).toFixed(1);
     document.getElementById('result').innerHTML = `💧 તમારા માટે દૈનિક ${water} લિટર પાણી જરૂરી છે.`;
 });
@@ -1367,9 +810,7 @@ document.getElementById('feedbackForm')?.addEventListener('submit', (e) => {
 });
 
 // Mobile Menu
-document.getElementById('mobileMenuBtn')?.addEventListener('click', () => {
-    document.getElementById('navLinks').classList.toggle('active');
-});
+document.getElementById('mobileMenuBtn')?.addEventListener('click', () => { document.getElementById('navLinks').classList.toggle('active'); });
 
 // AI Chat
 const aiFloat = document.getElementById('aiFloat');
@@ -1379,22 +820,8 @@ const chatInput = document.getElementById('chatInput');
 const sendChat = document.getElementById('sendChat');
 const chatMessages = document.getElementById('chatMessages');
 
-function addBotMessage(text) {
-    const div = document.createElement('div');
-    div.className = 'bot-msg';
-    div.innerHTML = `<i class="fas fa-robot"></i> ${text}`;
-    chatMessages.appendChild(div);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-}
-
-function addUserMessage(text) {
-    const div = document.createElement('div');
-    div.className = 'user-msg';
-    div.innerHTML = text;
-    chatMessages.appendChild(div);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-}
-
+function addBotMessage(text) { const div = document.createElement('div'); div.className = 'bot-msg'; div.innerHTML = `<i class="fas fa-robot"></i> ${text}`; chatMessages.appendChild(div); chatMessages.scrollTop = chatMessages.scrollHeight; }
+function addUserMessage(text) { const div = document.createElement('div'); div.className = 'user-msg'; div.innerHTML = text; chatMessages.appendChild(div); chatMessages.scrollTop = chatMessages.scrollHeight; }
 function getAIResponse(question) {
     const q = question.toLowerCase();
     if (q.includes('ભાવ') || q.includes('કિંમત')) return "📊 20L બોટલ: નિયમિત ₹15 (મફત ડિલિવરી), જથ્થાબંધ ₹20. કોલ્ડ જાર: નિયમિત ₹35 (મફત ડિલિવરી), જથ્થાબંધ ₹45.";
@@ -1405,29 +832,11 @@ function getAIResponse(question) {
     if (q.includes('મોરબી')) return "📍 અમે સંપૂર્ણ મોરબી શહેરમાં ડિલિવરી આપીએ છીએ.";
     return "આપના પ્રશ્ન માટે આભાર. વધુ માહિતી માટે +91 95379 06611 પર સંપર્ક કરો.";
 }
-
-aiFloat?.addEventListener('click', () => {
-    aiChatWindow.style.display = aiChatWindow.style.display === 'flex' ? 'none' : 'flex';
-});
-
-closeChat?.addEventListener('click', () => {
-    aiChatWindow.style.display = 'none';
-});
-
-function sendMessage() {
-    const msg = chatInput.value.trim();
-    if (!msg) return;
-    addUserMessage(msg);
-    chatInput.value = '';
-    setTimeout(() => {
-        addBotMessage(getAIResponse(msg));
-    }, 300);
-}
-
+aiFloat?.addEventListener('click', () => { aiChatWindow.style.display = aiChatWindow.style.display === 'flex' ? 'none' : 'flex'; });
+closeChat?.addEventListener('click', () => { aiChatWindow.style.display = 'none'; });
+function sendMessage() { const msg = chatInput.value.trim(); if (!msg) return; addUserMessage(msg); chatInput.value = ''; setTimeout(() => { addBotMessage(getAIResponse(msg)); }, 300); }
 sendChat?.addEventListener('click', sendMessage);
-chatInput?.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') sendMessage();
-});
+chatInput?.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
 </script>
 
 </body>
