@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>TouchType Pro | Master Touch Typing — Zero to Hero</title>
-    <meta name="description" content="Learn touch typing with finger guides, real-time feedback, and step-by-step lessons. Free, offline, no ads.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>TouchType Pro | Full Keyboard Mastery - Complete Course</title>
+    <meta name="description" content="Complete touch typing course covering entire keyboard: home row, top row, bottom row, numbers, symbols, shift. Responsive design with visual hand guide.">
     <style>
         * {
             margin: 0;
@@ -13,370 +13,287 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: radial-gradient(circle at 20% 30%, #0a0c15, #03050a);
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Inter', sans-serif;
+            background: radial-gradient(circle at 10% 20%, #0a0c15, #020308);
             min-height: 100vh;
-            color: #f0f3fa;
+            color: #edf2ff;
             overflow-x: hidden;
         }
 
-        /* full screen app container */
+        /* App container - fully responsive */
         .app {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
             display: flex;
             flex-direction: column;
-            overflow-y: auto;
-            scroll-behavior: smooth;
+            min-height: 100vh;
+            width: 100%;
+            max-width: 1600px;
+            margin: 0 auto;
         }
 
-        /* custom scroll */
-        .app::-webkit-scrollbar { width: 6px; }
-        .app::-webkit-scrollbar-track { background: #1a1f2e; }
-        .app::-webkit-scrollbar-thumb { background: #f5c542; border-radius: 10px; }
-
-        /* header */
+        /* Header - responsive */
         .header {
-            padding: 20px 40px;
+            padding: 12px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            background: rgba(5, 8, 18, 0.7);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(245, 197, 66, 0.2);
+            gap: 12px;
+            background: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(245, 197, 66, 0.3);
             position: sticky;
             top: 0;
             z-index: 100;
         }
-        .logo h1 {
-            font-size: 1.7rem;
-            background: linear-gradient(135deg, #fff, #f5c542);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .logo p {
-            font-size: 0.75rem;
-            opacity: 0.7;
-        }
-        .stats {
-            display: flex;
-            gap: 30px;
-        }
-        .stat {
-            text-align: center;
-        }
-        .stat .value {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #f5c542;
-        }
+        .logo h1 { font-size: clamp(1.2rem, 5vw, 1.6rem); background: linear-gradient(135deg, #fff, #f5c542); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .logo p { font-size: 0.65rem; opacity: 0.7; }
+        .stats { display: flex; gap: clamp(8px, 4vw, 24px); }
+        .stat { background: rgba(0,0,0,0.5); padding: 4px 12px; border-radius: 32px; text-align: center; }
+        .stat .value { font-size: clamp(1.2rem, 6vw, 1.8rem); font-weight: 700; color: #f5c542; line-height: 1; }
 
-        /* main content */
+        /* Main content */
         .main-content {
             flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 30px 24px;
-            max-width: 1400px;
-            margin: 0 auto;
+            padding: 16px 20px;
             width: 100%;
         }
 
-        /* finger guide panel */
-        .finger-guide {
-            background: rgba(15, 20, 35, 0.6);
-            backdrop-filter: blur(16px);
-            border-radius: 48px;
-            padding: 20px 28px;
-            margin-bottom: 30px;
-            width: 100%;
-            border: 1px solid rgba(245, 197, 66, 0.25);
-            transition: all 0.2s;
+        /* Tutorial + hand guide container */
+        .tutorial-card {
+            background: rgba(245, 197, 66, 0.08);
+            border-left: 4px solid #f5c542;
+            border-radius: 28px;
+            padding: 12px 18px;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
         }
-        .guide-title {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #f5c542;
-            margin-bottom: 12px;
+
+        /* Hand visual - responsive floating hand */
+        .hand-visual {
+            background: rgba(10, 14, 28, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 40px;
+            padding: 16px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(245,197,66,0.3);
         }
-        .hand-diagram {
+        .hand-title { font-size: 0.8rem; color: #f5c542; margin-bottom: 12px; letter-spacing: 1px; }
+        .hands-container {
             display: flex;
-            justify-content: space-between;
             flex-wrap: wrap;
+            justify-content: center;
             gap: 20px;
         }
-        .hand {
+        .hand-card {
             flex: 1;
             min-width: 240px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 32px;
+            padding: 14px;
+            text-align: center;
         }
-        .hand h4 {
-            margin-bottom: 12px;
-            font-size: 1rem;
-        }
-        .finger-keys {
+        .hand-card h3 { font-size: 1rem; margin-bottom: 12px; color: #f5c542; }
+        .finger-grid {
             display: flex;
-            gap: 8px;
             flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin: 12px 0;
         }
-        .finger-key {
-            background: #1e293b;
-            padding: 8px 14px;
+        .finger-badge {
+            background: #1e2a3a;
             border-radius: 40px;
+            padding: 6px 12px;
             font-family: monospace;
             font-weight: bold;
-            font-size: 1.1rem;
-            border-left: 3px solid #f5c542;
+            font-size: 0.9rem;
+            transition: all 0.1s;
+            border-bottom: 2px solid #f5c542;
         }
-        .finger-label {
-            font-size: 0.7rem;
-            margin-left: 6px;
-            color: #f5c542;
+        .finger-badge.active {
+            background: #f5c542;
+            color: #000;
+            transform: scale(1.05);
+            box-shadow: 0 0 12px gold;
+        }
+        .next-key-badge {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            background: #00000066;
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 60px;
         }
 
-        /* typing arena — no input box! */
+        /* Typing arena */
         .typing-arena {
-            width: 100%;
             background: rgba(0, 0, 0, 0.45);
-            border-radius: 56px;
-            padding: 32px 28px;
-            margin: 20px 0;
+            border-radius: 48px;
+            padding: 20px;
+            margin: 16px 0;
             backdrop-filter: blur(8px);
-            border: 1px solid rgba(255,255,255,0.08);
         }
         .lesson-header {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 28px;
+            align-items: center;
             flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
         }
-        .lesson-badge {
-            background: #f5c54220;
-            padding: 6px 18px;
-            border-radius: 60px;
-            font-size: 0.85rem;
-            border: 1px solid #f5c54240;
-        }
-        .progress-bar {
-            width: 200px;
-            height: 6px;
-            background: #2d3748;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        .progress-fill {
-            height: 100%;
-            width: 0%;
-            background: #f5c542;
-            transition: width 0.1s ease;
-        }
+        .lesson-badge { background: #f5c54220; padding: 5px 16px; border-radius: 60px; font-size: 0.8rem; font-weight: bold; }
+        .progress-bar { width: 180px; height: 6px; background: #2d3748; border-radius: 10px; overflow: hidden; }
+        .progress-fill { height: 100%; width: 0%; background: #f5c542; transition: width 0.1s; }
+
         .target-text {
             font-family: 'Fira Mono', 'Courier New', monospace;
-            font-size: 2.2rem;
+            font-size: clamp(1.1rem, 6vw, 2rem);
             line-height: 1.4;
-            letter-spacing: 1px;
-            word-break: break-word;
             background: #010614;
-            padding: 28px 24px;
-            border-radius: 40px;
-            margin-bottom: 20px;
-            border: 1px solid #2a3958;
-        }
-        .current-highlight {
-            background: #f5c542;
-            color: #0a0c15;
-            border-radius: 12px;
-            padding: 0 6px;
-            display: inline-block;
-            animation: subtlePulse 1s infinite;
-        }
-        .mistake-highlight {
-            background: #e53e3e;
-            color: white;
-            border-radius: 8px;
-            text-decoration: underline;
-        }
-        .typed-correct {
-            color: #68d391;
-        }
-        .live-feedback {
-            font-size: 1rem;
-            text-align: center;
-            margin-top: 16px;
-            color: #b9c3db;
-        }
-        .next-hint {
-            font-size: 0.85rem;
-            background: #1e2a3e;
-            display: inline-block;
-            padding: 6px 18px;
-            border-radius: 60px;
-        }
-
-        /* visual keyboard */
-        .visual-keyboard {
-            background: rgba(10, 14, 23, 0.8);
-            border-radius: 32px;
             padding: 20px;
-            margin-top: 20px;
+            border-radius: 32px;
+            word-break: break-word;
+            margin-bottom: 16px;
+        }
+        .current-highlight { background: #f5c542; color: #0a0c15; border-radius: 10px; padding: 0 4px; display: inline-block; animation: pulse 1s infinite; }
+        .typed-correct { color: #68d391; }
+        .live-feedback { text-align: center; background: #00000030; border-radius: 60px; padding: 10px; margin-top: 8px; }
+        .next-hint { font-size: 0.8rem; margin-top: 6px; }
+
+        /* Visual Keyboard - fully responsive scroll */
+        .visual-keyboard {
+            background: rgba(5, 8, 18, 0.9);
+            border-radius: 32px;
+            padding: 12px;
             overflow-x: auto;
+            margin: 16px 0;
         }
         .kb-row {
             display: flex;
             justify-content: center;
-            gap: 6px;
-            margin-bottom: 8px;
+            gap: 4px;
+            margin-bottom: 6px;
             flex-wrap: nowrap;
         }
         .kb-key {
             background: #111827;
-            border-radius: 12px;
-            padding: 12px 10px;
-            min-width: 55px;
+            border-radius: 10px;
+            padding: 8px 4px;
+            min-width: 40px;
             text-align: center;
+            font-size: 0.7rem;
             font-weight: 600;
             font-family: monospace;
-            transition: 0.07s linear;
-            box-shadow: 0 2px 0 #00000055;
-            border-bottom: 1px solid #2d3a5e;
+            transition: 0.05s;
         }
-        .kb-key.active-finger {
-            background: #f5c542;
-            color: #000;
-            box-shadow: 0 0 12px #f5c542aa;
-            transform: scale(1.02);
-        }
-        .kb-key.pressed {
-            transform: scale(0.94);
-            background: #e6b422;
-        }
+        .kb-key.lesson-focus { border: 2px solid #f5c542; background: #2a3a55; }
+        .kb-key.pressed { transform: scale(0.92); background: #f5c542; color: black; }
 
-        /* level selector */
+        /* Level strip responsive */
         .level-strip {
             display: flex;
-            gap: 12px;
             flex-wrap: wrap;
             justify-content: center;
-            margin: 28px 0 15px;
+            gap: 8px;
+            margin: 20px 0 12px;
         }
-        .level-dot {
+        .level-btn {
             background: #1f2a44;
             border-radius: 60px;
-            padding: 8px 20px;
-            font-size: 0.8rem;
+            padding: 5px 14px;
+            font-size: 0.7rem;
             cursor: pointer;
             transition: 0.1s;
         }
-        .level-dot.active {
-            background: #f5c542;
-            color: #0a0c15;
-            font-weight: bold;
-        }
-        .level-dot.completed {
-            background: #2c7840;
-        }
-
+        .level-btn.active { background: #f5c542; color: #000; font-weight: bold; }
+        .level-btn.completed { background: #2c7840; }
         button {
             background: #f5c542;
             border: none;
-            padding: 12px 28px;
-            border-radius: 44px;
+            padding: 10px 24px;
+            border-radius: 60px;
             font-weight: bold;
             cursor: pointer;
-            color: #0a0c15;
-            margin: 8px;
+            margin: 6px;
         }
         .certificate-card {
             background: linear-gradient(145deg, #1a1f2e, #0f1320);
             border-radius: 48px;
-            padding: 32px;
+            padding: 24px;
             text-align: center;
             margin-top: 30px;
         }
+        canvas { max-width: 100%; height: auto; border-radius: 20px; }
 
-        @keyframes subtlePulse {
+        @keyframes pulse {
             0% { opacity: 0.9; transform: scale(1);}
             100% { opacity: 1; transform: scale(1.02);}
         }
-
-        @media (max-width: 800px) {
-            .target-text { font-size: 1.4rem; }
-            .kb-key { min-width: 38px; padding: 8px 4px; font-size: 12px; }
-            .header { padding: 12px 20px; }
-            .stat .value { font-size: 1.2rem; }
+        @media (max-width: 640px) {
+            .kb-key { min-width: 30px; font-size: 0.6rem; padding: 6px 2px; }
+            .hand-card { min-width: 200px; }
+            .stats { gap: 8px; }
         }
     </style>
 </head>
 <body>
 <div class="app">
     <div class="header">
-        <div class="logo">
-            <h1>⌨️ TouchType Pro</h1>
-            <p>zero to hero • muscle memory mastery</p>
-        </div>
+        <div class="logo"><h1>⌨️ TouchType Pro</h1><p>Full Keyboard Course • All Rows</p></div>
         <div class="stats">
             <div class="stat"><div class="value" id="wpmVal">0</div><div>WPM</div></div>
             <div class="stat"><div class="value" id="accVal">100</div><div>%</div></div>
-            <div class="stat"><div class="value" id="mistVal">0</div><div>mistakes</div></div>
+            <div class="stat"><div class="value" id="mistVal">0</div><div>errors</div></div>
         </div>
     </div>
-
     <div class="main-content">
-        <!-- Finger guide section -->
-        <div class="finger-guide" id="fingerGuide">
-            <div class="guide-title">🎯 FINGER MAPPING — इस level में ये fingers use करो</div>
-            <div class="hand-diagram" id="handDiagram"></div>
+        <div class="tutorial-card">
+            💡 <strong>HOW TO USE:</strong> Just TYPE on your physical keyboard! No click needed. Follow the glowing hand → use the correct finger. Complete lessons step by step covering FULL KEYBOARD.
         </div>
 
-        <!-- Typing arena (no input box) -->
+        <!-- Dynamic Hand Guide -->
+        <div class="hand-visual">
+            <div class="hand-title">🖐️ LIVE HAND GUIDE — Use these fingers for current key</div>
+            <div class="hands-container" id="handsContainer"></div>
+        </div>
+
         <div class="typing-arena">
             <div class="lesson-header">
-                <div class="lesson-badge" id="lessonName">Home Row</div>
+                <div class="lesson-badge" id="lessonName">Loading...</div>
                 <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
             </div>
             <div class="target-text" id="targetTextDisplay"></div>
             <div class="live-feedback">
-                <span id="feedbackMsg">👉 अब टाइप करना शुरू करें — बस keyboard press करें</span>
+                <span id="feedbackMsg">✨ Start typing — place fingers on home row</span>
                 <div class="next-hint" id="nextKeyHint"></div>
             </div>
         </div>
 
-        <!-- Visual Keyboard -->
         <div class="visual-keyboard" id="visualKeyboard"></div>
-
-        <!-- Level Navigation -->
         <div class="level-strip" id="levelStrip"></div>
-        <div style="display: flex; gap: 14px; justify-content: center;">
-            <button id="resetLessonBtn">⟳ Reset Lesson</button>
-            <button id="nextLevelBtn">➡ Next Level</button>
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+            <button id="resetBtn">⟳ Reset Lesson</button>
+            <button id="nextBtn">➡ Next Lesson</button>
         </div>
-
         <div id="certificateSection" style="display: none;" class="certificate-card">
-            <h2>🏆 TOUCH TYPING HERO 🏆</h2>
-            <canvas id="certCanvas" width="500" height="300" style="max-width:100%; background:#fff; border-radius: 24px; margin:16px 0;"></canvas><br>
+            <h2>🏆 FULL KEYBOARD MASTERY 🏆</h2>
+            <canvas id="certCanvas" width="550" height="300" style="background:#fff;"></canvas><br>
             <button id="downloadCert">Download Certificate (PNG)</button>
         </div>
     </div>
 </div>
 
 <script>
-    // ---------- ADVANCED LESSONS (finger + key focus) ----------
+    // ========= COMPLETE KEYBOARD COVERAGE: Home, Top, Bottom, Numbers, Symbols, Shift =========
     const LESSONS = [
-        { name: "🏠 HOME ROW", text: "asdf jkl; asdf jkl; sad lad fall jak flak ask", focusKeys: ["a","s","d","f","j","k","l",";"], fingerMap: { left: { pinky:"a", ring:"s", middle:"d", index:"f" }, right: { index:"j", middle:"k", ring:"l", pinky:";" } } },
-        { name: "⬆️ TOP ROW", text: "qwer uiop qwerty uiop type quite word", focusKeys: ["q","w","e","r","u","i","o","p"], fingerMap: { left: { pinky:"q", ring:"w", middle:"e", index:"r" }, right: { index:"u", middle:"i", ring:"o", pinky:"p" } } },
-        { name: "⬇️ BOTTOM ROW", text: "zxcvbnm zxcv bnm cxz vbn zxcvbnm", focusKeys: ["z","x","c","v","b","n","m"], fingerMap: { left: { pinky:"z", ring:"x", middle:"c", index:"v" }, right: { index:"b", middle:"n", ring:"m" } } },
-        { name: "🔠 SHIFT + CAPITALS", text: "The Quick Brown Fox Jumps Over Lazy Dog. Typing Pro!", focusKeys: ["Shift"], fingerMap: { special: "Shift with pinky" } },
-        { name: "🔢 NUMBERS", text: "1234 5678 90 1234567890 5050 9876", focusKeys: ["1","2","3","4","5","6","7","8","9","0"], fingerMap: { left: { pinky:"1", ring:"2", middle:"3", index:"4/5" }, right:{ index:"6/7", middle:"8", ring:"9", pinky:"0" } } },
-        { name: "✨ SYMBOLS", text: "!@#$ %^&* ()_+ {} :<>? ~` ;:,.", focusKeys: ["!","@","#","$","%","^","&","*","(",")","_","+"], fingerMap: { note: "Shift + number row" } },
-        { name: "⚡ SPEED BUILDER", text: "mastering touch typing builds muscle memory. practice daily for speed and accuracy without seeing keys. focus on rhythm.", focusKeys: ["all"], fingerMap: { all: "all fingers" } },
-        { name: "🏁 FINAL HERO", text: "Congratulations hero! You type without looking. Keep practicing and you'll reach 100+ WPM. Never give up!", focusKeys: ["all"], fingerMap: { all: "mastery" } }
+        { name: "🏠 HOME ROW (Base)", text: "asdf jkl; asdf jkl; sad lad fall jak flak ask fj dk sl", focusKeys: ["a","s","d","f","j","k","l",";"], fingerMap: { left: { "pinky":"a", "ring":"s", "middle":"d", "index":"f" }, right: { "index":"j", "middle":"k", "ring":"l", "pinky":";" } } },
+        { name: "⬆️ TOP ROW", text: "qwer uiop qwerty uiop type word quiet our power", focusKeys: ["q","w","e","r","u","i","o","p"], fingerMap: { left: { "pinky":"q", "ring":"w", "middle":"e", "index":"r" }, right: { "index":"u", "middle":"i", "ring":"o", "pinky":"p" } } },
+        { name: "⬇️ BOTTOM ROW", text: "zxcvbnm zxcv bnm cxz vbn zxcvbnm xyz zebra", focusKeys: ["z","x","c","v","b","n","m"], fingerMap: { left: { "pinky":"z", "ring":"x", "middle":"c", "index":"v" }, right: { "index":"b", "middle":"n", "ring":"m" } } },
+        { name: "🔢 NUMBER ROW", text: "1234 5678 90 1234567890 5050 9876 13579 24680", focusKeys: ["1","2","3","4","5","6","7","8","9","0"], fingerMap: { left: { "pinky":"1", "ring":"2", "middle":"3", "index":"4/5" }, right: { "index":"6/7", "middle":"8", "ring":"9", "pinky":"0" } } },
+        { name: "✨ SYMBOLS (Shift + Numbers)", text: "!@#$ %^&* ()_+ {} :<>? ~` ;:,.", focusKeys: ["!","@","#","$","%","^","&","*","(",")","_","+"], fingerMap: { note: "Use Shift + number row. Pinky for Shift." } },
+        { name: "🔠 CAPITAL LETTERS (Shift)", text: "The Quick Brown Fox Jumps Over The Lazy Dog. Typing Pro Rocks!", focusKeys: ["Shift"], fingerMap: { special: "Hold Shift with pinky + letter key" } },
+        { name: "⚡ FULL COMBO", text: "The quick brown fox jumps over 123 lazy dogs! Type @#$%^&*() and qwerty zxcvbnm", focusKeys: ["all"], fingerMap: { all: "All fingers — full keyboard mastery" } },
+        { name: "🏆 FINAL MASTERY", text: "Congratulations! You mastered the entire keyboard: QWERTYUIOP ASDFGHJKL ZXCVBNM 1234567890!@#$%^&*", focusKeys: ["all"], fingerMap: { all: "Professional Typist" } }
     ];
 
     let currentLessonIdx = 0;
@@ -385,10 +302,10 @@
     let mistakes = 0;
     let totalKeystrokes = 0;
     let startTime = null;
+    let lessonFinished = false;
     let completedLessons = new Array(LESSONS.length).fill(false);
-    let lessonFinishedFlag = false;
 
-    // DOM
+    // DOM elements
     const targetDiv = document.getElementById("targetTextDisplay");
     const lessonNameSpan = document.getElementById("lessonName");
     const wpmSpan = document.getElementById("wpmVal");
@@ -398,7 +315,7 @@
     const feedbackSpan = document.getElementById("feedbackMsg");
     const nextHintSpan = document.getElementById("nextKeyHint");
     const visualKbDiv = document.getElementById("visualKeyboard");
-    const handDiagramDiv = document.getElementById("handDiagram");
+    const handsContainer = document.getElementById("handsContainer");
     const levelStripDiv = document.getElementById("levelStrip");
 
     function initLesson() {
@@ -406,7 +323,7 @@
             showCertificate();
             return;
         }
-        lessonFinishedFlag = false;
+        lessonFinished = false;
         currentText = LESSONS[currentLessonIdx].text;
         currentPos = 0;
         mistakes = 0;
@@ -414,34 +331,29 @@
         startTime = null;
         updateDisplay();
         updateStats();
-        updateFingerGuide();
+        updateHandGuide();
         drawKeyboard();
-        updateLevelStrip();
+        buildLevelStrip();
         saveProgress();
-        if (currentPos === currentText.length) autoCompleteCheck();
-        feedbackSpan.innerText = "✨ Start typing — just press the correct key!";
-        nextHintSpan.innerText = `👉 Next: "${currentText[0] || ''}"`;
+        feedbackSpan.innerHTML = `🎯 ${LESSONS[currentLessonIdx].name} — Type the highlighted key with correct finger.`;
+        if (currentText.length) nextHintSpan.innerHTML = `👉 Next: "${currentText[0]}"`;
     }
 
     function updateDisplay() {
-        if (!currentText) return;
         let html = "";
-        for (let i=0; i<currentText.length; i++) {
+        for (let i = 0; i < currentText.length; i++) {
             let ch = currentText[i];
-            if (i < currentPos) {
-                html += `<span class="typed-correct">${escapeHtml(ch)}</span>`;
-            } else if (i === currentPos) {
-                html += `<span class="current-highlight">${escapeHtml(ch)}</span>`;
-            } else {
-                html += escapeHtml(ch);
-            }
+            let esc = ch === ' ' ? '&nbsp;' : escapeHtml(ch);
+            if (i < currentPos) html += `<span class="typed-correct">${esc}</span>`;
+            else if (i === currentPos) html += `<span class="current-highlight">${esc}</span>`;
+            else html += esc;
         }
         targetDiv.innerHTML = html;
         lessonNameSpan.innerText = LESSONS[currentLessonIdx].name;
         let percent = (currentPos / currentText.length) * 100;
         progressFill.style.width = percent + "%";
-        if (currentPos < currentText.length) nextHintSpan.innerText = `👉 Next key: "${currentText[currentPos]}"`;
-        else nextHintSpan.innerText = "✅ Lesson complete! Press Next Level →";
+        if (currentPos < currentText.length) nextHintSpan.innerHTML = `👉 Next: "<strong>${escapeHtml(currentText[currentPos])}</strong>"`;
+        else nextHintSpan.innerHTML = "✅ Lesson complete! Press Next Lesson →";
     }
 
     function updateStats() {
@@ -460,56 +372,52 @@
         mistSpan.innerText = mistakes;
     }
 
-    function handleKeyPress(e) {
-        if (lessonFinishedFlag) return;
-        const pressed = e.key;
-        if (pressed === "Shift" || pressed === "Control" || pressed === "Alt" || pressed === "Meta") return;
-        e.preventDefault();
+    // Update the transparent hand with active finger highlight based on next expected key
+    function updateHandGuide() {
+        const lesson = LESSONS[currentLessonIdx];
+        const map = lesson.fingerMap;
+        const expectedKey = currentText[currentPos];
+        let activeLeftFinger = null;
+        let activeRightFinger = null;
+        let leftMap = map.left || {};
+        let rightMap = map.right || {};
 
-        if (!startTime && currentPos === 0) startTime = Date.now();
-
-        const expected = currentText[currentPos];
-        if (!expected) return;
-
-        // visual feedback on keyboard
-        highlightKeyOnBoard(pressed);
-
-        if (pressed === expected) {
-            // correct
-            currentPos++;
-            totalKeystrokes++;
-            updateDisplay();
-            updateStats();
-            if (currentPos === currentText.length) {
-                lessonFinishedFlag = true;
-                completedLessons[currentLessonIdx] = true;
-                saveProgress();
-                feedbackSpan.innerText = "🎉 Level complete! Click 'Next Level' to continue.";
-                if (currentLessonIdx + 1 >= LESSONS.length) showCertificate();
-            } else {
-                feedbackSpan.innerText = "✅ Correct! Keep going.";
+        if (expectedKey) {
+            for (let [finger, key] of Object.entries(leftMap)) {
+                if (key === expectedKey || (key.includes('/') && key.includes(expectedKey))) activeLeftFinger = finger;
             }
-        } else {
-            // mistake
-            mistakes++;
-            totalKeystrokes++;
-            updateStats();
-            updateDisplay();
-            feedbackSpan.innerText = `❌ Mistake! Expected "${expected}" but you pressed "${pressed}". Try again.`;
-            // visual error flash
-            targetDiv.style.transform = "scale(1.01)";
-            setTimeout(() => targetDiv.style.transform = "", 120);
-        }
-    }
-
-    function highlightKeyOnBoard(key) {
-        const allKeys = document.querySelectorAll(".kb-key");
-        for (let k of allKeys) {
-            if (k.innerText === key || (key === " " && k.innerText === "Space")) {
-                k.classList.add("pressed");
-                setTimeout(() => k.classList.remove("pressed"), 100);
+            for (let [finger, key] of Object.entries(rightMap)) {
+                if (key === expectedKey || (key.includes('/') && key.includes(expectedKey))) activeRightFinger = finger;
             }
         }
+
+        const leftFingersHtml = Object.entries(leftMap).map(([finger, key]) => {
+            let isActive = (activeLeftFinger === finger);
+            return `<div class="finger-badge ${isActive ? 'active' : ''}">${finger.toUpperCase()}<span style="margin-left:6px;font-size:1.1rem;">${key}</span></div>`;
+        }).join('');
+        
+        const rightFingersHtml = Object.entries(rightMap).map(([finger, key]) => {
+            let isActive = (activeRightFinger === finger);
+            return `<div class="finger-badge ${isActive ? 'active' : ''}">${finger.toUpperCase()}<span style="margin-left:6px;font-size:1.1rem;">${key}</span></div>`;
+        }).join('');
+
+        let specialMsg = "";
+        if (map.special) specialMsg = `<div class="next-key-badge">💡 ${map.special}</div>`;
+        else if (map.note) specialMsg = `<div class="next-key-badge">📘 ${map.note}</div>`;
+        else if (map.all) specialMsg = `<div class="next-key-badge">🌟 ${map.all}</div>`;
+
+        handsContainer.innerHTML = `
+            <div class="hand-card">
+                <h3>🫲 LEFT HAND</h3>
+                <div class="finger-grid">${leftFingersHtml || '<span>Relaxed position</span>'}</div>
+                ${expectedKey ? `<div class="next-key-badge">🎯 Next: "${escapeHtml(expectedKey)}" → ${activeLeftFinger ? `Use ${activeLeftFinger} finger` : (activeRightFinger ? 'Right hand' : 'Correct finger')}</div>` : ''}
+            </div>
+            <div class="hand-card">
+                <h3>🫱 RIGHT HAND</h3>
+                <div class="finger-grid">${rightFingersHtml || '<span>Home row ready</span>'}</div>
+                ${specialMsg}
+            </div>
+        `;
     }
 
     function drawKeyboard() {
@@ -519,7 +427,7 @@
             ["Caps","a","s","d","f","g","h","j","k","l",";","'","Enter"],
             ["Shift","z","x","c","v","b","n","m",",",".","/","Shift"]
         ];
-        const focusSet = new Set(LESSONS[currentLessonIdx].focusKeys);
+        const focusSet = new Set(LESSONS[currentLessonIdx].focusKeys.map(k => k.toLowerCase()));
         visualKbDiv.innerHTML = "";
         rows.forEach(row => {
             let rowDiv = document.createElement("div");
@@ -527,43 +435,79 @@
             row.forEach(key => {
                 let keyDiv = document.createElement("div");
                 keyDiv.className = "kb-key";
-                keyDiv.innerText = key.length > 3 ? key.slice(0,2) : key;
+                let display = key.length > 4 ? key.slice(0,3) : key;
+                keyDiv.innerText = display;
                 if (focusSet.has(key.toLowerCase()) || LESSONS[currentLessonIdx].focusKeys[0] === "all") {
-                    keyDiv.style.border = "1px solid #f5c542";
-                    keyDiv.style.background = "#2a3a55";
+                    keyDiv.classList.add("lesson-focus");
                 }
                 rowDiv.appendChild(keyDiv);
             });
             visualKbDiv.appendChild(rowDiv);
         });
+        // add space row
+        let spaceRow = document.createElement("div");
+        spaceRow.className = "kb-row";
+        let spaceKey = document.createElement("div");
+        spaceKey.className = "kb-key";
+        spaceKey.innerText = "Space";
+        spaceKey.style.minWidth = "140px";
+        if (LESSONS[currentLessonIdx].focusKeys.includes(" ")) spaceKey.classList.add("lesson-focus");
+        spaceRow.appendChild(spaceKey);
+        visualKbDiv.appendChild(spaceRow);
     }
 
-    function updateFingerGuide() {
-        const lesson = LESSONS[currentLessonIdx];
-        handDiagramDiv.innerHTML = "";
-        if (lesson.fingerMap.left || lesson.fingerMap.right) {
-            let leftDiv = document.createElement("div");
-            leftDiv.className = "hand";
-            leftDiv.innerHTML = "<h4>🫲 LEFT HAND</h4><div class='finger-keys'></div>";
-            let rightDiv = document.createElement("div");
-            rightDiv.className = "hand";
-            rightDiv.innerHTML = "<h4>🫱 RIGHT HAND</h4><div class='finger-keys'></div>";
-            if (lesson.fingerMap.left) {
-                let container = leftDiv.querySelector(".finger-keys");
-                for (let [finger, key] of Object.entries(lesson.fingerMap.left)) {
-                    container.innerHTML += `<div class="finger-key">${key} <span class="finger-label">(${finger})</span></div>`;
-                }
+    function handleKeyPress(e) {
+        if (lessonFinished) return;
+        let pressed = e.key;
+        if (pressed === "Shift" || pressed === "Control" || pressed === "Alt" || pressed === "Meta" || pressed === "CapsLock") return;
+        e.preventDefault();
+        
+        if (!startTime && currentPos === 0) startTime = Date.now();
+        const expected = currentText[currentPos];
+        if (!expected) return;
+        
+        // visual press effect on keyboard
+        highlightKeyOnBoard(pressed);
+        
+        let pressedNorm = pressed === " " ? " " : pressed;
+        let expectedNorm = expected;
+        
+        if (pressedNorm === expectedNorm) {
+            currentPos++;
+            totalKeystrokes++;
+            updateDisplay();
+            updateStats();
+            updateHandGuide();  // refresh hand guide for next char
+            if (currentPos === currentText.length) {
+                lessonFinished = true;
+                completedLessons[currentLessonIdx] = true;
+                saveProgress();
+                feedbackSpan.innerHTML = "🎉 PERFECT! Lesson mastered. Click 'Next Lesson'.";
+                buildLevelStrip();
+                if (currentLessonIdx + 1 >= LESSONS.length) showCertificate();
+            } else {
+                feedbackSpan.innerHTML = "✔️ Good! Keep typing with proper finger placement.";
             }
-            if (lesson.fingerMap.right) {
-                let container = rightDiv.querySelector(".finger-keys");
-                for (let [finger, key] of Object.entries(lesson.fingerMap.right)) {
-                    container.innerHTML += `<div class="finger-key">${key} <span class="finger-label">(${finger})</span></div>`;
-                }
-            }
-            handDiagramDiv.appendChild(leftDiv);
-            handDiagramDiv.appendChild(rightDiv);
         } else {
-            handDiagramDiv.innerHTML = `<div style="padding:12px;">🎯 ${lesson.fingerMap.note || lesson.fingerMap.special || "Use proper finger positioning"}</div>`;
+            mistakes++;
+            totalKeystrokes++;
+            updateStats();
+            updateDisplay();
+            feedbackSpan.innerHTML = `❌ Mistake! Expected "${escapeHtml(expected)}" but you pressed "${escapeHtml(pressed)}". Watch the hand guide!`;
+            targetDiv.style.transform = "translateX(3px)";
+            setTimeout(() => targetDiv.style.transform = "", 120);
+        }
+        updateHandGuide();
+    }
+
+    function highlightKeyOnBoard(key) {
+        const allKeys = document.querySelectorAll(".kb-key");
+        let search = key === " " ? "Space" : key;
+        for (let k of allKeys) {
+            if (k.innerText === search || (key.length === 1 && k.innerText === key)) {
+                k.classList.add("pressed");
+                setTimeout(() => k.classList.remove("pressed"), 100);
+            }
         }
     }
 
@@ -572,15 +516,17 @@
         mistakes = 0;
         totalKeystrokes = 0;
         startTime = null;
-        lessonFinishedFlag = false;
+        lessonFinished = false;
         updateDisplay();
         updateStats();
-        feedbackSpan.innerText = "Lesson reset. Start typing!";
+        updateHandGuide();
+        feedbackSpan.innerHTML = "Lesson reset. Start typing the highlighted key.";
+        if (currentText.length) nextHintSpan.innerHTML = `👉 Next: "${currentText[0]}"`;
     }
 
     function nextLesson() {
         if (!completedLessons[currentLessonIdx] && currentPos !== currentText.length) {
-            feedbackSpan.innerText = "⚠️ Complete current lesson first!";
+            feedbackSpan.innerHTML = "⚠️ Complete current lesson first! Type all characters.";
             return;
         }
         if (currentLessonIdx + 1 < LESSONS.length) {
@@ -591,76 +537,78 @@
         }
     }
 
-    function showCertificate() {
-        document.getElementById("certificateSection").style.display = "block";
-        drawCertificateCanvas();
-    }
-
-    function drawCertificateCanvas() {
-        const canvas = document.getElementById("certCanvas");
-        if(!canvas) return;
-        canvas.width = 550;
-        canvas.height = 350;
-        let ctx = canvas.getContext("2d");
-        ctx.fillStyle = "#fef7e0";
-        ctx.fillRect(0,0,canvas.width,canvas.height);
-        ctx.fillStyle = "#b55b1c";
-        ctx.font = "bold 26px 'Segoe UI'";
-        ctx.fillText("🏆 TOUCH TYPING MASTERY", 100, 70);
-        ctx.font = "18px monospace";
-        ctx.fillStyle = "#2c3e2f";
-        ctx.fillText("This certifies that", 190, 130);
-        ctx.font = "bold 22px Inter";
-        ctx.fillStyle = "#1f3b4c";
-        ctx.fillText("Typing Legend", 190, 180);
-        ctx.font = "12px monospace";
-        ctx.fillStyle = "#4a5b23";
-        ctx.fillText(`Completed all ${LESSONS.length} levels • 0 to Hero • Touch Typing Expert`, 80, 250);
-        ctx.fillStyle = "#333";
-        ctx.fillText(new Date().toLocaleDateString(), 210, 310);
-    }
-
-    function updateLevelStrip() {
+    function buildLevelStrip() {
         levelStripDiv.innerHTML = "";
         LESSONS.forEach((l, idx) => {
             let btn = document.createElement("div");
-            btn.className = "level-dot";
+            btn.className = "level-btn";
             if (idx === currentLessonIdx) btn.classList.add("active");
             if (completedLessons[idx]) btn.classList.add("completed");
-            btn.innerText = `${idx+1}. ${l.name.slice(0,12)}`;
+            btn.innerText = `${idx+1}. ${l.name.substring(0, 14)}`;
             btn.onclick = () => {
-                if (idx <= currentLessonIdx+1 || completedLessons[idx-1]) {
+                if (idx <= currentLessonIdx+1 || (idx>0 && completedLessons[idx-1])) {
                     currentLessonIdx = idx;
                     initLesson();
-                } else alert("Complete previous levels first!");
+                } else {
+                    feedbackSpan.innerHTML = "🔓 Complete previous lessons first!";
+                }
             };
             levelStripDiv.appendChild(btn);
         });
     }
 
+    function showCertificate() {
+        document.getElementById("certificateSection").style.display = "block";
+        drawCertificate();
+    }
+
+    function drawCertificate() {
+        const canvas = document.getElementById("certCanvas");
+        if (!canvas) return;
+        canvas.width = 550;
+        canvas.height = 300;
+        let ctx = canvas.getContext("2d");
+        ctx.fillStyle = "#fef7e0";
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.fillStyle = "#b55b1c";
+        ctx.font = "bold 22px 'Segoe UI'";
+        ctx.fillText("🏆 FULL KEYBOARD MASTERY", 130, 60);
+        ctx.font = "14px monospace";
+        ctx.fillStyle = "#2c3e2f";
+        ctx.fillText("This certifies that", 210, 110);
+        ctx.font = "bold 18px Inter";
+        ctx.fillStyle = "#1f3b4c";
+        ctx.fillText("Touch Typing Champion", 180, 155);
+        ctx.font = "11px monospace";
+        ctx.fillStyle = "#4a5b23";
+        ctx.fillText(`Completed all ${LESSONS.length} levels • Home • Top • Bottom • Numbers • Symbols`, 70, 210);
+        ctx.fillStyle = "#333";
+        ctx.fillText(new Date().toLocaleDateString(), 220, 270);
+    }
+
     function saveProgress() {
-        localStorage.setItem("ttpro", JSON.stringify({
-            currentLessonIdx, completedLessons
-        }));
+        localStorage.setItem("ttpro_fullkb", JSON.stringify({ currentLessonIdx, completedLessons }));
     }
 
     function loadProgress() {
-        let saved = localStorage.getItem("ttpro");
+        let saved = localStorage.getItem("ttpro_fullkb");
         if (saved) {
             try {
-                let d = JSON.parse(saved);
-                currentLessonIdx = d.currentLessonIdx || 0;
-                completedLessons = d.completedLessons || new Array(LESSONS.length).fill(false);
+                let data = JSON.parse(saved);
+                if (typeof data.currentLessonIdx === "number") currentLessonIdx = data.currentLessonIdx;
+                if (data.completedLessons) completedLessons = data.completedLessons;
             } catch(e) {}
         }
         initLesson();
     }
 
-    function escapeHtml(s) { return s.replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}).replace(/ /g, '&nbsp;'); }
+    function escapeHtml(s) {
+        return s.replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}).replace(/ /g, '&nbsp;');
+    }
 
     window.addEventListener("keydown", handleKeyPress);
-    document.getElementById("resetLessonBtn").addEventListener("click", resetLesson);
-    document.getElementById("nextLevelBtn").addEventListener("click", nextLesson);
+    document.getElementById("resetBtn").addEventListener("click", resetLesson);
+    document.getElementById("nextBtn").addEventListener("click", nextLesson);
     document.getElementById("downloadCert")?.addEventListener("click", function() {
         let canvas = document.getElementById("certCanvas");
         let link = document.createElement("a");
