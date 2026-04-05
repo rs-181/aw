@@ -1,622 +1,474 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="gu">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>TouchType Pro | Full Keyboard Mastery - Complete Course</title>
-    <meta name="description" content="Complete touch typing course covering entire keyboard: home row, top row, bottom row, numbers, symbols, shift. Responsive design with visual hand guide.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>અમૃતમ વોટર સપ્લાયર્સ | Amrutam Water Suppliers</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- html2pdf.js for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* Custom print styles for cash memo and monthly card */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            .print-area, .print-area * {
+                visibility: visible;
+            }
+            .print-area {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                margin: 0;
+                padding: 1rem;
+            }
+            .no-print {
+                display: none !important;
+            }
         }
-
-        body {
-            font-family: system-ui, -apple-system, 'Segoe UI', 'Inter', sans-serif;
-            background: radial-gradient(circle at 10% 20%, #0a0c15, #020308);
-            min-height: 100vh;
-            color: #edf2ff;
-            overflow-x: hidden;
+        /* Custom scroll and modal */
+        .modal-transition {
+            transition: all 0.3s ease;
         }
-
-        /* App container - fully responsive */
-        .app {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            width: 100%;
-            max-width: 1600px;
-            margin: 0 auto;
+        .grid-31 {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.25rem;
         }
-
-        /* Header - responsive */
-        .header {
-            padding: 12px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            background: rgba(3, 7, 18, 0.85);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(245, 197, 66, 0.3);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .logo h1 { font-size: clamp(1.2rem, 5vw, 1.6rem); background: linear-gradient(135deg, #fff, #f5c542); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .logo p { font-size: 0.65rem; opacity: 0.7; }
-        .stats { display: flex; gap: clamp(8px, 4vw, 24px); }
-        .stat { background: rgba(0,0,0,0.5); padding: 4px 12px; border-radius: 32px; text-align: center; }
-        .stat .value { font-size: clamp(1.2rem, 6vw, 1.8rem); font-weight: 700; color: #f5c542; line-height: 1; }
-
-        /* Main content */
-        .main-content {
-            flex: 1;
-            padding: 16px 20px;
-            width: 100%;
-        }
-
-        /* Tutorial + hand guide container */
-        .tutorial-card {
-            background: rgba(245, 197, 66, 0.08);
-            border-left: 4px solid #f5c542;
-            border-radius: 28px;
-            padding: 12px 18px;
-            margin-bottom: 20px;
-            font-size: 0.85rem;
-        }
-
-        /* Hand visual - responsive floating hand */
-        .hand-visual {
-            background: rgba(10, 14, 28, 0.7);
-            backdrop-filter: blur(12px);
-            border-radius: 40px;
-            padding: 16px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(245,197,66,0.3);
-        }
-        .hand-title { font-size: 0.8rem; color: #f5c542; margin-bottom: 12px; letter-spacing: 1px; }
-        .hands-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-        .hand-card {
-            flex: 1;
-            min-width: 240px;
-            background: rgba(0,0,0,0.5);
-            border-radius: 32px;
-            padding: 14px;
-            text-align: center;
-        }
-        .hand-card h3 { font-size: 1rem; margin-bottom: 12px; color: #f5c542; }
-        .finger-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 8px;
-            margin: 12px 0;
-        }
-        .finger-badge {
-            background: #1e2a3a;
-            border-radius: 40px;
-            padding: 6px 12px;
-            font-family: monospace;
-            font-weight: bold;
-            font-size: 0.9rem;
-            transition: all 0.1s;
-            border-bottom: 2px solid #f5c542;
-        }
-        .finger-badge.active {
-            background: #f5c542;
-            color: #000;
-            transform: scale(1.05);
-            box-shadow: 0 0 12px gold;
-        }
-        .next-key-badge {
-            margin-top: 10px;
-            font-size: 0.8rem;
-            background: #00000066;
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 60px;
-        }
-
-        /* Typing arena */
-        .typing-arena {
-            background: rgba(0, 0, 0, 0.45);
-            border-radius: 48px;
-            padding: 20px;
-            margin: 16px 0;
-            backdrop-filter: blur(8px);
-        }
-        .lesson-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-        .lesson-badge { background: #f5c54220; padding: 5px 16px; border-radius: 60px; font-size: 0.8rem; font-weight: bold; }
-        .progress-bar { width: 180px; height: 6px; background: #2d3748; border-radius: 10px; overflow: hidden; }
-        .progress-fill { height: 100%; width: 0%; background: #f5c542; transition: width 0.1s; }
-
-        .target-text {
-            font-family: 'Fira Mono', 'Courier New', monospace;
-            font-size: clamp(1.1rem, 6vw, 2rem);
-            line-height: 1.4;
-            background: #010614;
-            padding: 20px;
-            border-radius: 32px;
-            word-break: break-word;
-            margin-bottom: 16px;
-        }
-        .current-highlight { background: #f5c542; color: #0a0c15; border-radius: 10px; padding: 0 4px; display: inline-block; animation: pulse 1s infinite; }
-        .typed-correct { color: #68d391; }
-        .live-feedback { text-align: center; background: #00000030; border-radius: 60px; padding: 10px; margin-top: 8px; }
-        .next-hint { font-size: 0.8rem; margin-top: 6px; }
-
-        /* Visual Keyboard - fully responsive scroll */
-        .visual-keyboard {
-            background: rgba(5, 8, 18, 0.9);
-            border-radius: 32px;
-            padding: 12px;
-            overflow-x: auto;
-            margin: 16px 0;
-        }
-        .kb-row {
-            display: flex;
-            justify-content: center;
-            gap: 4px;
-            margin-bottom: 6px;
-            flex-wrap: nowrap;
-        }
-        .kb-key {
-            background: #111827;
-            border-radius: 10px;
-            padding: 8px 4px;
-            min-width: 40px;
-            text-align: center;
+        .card-day {
             font-size: 0.7rem;
-            font-weight: 600;
-            font-family: monospace;
-            transition: 0.05s;
-        }
-        .kb-key.lesson-focus { border: 2px solid #f5c542; background: #2a3a55; }
-        .kb-key.pressed { transform: scale(0.92); background: #f5c542; color: black; }
-
-        /* Level strip responsive */
-        .level-strip {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 8px;
-            margin: 20px 0 12px;
-        }
-        .level-btn {
-            background: #1f2a44;
-            border-radius: 60px;
-            padding: 5px 14px;
-            font-size: 0.7rem;
-            cursor: pointer;
-            transition: 0.1s;
-        }
-        .level-btn.active { background: #f5c542; color: #000; font-weight: bold; }
-        .level-btn.completed { background: #2c7840; }
-        button {
-            background: #f5c542;
-            border: none;
-            padding: 10px 24px;
-            border-radius: 60px;
-            font-weight: bold;
-            cursor: pointer;
-            margin: 6px;
-        }
-        .certificate-card {
-            background: linear-gradient(145deg, #1a1f2e, #0f1320);
-            border-radius: 48px;
-            padding: 24px;
+            padding: 0.25rem;
             text-align: center;
-            margin-top: 30px;
-        }
-        canvas { max-width: 100%; height: auto; border-radius: 20px; }
-
-        @keyframes pulse {
-            0% { opacity: 0.9; transform: scale(1);}
-            100% { opacity: 1; transform: scale(1.02);}
-        }
-        @media (max-width: 640px) {
-            .kb-key { min-width: 30px; font-size: 0.6rem; padding: 6px 2px; }
-            .hand-card { min-width: 200px; }
-            .stats { gap: 8px; }
+            border: 1px solid #e2e8f0;
         }
     </style>
+    <script>
+        // Global API endpoint (deploy as Web App, replace with your GAS URL after deploy)
+        // For local testing, we use relative path but must be replaced with actual GAS URL
+        // The user will set this after deployment. For now it's placeholder.
+        const GAS_API_URL = 'https://script.google.com/macros/s/AKfycbxNEp53SV3BlSm7MCT2U9KQcyt9C8mCLXTLecIqkxNYVZZOja0xR_spr7cCCB28UBMo/exec'; 
+        // To be replaced by actual URL after deployment. We'll allow dynamic update via console but normally hardcoded.
+    </script>
 </head>
-<body>
-<div class="app">
-    <div class="header">
-        <div class="logo"><h1>⌨️ TouchType Pro</h1><p>Full Keyboard Course • All Rows</p></div>
-        <div class="stats">
-            <div class="stat"><div class="value" id="wpmVal">0</div><div>WPM</div></div>
-            <div class="stat"><div class="value" id="accVal">100</div><div>%</div></div>
-            <div class="stat"><div class="value" id="mistVal">0</div><div>errors</div></div>
-        </div>
-    </div>
-    <div class="main-content">
-        <div class="tutorial-card">
-            💡 <strong>HOW TO USE:</strong> Just TYPE on your physical keyboard! No click needed. Follow the glowing hand → use the correct finger. Complete lessons step by step covering FULL KEYBOARD.
-        </div>
+<body class="bg-gray-100 font-sans antialiased">
 
-        <!-- Dynamic Hand Guide -->
-        <div class="hand-visual">
-            <div class="hand-title">🖐️ LIVE HAND GUIDE — Use these fingers for current key</div>
-            <div class="hands-container" id="handsContainer"></div>
-        </div>
+    <!-- App Container: dynamic views rendered here -->
+    <div id="app" class="min-h-screen"></div>
 
-        <div class="typing-arena">
-            <div class="lesson-header">
-                <div class="lesson-badge" id="lessonName">Loading...</div>
-                <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-            </div>
-            <div class="target-text" id="targetTextDisplay"></div>
-            <div class="live-feedback">
-                <span id="feedbackMsg">✨ Start typing — place fingers on home row</span>
-                <div class="next-hint" id="nextKeyHint"></div>
-            </div>
-        </div>
-
-        <div class="visual-keyboard" id="visualKeyboard"></div>
-        <div class="level-strip" id="levelStrip"></div>
-        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-            <button id="resetBtn">⟳ Reset Lesson</button>
-            <button id="nextBtn">➡ Next Lesson</button>
-        </div>
-        <div id="certificateSection" style="display: none;" class="certificate-card">
-            <h2>🏆 FULL KEYBOARD MASTERY 🏆</h2>
-            <canvas id="certCanvas" width="550" height="300" style="background:#fff;"></canvas><br>
-            <button id="downloadCert">Download Certificate (PNG)</button>
-        </div>
-    </div>
-</div>
-
-<script>
-    // ========= COMPLETE KEYBOARD COVERAGE: Home, Top, Bottom, Numbers, Symbols, Shift =========
-    const LESSONS = [
-        { name: "🏠 HOME ROW (Base)", text: "asdf jkl; asdf jkl; sad lad fall jak flak ask fj dk sl", focusKeys: ["a","s","d","f","j","k","l",";"], fingerMap: { left: { "pinky":"a", "ring":"s", "middle":"d", "index":"f" }, right: { "index":"j", "middle":"k", "ring":"l", "pinky":";" } } },
-        { name: "⬆️ TOP ROW", text: "qwer uiop qwerty uiop type word quiet our power", focusKeys: ["q","w","e","r","u","i","o","p"], fingerMap: { left: { "pinky":"q", "ring":"w", "middle":"e", "index":"r" }, right: { "index":"u", "middle":"i", "ring":"o", "pinky":"p" } } },
-        { name: "⬇️ BOTTOM ROW", text: "zxcvbnm zxcv bnm cxz vbn zxcvbnm xyz zebra", focusKeys: ["z","x","c","v","b","n","m"], fingerMap: { left: { "pinky":"z", "ring":"x", "middle":"c", "index":"v" }, right: { "index":"b", "middle":"n", "ring":"m" } } },
-        { name: "🔢 NUMBER ROW", text: "1234 5678 90 1234567890 5050 9876 13579 24680", focusKeys: ["1","2","3","4","5","6","7","8","9","0"], fingerMap: { left: { "pinky":"1", "ring":"2", "middle":"3", "index":"4/5" }, right: { "index":"6/7", "middle":"8", "ring":"9", "pinky":"0" } } },
-        { name: "✨ SYMBOLS (Shift + Numbers)", text: "!@#$ %^&* ()_+ {} :<>? ~` ;:,.", focusKeys: ["!","@","#","$","%","^","&","*","(",")","_","+"], fingerMap: { note: "Use Shift + number row. Pinky for Shift." } },
-        { name: "🔠 CAPITAL LETTERS (Shift)", text: "The Quick Brown Fox Jumps Over The Lazy Dog. Typing Pro Rocks!", focusKeys: ["Shift"], fingerMap: { special: "Hold Shift with pinky + letter key" } },
-        { name: "⚡ FULL COMBO", text: "The quick brown fox jumps over 123 lazy dogs! Type @#$%^&*() and qwerty zxcvbnm", focusKeys: ["all"], fingerMap: { all: "All fingers — full keyboard mastery" } },
-        { name: "🏆 FINAL MASTERY", text: "Congratulations! You mastered the entire keyboard: QWERTYUIOP ASDFGHJKL ZXCVBNM 1234567890!@#$%^&*", focusKeys: ["all"], fingerMap: { all: "Professional Typist" } }
-    ];
-
-    let currentLessonIdx = 0;
-    let currentText = "";
-    let currentPos = 0;
-    let mistakes = 0;
-    let totalKeystrokes = 0;
-    let startTime = null;
-    let lessonFinished = false;
-    let completedLessons = new Array(LESSONS.length).fill(false);
-
-    // DOM elements
-    const targetDiv = document.getElementById("targetTextDisplay");
-    const lessonNameSpan = document.getElementById("lessonName");
-    const wpmSpan = document.getElementById("wpmVal");
-    const accSpan = document.getElementById("accVal");
-    const mistSpan = document.getElementById("mistVal");
-    const progressFill = document.getElementById("progressFill");
-    const feedbackSpan = document.getElementById("feedbackMsg");
-    const nextHintSpan = document.getElementById("nextKeyHint");
-    const visualKbDiv = document.getElementById("visualKeyboard");
-    const handsContainer = document.getElementById("handsContainer");
-    const levelStripDiv = document.getElementById("levelStrip");
-
-    function initLesson() {
-        if (currentLessonIdx >= LESSONS.length) {
-            showCertificate();
-            return;
-        }
-        lessonFinished = false;
-        currentText = LESSONS[currentLessonIdx].text;
-        currentPos = 0;
-        mistakes = 0;
-        totalKeystrokes = 0;
-        startTime = null;
-        updateDisplay();
-        updateStats();
-        updateHandGuide();
-        drawKeyboard();
-        buildLevelStrip();
-        saveProgress();
-        feedbackSpan.innerHTML = `🎯 ${LESSONS[currentLessonIdx].name} — Type the highlighted key with correct finger.`;
-        if (currentText.length) nextHintSpan.innerHTML = `👉 Next: "${currentText[0]}"`;
-    }
-
-    function updateDisplay() {
-        let html = "";
-        for (let i = 0; i < currentText.length; i++) {
-            let ch = currentText[i];
-            let esc = ch === ' ' ? '&nbsp;' : escapeHtml(ch);
-            if (i < currentPos) html += `<span class="typed-correct">${esc}</span>`;
-            else if (i === currentPos) html += `<span class="current-highlight">${esc}</span>`;
-            else html += esc;
-        }
-        targetDiv.innerHTML = html;
-        lessonNameSpan.innerText = LESSONS[currentLessonIdx].name;
-        let percent = (currentPos / currentText.length) * 100;
-        progressFill.style.width = percent + "%";
-        if (currentPos < currentText.length) nextHintSpan.innerHTML = `👉 Next: "<strong>${escapeHtml(currentText[currentPos])}</strong>"`;
-        else nextHintSpan.innerHTML = "✅ Lesson complete! Press Next Lesson →";
-    }
-
-    function updateStats() {
-        let wpm = 0;
-        let accuracy = 100;
-        if (startTime && totalKeystrokes > 0) {
-            let minutes = (Date.now() - startTime) / 60000;
-            let words = totalKeystrokes / 5;
-            wpm = Math.floor(words / minutes);
-            if (wpm < 0) wpm = 0;
-        }
-        let totalAttempts = currentPos + mistakes;
-        if (totalAttempts > 0) accuracy = Math.floor((currentPos / totalAttempts) * 100);
-        wpmSpan.innerText = wpm;
-        accSpan.innerText = accuracy;
-        mistSpan.innerText = mistakes;
-    }
-
-    // Update the transparent hand with active finger highlight based on next expected key
-    function updateHandGuide() {
-        const lesson = LESSONS[currentLessonIdx];
-        const map = lesson.fingerMap;
-        const expectedKey = currentText[currentPos];
-        let activeLeftFinger = null;
-        let activeRightFinger = null;
-        let leftMap = map.left || {};
-        let rightMap = map.right || {};
-
-        if (expectedKey) {
-            for (let [finger, key] of Object.entries(leftMap)) {
-                if (key === expectedKey || (key.includes('/') && key.includes(expectedKey))) activeLeftFinger = finger;
-            }
-            for (let [finger, key] of Object.entries(rightMap)) {
-                if (key === expectedKey || (key.includes('/') && key.includes(expectedKey))) activeRightFinger = finger;
-            }
-        }
-
-        const leftFingersHtml = Object.entries(leftMap).map(([finger, key]) => {
-            let isActive = (activeLeftFinger === finger);
-            return `<div class="finger-badge ${isActive ? 'active' : ''}">${finger.toUpperCase()}<span style="margin-left:6px;font-size:1.1rem;">${key}</span></div>`;
-        }).join('');
+    <script>
+        // ----------------------------- STATE MANAGEMENT -----------------------------
+        let currentUser = null; // { mobile, name, role, pin? }
         
-        const rightFingersHtml = Object.entries(rightMap).map(([finger, key]) => {
-            let isActive = (activeRightFinger === finger);
-            return `<div class="finger-badge ${isActive ? 'active' : ''}">${finger.toUpperCase()}<span style="margin-left:6px;font-size:1.1rem;">${key}</span></div>`;
-        }).join('');
-
-        let specialMsg = "";
-        if (map.special) specialMsg = `<div class="next-key-badge">💡 ${map.special}</div>`;
-        else if (map.note) specialMsg = `<div class="next-key-badge">📘 ${map.note}</div>`;
-        else if (map.all) specialMsg = `<div class="next-key-badge">🌟 ${map.all}</div>`;
-
-        handsContainer.innerHTML = `
-            <div class="hand-card">
-                <h3>🫲 LEFT HAND</h3>
-                <div class="finger-grid">${leftFingersHtml || '<span>Relaxed position</span>'}</div>
-                ${expectedKey ? `<div class="next-key-badge">🎯 Next: "${escapeHtml(expectedKey)}" → ${activeLeftFinger ? `Use ${activeLeftFinger} finger` : (activeRightFinger ? 'Right hand' : 'Correct finger')}</div>` : ''}
-            </div>
-            <div class="hand-card">
-                <h3>🫱 RIGHT HAND</h3>
-                <div class="finger-grid">${rightFingersHtml || '<span>Home row ready</span>'}</div>
-                ${specialMsg}
-            </div>
-        `;
-    }
-
-    function drawKeyboard() {
-        const rows = [
-            ["`","1","2","3","4","5","6","7","8","9","0","-","="],
-            ["Tab","q","w","e","r","t","y","u","i","o","p","[","]","\\"],
-            ["Caps","a","s","d","f","g","h","j","k","l",";","'","Enter"],
-            ["Shift","z","x","c","v","b","n","m",",",".","/","Shift"]
-        ];
-        const focusSet = new Set(LESSONS[currentLessonIdx].focusKeys.map(k => k.toLowerCase()));
-        visualKbDiv.innerHTML = "";
-        rows.forEach(row => {
-            let rowDiv = document.createElement("div");
-            rowDiv.className = "kb-row";
-            row.forEach(key => {
-                let keyDiv = document.createElement("div");
-                keyDiv.className = "kb-key";
-                let display = key.length > 4 ? key.slice(0,3) : key;
-                keyDiv.innerText = display;
-                if (focusSet.has(key.toLowerCase()) || LESSONS[currentLessonIdx].focusKeys[0] === "all") {
-                    keyDiv.classList.add("lesson-focus");
-                }
-                rowDiv.appendChild(keyDiv);
+        // Helper: API caller
+        async function callGAS(action, payload = {}) {
+            const url = new URL(GAS_API_URL);
+            // using POST with JSON
+            const response = await fetch(url.toString(), {
+                method: 'POST',
+                mode: 'cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action, ...payload })
             });
-            visualKbDiv.appendChild(rowDiv);
-        });
-        // add space row
-        let spaceRow = document.createElement("div");
-        spaceRow.className = "kb-row";
-        let spaceKey = document.createElement("div");
-        spaceKey.className = "kb-key";
-        spaceKey.innerText = "Space";
-        spaceKey.style.minWidth = "140px";
-        if (LESSONS[currentLessonIdx].focusKeys.includes(" ")) spaceKey.classList.add("lesson-focus");
-        spaceRow.appendChild(spaceKey);
-        visualKbDiv.appendChild(spaceRow);
-    }
+            if (!response.ok) throw new Error('Network error');
+            const data = await response.json();
+            if (data.error) throw new Error(data.error);
+            return data;
+        }
 
-    function handleKeyPress(e) {
-        if (lessonFinished) return;
-        let pressed = e.key;
-        if (pressed === "Shift" || pressed === "Control" || pressed === "Alt" || pressed === "Meta" || pressed === "CapsLock") return;
-        e.preventDefault();
+        // Session Management: sessionStorage (clears on tab close)
+        function saveSession(user) {
+            sessionStorage.setItem('amrutam_user', JSON.stringify(user));
+            currentUser = user;
+        }
+        function loadSession() {
+            const stored = sessionStorage.getItem('amrutam_user');
+            if (stored) {
+                try {
+                    currentUser = JSON.parse(stored);
+                    return currentUser;
+                } catch(e) { return null; }
+            }
+            return null;
+        }
+        function clearSession() {
+            sessionStorage.removeItem('amrutam_user');
+            currentUser = null;
+        }
         
-        if (!startTime && currentPos === 0) startTime = Date.now();
-        const expected = currentText[currentPos];
-        if (!expected) return;
-        
-        // visual press effect on keyboard
-        highlightKeyOnBoard(pressed);
-        
-        let pressedNorm = pressed === " " ? " " : pressed;
-        let expectedNorm = expected;
-        
-        if (pressedNorm === expectedNorm) {
-            currentPos++;
-            totalKeystrokes++;
-            updateDisplay();
-            updateStats();
-            updateHandGuide();  // refresh hand guide for next char
-            if (currentPos === currentText.length) {
-                lessonFinished = true;
-                completedLessons[currentLessonIdx] = true;
-                saveProgress();
-                feedbackSpan.innerHTML = "🎉 PERFECT! Lesson mastered. Click 'Next Lesson'.";
-                buildLevelStrip();
-                if (currentLessonIdx + 1 >= LESSONS.length) showCertificate();
+        // Render main view based on login state
+        async function renderApp() {
+            const appDiv = document.getElementById('app');
+            const sessionUser = loadSession();
+            if (!sessionUser) {
+                appDiv.innerHTML = renderLoginPage();
+                attachLoginEvents();
             } else {
-                feedbackSpan.innerHTML = "✔️ Good! Keep typing with proper finger placement.";
-            }
-        } else {
-            mistakes++;
-            totalKeystrokes++;
-            updateStats();
-            updateDisplay();
-            feedbackSpan.innerHTML = `❌ Mistake! Expected "${escapeHtml(expected)}" but you pressed "${escapeHtml(pressed)}". Watch the hand guide!`;
-            targetDiv.style.transform = "translateX(3px)";
-            setTimeout(() => targetDiv.style.transform = "", 120);
-        }
-        updateHandGuide();
-    }
-
-    function highlightKeyOnBoard(key) {
-        const allKeys = document.querySelectorAll(".kb-key");
-        let search = key === " " ? "Space" : key;
-        for (let k of allKeys) {
-            if (k.innerText === search || (key.length === 1 && k.innerText === key)) {
-                k.classList.add("pressed");
-                setTimeout(() => k.classList.remove("pressed"), 100);
-            }
-        }
-    }
-
-    function resetLesson() {
-        currentPos = 0;
-        mistakes = 0;
-        totalKeystrokes = 0;
-        startTime = null;
-        lessonFinished = false;
-        updateDisplay();
-        updateStats();
-        updateHandGuide();
-        feedbackSpan.innerHTML = "Lesson reset. Start typing the highlighted key.";
-        if (currentText.length) nextHintSpan.innerHTML = `👉 Next: "${currentText[0]}"`;
-    }
-
-    function nextLesson() {
-        if (!completedLessons[currentLessonIdx] && currentPos !== currentText.length) {
-            feedbackSpan.innerHTML = "⚠️ Complete current lesson first! Type all characters.";
-            return;
-        }
-        if (currentLessonIdx + 1 < LESSONS.length) {
-            currentLessonIdx++;
-            initLesson();
-        } else {
-            showCertificate();
-        }
-    }
-
-    function buildLevelStrip() {
-        levelStripDiv.innerHTML = "";
-        LESSONS.forEach((l, idx) => {
-            let btn = document.createElement("div");
-            btn.className = "level-btn";
-            if (idx === currentLessonIdx) btn.classList.add("active");
-            if (completedLessons[idx]) btn.classList.add("completed");
-            btn.innerText = `${idx+1}. ${l.name.substring(0, 14)}`;
-            btn.onclick = () => {
-                if (idx <= currentLessonIdx+1 || (idx>0 && completedLessons[idx-1])) {
-                    currentLessonIdx = idx;
-                    initLesson();
+                currentUser = sessionUser;
+                if (currentUser.role === 'Owner') {
+                    appDiv.innerHTML = renderOwnerDashboard();
+                    attachOwnerEvents();
                 } else {
-                    feedbackSpan.innerHTML = "🔓 Complete previous lessons first!";
+                    appDiv.innerHTML = renderStaffDashboard();
+                    attachStaffEvents();
                 }
-            };
-            levelStripDiv.appendChild(btn);
-        });
-    }
-
-    function showCertificate() {
-        document.getElementById("certificateSection").style.display = "block";
-        drawCertificate();
-    }
-
-    function drawCertificate() {
-        const canvas = document.getElementById("certCanvas");
-        if (!canvas) return;
-        canvas.width = 550;
-        canvas.height = 300;
-        let ctx = canvas.getContext("2d");
-        ctx.fillStyle = "#fef7e0";
-        ctx.fillRect(0,0,canvas.width,canvas.height);
-        ctx.fillStyle = "#b55b1c";
-        ctx.font = "bold 22px 'Segoe UI'";
-        ctx.fillText("🏆 FULL KEYBOARD MASTERY", 130, 60);
-        ctx.font = "14px monospace";
-        ctx.fillStyle = "#2c3e2f";
-        ctx.fillText("This certifies that", 210, 110);
-        ctx.font = "bold 18px Inter";
-        ctx.fillStyle = "#1f3b4c";
-        ctx.fillText("Touch Typing Champion", 180, 155);
-        ctx.font = "11px monospace";
-        ctx.fillStyle = "#4a5b23";
-        ctx.fillText(`Completed all ${LESSONS.length} levels • Home • Top • Bottom • Numbers • Symbols`, 70, 210);
-        ctx.fillStyle = "#333";
-        ctx.fillText(new Date().toLocaleDateString(), 220, 270);
-    }
-
-    function saveProgress() {
-        localStorage.setItem("ttpro_fullkb", JSON.stringify({ currentLessonIdx, completedLessons }));
-    }
-
-    function loadProgress() {
-        let saved = localStorage.getItem("ttpro_fullkb");
-        if (saved) {
-            try {
-                let data = JSON.parse(saved);
-                if (typeof data.currentLessonIdx === "number") currentLessonIdx = data.currentLessonIdx;
-                if (data.completedLessons) completedLessons = data.completedLessons;
-            } catch(e) {}
+            }
         }
-        initLesson();
-    }
 
-    function escapeHtml(s) {
-        return s.replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}).replace(/ /g, '&nbsp;');
-    }
-
-    window.addEventListener("keydown", handleKeyPress);
-    document.getElementById("resetBtn").addEventListener("click", resetLesson);
-    document.getElementById("nextBtn").addEventListener("click", nextLesson);
-    document.getElementById("downloadCert")?.addEventListener("click", function() {
-        let canvas = document.getElementById("certCanvas");
-        let link = document.createElement("a");
-        link.download = "touch_typing_certificate.png";
-        link.href = canvas.toDataURL();
-        link.click();
-    });
-    loadProgress();
-</script>
+        // ----------------------------- LOGIN PAGE (Gujarati + PIN) -----------------
+        function renderLoginPage() {
+            return `
+                <div class="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-500 to-teal-500 p-4">
+                    <div class="bg-white rounded-2xl shadow-2xl p-6 w-full max-w-md">
+                        <div class="text-center mb-6">
+                            <i class="fas fa-tint text-5xl text-blue-600"></i>
+                            <h1 class="text-3xl font-bold text-gray-800 mt-2">અમૃતમ વોટર</h1>
+                            <p class="text-gray-500">સ્ટાફ લોગિન</p>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-1">મોબાઇલ નંબર</label>
+                                <input type="tel" id="loginMobile" placeholder="9876543210" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-1">PIN કોડ</label>
+                                <input type="password" id="loginPin" placeholder="****" maxlength="6" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                            </div>
+                            <button id="loginBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition duration-200">પ્રવેશ કરો</button>
+                            <p id="loginError" class="text-red-500 text-sm text-center hidden"></p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        async function attachLoginEvents() {
+            const btn = document.getElementById('loginBtn');
+            const mobileInput = document.getElementById('loginMobile');
+            const pinInput = document.getElementById('loginPin');
+            const errorDiv = document.getElementById('loginError');
+            if (!btn) return;
+            btn.addEventListener('click', async () => {
+                const mobile = mobileInput.value.trim();
+                const pin = pinInput.value.trim();
+                if (!mobile || !pin) {
+                    errorDiv.innerText = 'કૃપા કરીને મોબાઇલ અને PIN દાખલ કરો';
+                    errorDiv.classList.remove('hidden');
+                    return;
+                }
+                try {
+                    const result = await callGAS('verifyLogin', { mobile, pin });
+                    if (result.success) {
+                        const user = { mobile: result.mobile, name: result.name, role: result.role };
+                        saveSession(user);
+                        renderApp();
+                    } else {
+                        errorDiv.innerText = result.message || 'તમારો નંબર રજીસ્ટર નથી અથવા PIN ખોટો છે.';
+                        errorDiv.classList.remove('hidden');
+                    }
+                } catch(err) {
+                    errorDiv.innerText = 'સર્વર ભૂલ: ' + err.message;
+                    errorDiv.classList.remove('hidden');
+                }
+            });
+        }
+        
+        // ----------------------------- STAFF DASHBOARD -----------------------------
+        function renderStaffDashboard() {
+            return `
+                <div class="max-w-7xl mx-auto p-4">
+                    <div class="flex justify-between items-center bg-white shadow rounded-lg p-4 mb-6">
+                        <div>
+                            <h2 class="text-xl font-bold text-gray-800">સ્વાગત છે, ${currentUser.name} (સ્ટાફ)</h2>
+                            <p class="text-gray-500">અમૃતમ વોટર સપ્લાયર્સ</p>
+                        </div>
+                        <button id="logoutBtnStaff" class="bg-red-500 text-white px-4 py-2 rounded-lg"><i class="fas fa-sign-out-alt"></i> લૉગઆઉટ</button>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <!-- Daily Entry Card -->
+                        <div class="bg-white rounded-xl shadow p-5">
+                            <h3 class="text-lg font-bold border-b pb-2 mb-3"><i class="fas fa-clipboard-list"></i> દૈનિક એન્ટ્રી</h3>
+                            <div class="mb-3">
+                                <label class="block text-sm font-medium">ગ્રાહક પસંદ કરો</label>
+                                <select id="staffCustomerSelect" class="w-full border rounded p-2 mt-1">
+                                    <option value="">-- પસંદ કરો --</option>
+                                    <option value="custom">કસ્ટમ (નવો ગ્રાહક)</option>
+                                </select>
+                                <input type="text" id="staffCustomCustomer" placeholder="નવો ગ્રાહક નામ" class="hidden w-full border rounded p-2 mt-2">
+                            </div>
+                            <div class="mb-3">
+                                <label class="block text-sm font-medium">આજની ડિલિવરી (બોટલ)</label>
+                                <input type="number" id="staffBottles" class="w-full border rounded p-2" placeholder="બોટલની સંખ્યા">
+                            </div>
+                            <div class="mb-3">
+                                <label class="block text-sm font-medium">ચુકવણી પદ્ધતિ</label>
+                                <select id="staffPaymentMode" class="w-full border rounded p-2">
+                                    <option value="Cash">રોકડ (Cash)</option>
+                                    <option value="Card">કાર્ડ (Card)</option>
+                                    <option value="custom">કસ્ટમ (Custom)</option>
+                                </select>
+                                <input type="text" id="staffCustomPayment" placeholder="અન્ય પદ્ધતિ" class="hidden w-full border rounded p-2 mt-2">
+                            </div>
+                            <button id="saveDailyEntryBtn" class="bg-green-600 text-white w-full py-2 rounded-lg mt-2">સેવ કરો</button>
+                            <div id="dailyEntryMsg" class="text-sm mt-2 text-center"></div>
+                        </div>
+                        <!-- Add New Customer Card -->
+                        <div class="bg-white rounded-xl shadow p-5">
+                            <h3 class="text-lg font-bold border-b pb-2 mb-3"><i class="fas fa-user-plus"></i> નવો ગ્રાહક ઉમેરો</h3>
+                            <input type="text" id="newCustName" placeholder="ગ્રાહકનું નામ" class="w-full border rounded p-2 mb-2">
+                            <input type="text" id="newCustMobile" placeholder="મોબાઇલ નંબર" class="w-full border rounded p-2 mb-2">
+                            <input type="text" id="newCustAddress" placeholder="સરનામું" class="w-full border rounded p-2 mb-3">
+                            <button id="addCustomerBtn" class="bg-blue-600 text-white w-full py-2 rounded-lg">ગ્રાહક ઉમેરો</button>
+                        </div>
+                        <!-- View Monthly Card -->
+                        <div class="bg-white rounded-xl shadow p-5">
+                            <h3 class="text-lg font-bold border-b pb-2 mb-3"><i class="fas fa-calendar-alt"></i> માસિક કાર્ડ જુઓ</h3>
+                            <select id="monthlyCustomerSelect" class="w-full border rounded p-2 mb-3"><option value="">ગ્રાહક પસંદ કરો</option></select>
+                            <button id="viewMonthlyCardBtn" class="bg-purple-600 text-white w-full py-2 rounded-lg">કાર્ડ બતાવો / PDF</button>
+                            <div id="monthlyCardDisplay" class="mt-4 text-xs overflow-auto max-h-80"></div>
+                        </div>
+                    </div>
+                    <!-- Cash Memo Generation (quick bill) -->
+                    <div class="bg-white rounded-xl shadow p-5 mt-6">
+                        <h3 class="text-lg font-bold"><i class="fas fa-receipt"></i> કેશ મેમો બનાવો</h3>
+                        <div class="grid md:grid-cols-3 gap-3 mt-2">
+                            <input type="text" id="memoCustomer" placeholder="ગ્રાહક નામ" class="border p-2 rounded">
+                            <input type="number" id="memoBottles" placeholder="બોટલ" class="border p-2 rounded">
+                            <input type="text" id="memoAmount" placeholder="કુલ રકમ" class="border p-2 rounded">
+                            <button id="generateCashMemoBtn" class="bg-yellow-600 text-white col-span-1 py-2 rounded-lg">મેમો જનરેટ કરો</button>
+                        </div>
+                        <div id="cashMemoPreview" class="mt-4 border-t pt-3"></div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        async function attachStaffEvents() {
+            // logout
+            document.getElementById('logoutBtnStaff')?.addEventListener('click', () => { clearSession(); renderApp(); });
+            // Load customers for dropdowns
+            await loadCustomerDropdownsStaff();
+            // custom customer show/hide
+            const custSelect = document.getElementById('staffCustomerSelect');
+            const customCustInput = document.getElementById('staffCustomCustomer');
+            custSelect?.addEventListener('change', (e) => {
+                if (e.target.value === 'custom') customCustInput.classList.remove('hidden');
+                else customCustInput.classList.add('hidden');
+            });
+            const payMode = document.getElementById('staffPaymentMode');
+            const customPayInput = document.getElementById('staffCustomPayment');
+            payMode?.addEventListener('change', (e) => {
+                if (e.target.value === 'custom') customPayInput.classList.remove('hidden');
+                else customPayInput.classList.add('hidden');
+            });
+            // Save daily entry
+            document.getElementById('saveDailyEntryBtn')?.addEventListener('click', async () => {
+                let customer = custSelect.value;
+                if (custSelect.value === 'custom') customer = customCustInput.value.trim();
+                if (!customer) { showMsg('dailyEntryMsg', 'ગ્રાહક પસંદ કરો', 'red'); return; }
+                const bottles = document.getElementById('staffBottles').value;
+                if (!bottles) { showMsg('dailyEntryMsg', 'બોટલ નંબર લખો', 'red'); return; }
+                let payment = payMode.value;
+                if (payMode.value === 'custom') payment = customPayInput.value.trim();
+                if (!payment) payment = 'Cash';
+                try {
+                    await callGAS('addDailyEntry', { customer, bottles: parseInt(bottles), payment, staffMobile: currentUser.mobile });
+                    showMsg('dailyEntryMsg', 'એન્ટ્રી સેવ થઈ ગઈ!', 'green');
+                    document.getElementById('staffBottles').value = '';
+                } catch(e) { showMsg('dailyEntryMsg', e.message, 'red'); }
+            });
+            // Add new customer
+            document.getElementById('addCustomerBtn')?.addEventListener('click', async () => {
+                const name = document.getElementById('newCustName').value.trim();
+                const mobile = document.getElementById('newCustMobile').value.trim();
+                const address = document.getElementById('newCustAddress').value.trim();
+                if (!name || !mobile) { alert('નામ અને મોબાઇલ ફરજિયાત'); return; }
+                await callGAS('addCustomer', { name, mobile, address });
+                alert('ગ્રાહક ઉમેરાયો');
+                loadCustomerDropdownsStaff();
+            });
+            // View monthly card
+            document.getElementById('viewMonthlyCardBtn')?.addEventListener('click', async () => {
+                const custId = document.getElementById('monthlyCustomerSelect').value;
+                if (!custId) { alert('ગ્રાહક પસંદ કરો'); return; }
+                const data = await callGAS('getMonthlyCard', { customerId: custId });
+                renderMonthlyCard(data, 'monthlyCardDisplay');
+            });
+            // Cash memo generate
+            document.getElementById('generateCashMemoBtn')?.addEventListener('click', () => {
+                const cust = document.getElementById('memoCustomer').value;
+                const bottles = document.getElementById('memoBottles').value;
+                const amount = document.getElementById('memoAmount').value;
+                if (!cust || !bottles) { alert('ગ્રાહક અને બોટલ ભરો'); return; }
+                const memoHtml = generateCashMemoHTML(cust, bottles, amount);
+                const previewDiv = document.getElementById('cashMemoPreview');
+                previewDiv.innerHTML = memoHtml;
+                // Add print button dynamically
+                const printBtn = document.createElement('button');
+                printBtn.innerText = 'PDF તરીકે છાપો / Print';
+                printBtn.className = 'bg-gray-700 text-white px-3 py-1 rounded mt-2';
+                printBtn.onclick = () => printAsPDF(previewDiv, 'CashMemo.pdf');
+                previewDiv.appendChild(printBtn);
+            });
+        }
+        
+        async function loadCustomerDropdownsStaff() {
+            try {
+                const customers = await callGAS('getCustomers');
+                const select1 = document.getElementById('staffCustomerSelect');
+                const select2 = document.getElementById('monthlyCustomerSelect');
+                if (select1) {
+                    let opts = '<option value="">-- ગ્રાહક --</option>';
+                    customers.forEach(c => { opts += `<option value="${c.name}">${c.name} (${c.mobile})</option>`; });
+                    opts += '<option value="custom">કસ્ટમ (નવો)</option>';
+                    select1.innerHTML = opts;
+                }
+                if (select2) {
+                    let opts = '<option value="">-- પસંદ કરો --</option>';
+                    customers.forEach(c => { opts += `<option value="${c.id || c.name}">${c.name} - ${c.mobile}</option>`; });
+                    select2.innerHTML = opts;
+                }
+            } catch(e) { console.error(e); }
+        }
+        
+        function renderMonthlyCard(data, containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            const { customerName, deliveries = [], month = new Date().toLocaleString('default', { month: 'long' }) } = data;
+            let daysHtml = '<div class="grid-31"><div class="font-bold">સો</div><div>મં</div><div>બુ</div><div>ગુ</div><div>શુ</div><div>શ</div><div>ર</div>';
+            for(let i=1;i<=31;i++) {
+                const delivered = deliveries.some(d => new Date(d.date).getDate() === i);
+                daysHtml += `<div class="card-day ${delivered ? 'bg-green-200' : 'bg-gray-100'}">${i}<br>${delivered ? '✓' : ''}</div>`;
+            }
+            daysHtml += '</div>';
+            const fullHtml = `<div class="print-area"><h4 class="font-bold">${customerName} નું માસિક કાર્ડ - ${month}</h4>${daysHtml}<button class="no-print mt-2 bg-blue-500 text-white p-1 text-xs rounded" onclick="printAsPDF(document.querySelector('#monthlyCardDisplay .print-area'), 'MonthlyCard.pdf')">PDF છાપો</button></div>`;
+            container.innerHTML = fullHtml;
+        }
+        
+        function generateCashMemoHTML(customer, bottles, amount) {
+            const date = new Date().toLocaleString();
+            return `<div class="print-area border p-4 rounded-lg bg-white">
+                        <h2 class="text-xl font-bold">અમૃતમ વોટર સપ્લાયર્સ</h2>
+                        <p>કેશ મેમો</p>
+                        <hr>
+                        <p><strong>ગ્રાહક:</strong> ${customer}</p>
+                        <p><strong>બોટલ:</strong> ${bottles}</p>
+                        <p><strong>કુલ રકમ:</strong> ₹ ${amount || parseInt(bottles)*20}</p>
+                        <p><strong>તારીખ:</strong> ${date}</p>
+                        <p>આભાર!</p>
+                    </div>`;
+        }
+        
+        // ----------------------------- OWNER DASHBOARD -----------------------------
+        function renderOwnerDashboard() {
+            return `
+                <div class="max-w-7xl mx-auto p-4">
+                    <div class="flex justify-between items-center bg-white shadow p-4 rounded-lg mb-6">
+                        <div><h2 class="text-2xl font-bold">માલિક પેનલ</h2><p>${currentUser.name}</p></div>
+                        <button id="logoutOwnerBtn" class="bg-red-500 text-white px-4 py-2 rounded">લૉગઆઉટ</button>
+                    </div>
+                    <!-- Dashboard Stats -->
+                    <div class="grid md:grid-cols-3 gap-4 mb-6">
+                        <div class="bg-white p-4 rounded shadow"><h3 class="font-bold">કુલ વેચાણ (આજ)</h3><p id="totalSales" class="text-2xl">₹ 0</p></div>
+                        <div class="bg-white p-4 rounded shadow"><h3 class="font-bold">રોકડ vs કાર્ડ</h3><p id="cashCardStats">Cash: ₹0<br>Card: ₹0</p></div>
+                        <div class="bg-white p-4 rounded shadow"><h3 class="font-bold">સ્ટોક સ્થિતિ</h3><p id="stockStatus">બોટલ સ્ટોક: --</p></div>
+                    </div>
+                    <!-- Tabs -->
+                    <div class="bg-white rounded shadow p-4">
+                        <div class="flex space-x-4 border-b">
+                            <button id="tabDaily" class="py-2 px-4 text-blue-600 border-b-2 border-blue-600">દૈનિક લોગ</button>
+                            <button id="tabUserMgt" class="py-2 px-4">વપરાશકર્તા વ્યવસ્થાપન</button>
+                            <button id="tabInventory" class="py-2 px-4">ઇન્વેન્ટરી અપડેટ</button>
+                        </div>
+                        <div id="ownerContent" class="mt-4">લોડ થઈ રહ્યું છે...</div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        async function attachOwnerEvents() {
+            document.getElementById('logoutOwnerBtn')?.addEventListener('click', () => { clearSession(); renderApp(); });
+            await loadOwnerDashboardStats();
+            await loadDailyLogs();
+            document.getElementById('tabDaily')?.addEventListener('click', () => loadDailyLogs());
+            document.getElementById('tabUserMgt')?.addEventListener('click', () => loadUserManagement());
+            document.getElementById('tabInventory')?.addEventListener('click', () => loadInventoryPanel());
+        }
+        
+        async function loadOwnerDashboardStats() {
+            try {
+                const stats = await callGAS('getOwnerStats');
+                document.getElementById('totalSales').innerText = `₹ ${stats.totalSales || 0}`;
+                document.getElementById('cashCardStats').innerHTML = `Cash: ₹${stats.cash || 0}<br>Card: ₹${stats.card || 0}`;
+                document.getElementById('stockStatus').innerHTML = `બોટલ સ્ટોક: ${stats.stock || 0} બોટલ`;
+            } catch(e) { console.error(e); }
+        }
+        
+        async function loadDailyLogs() {
+            const container = document.getElementById('ownerContent');
+            const logs = await callGAS('getDailyLogs');
+            let html = '<h3 class="font-bold text-lg">દૈનિક એન્ટ્રી લોગ</h3><table class="w-full border mt-2"><tr><th>તારીખ</th><th>ગ્રાહક</th><th>બોટલ</th><th>ચુકવણી</th></tr>';
+            logs.forEach(l => { html += `<tr><td>${l.date}</td><td>${l.customer}</td><td>${l.bottles}</td><td>${l.payment}</td></tr>`; });
+            html += '</table>';
+            container.innerHTML = html;
+        }
+        
+        async function loadUserManagement() {
+            const container = document.getElementById('ownerContent');
+            const users = await callGAS('getAllUsers');
+            let html = `<h3 class="font-bold">સ્ટાફ PIN મેનેજમેન્ટ</h3>
+                        <form id="addStaffForm" class="mt-3 p-3 border rounded"><input type="text" id="staffMobile" placeholder="મોબાઇલ" class="border p-1"><input type="text" id="staffName" placeholder="નામ" class="border p-1"><input type="text" id="staffPin" placeholder="PIN" class="border p-1"><button type="submit" class="bg-green-600 text-white p-1 rounded">સ્ટાફ ઉમેરો</button></form>
+                        <table class="w-full mt-3 border"><tr><th>નામ</th><th>મોબાઇલ</th><th>રોલ</th><th>PIN</th><th>ક્રિયા</th></tr>`;
+            users.forEach(u => {
+                html += `<tr><td>${u.name}</td><td>${u.mobile}</td><td>${u.role}</td><td>${u.role==='Staff' ? u.pin : '---'}</td><td>${u.role==='Staff' ? `<button class="resetPinBtn bg-yellow-500 text-white text-xs p-1" data-mobile="${u.mobile}">PIN રીસેટ</button>` : ''}</td></tr>`;
+            });
+            html += `</table>`;
+            container.innerHTML = html;
+            document.getElementById('addStaffForm')?.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const mobile = document.getElementById('staffMobile').value;
+                const name = document.getElementById('staffName').value;
+                const pin = document.getElementById('staffPin').value;
+                if(mobile && name && pin) await callGAS('addStaffUser', { mobile, name, pin });
+                loadUserManagement();
+            });
+            document.querySelectorAll('.resetPinBtn').forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    const mobile = btn.getAttribute('data-mobile');
+                    const newPin = prompt('નવો PIN દાખલ કરો');
+                    if(newPin) await callGAS('resetStaffPin', { mobile, newPin });
+                    loadUserManagement();
+                });
+            });
+        }
+        
+        async function loadInventoryPanel() {
+            const container = document.getElementById('ownerContent');
+            const inv = await callGAS('getInventory');
+            container.innerHTML = `<h3>ઇન્વેન્ટરી અપડેટ</h3><p>હાલનો સ્ટોક: ${inv.stock} બોટલ</p>
+            <input type="number" id="newStockVal" placeholder="નવો સ્ટોક" class="border p-2"><button id="updateStockBtn" class="bg-blue-600 text-white p-2 rounded">અપડેટ કરો</button>`;
+            document.getElementById('updateStockBtn')?.addEventListener('click', async () => {
+                const val = document.getElementById('newStockVal').value;
+                await callGAS('updateStock', { stock: parseInt(val) });
+                loadInventoryPanel();
+                loadOwnerDashboardStats();
+            });
+        }
+        
+        // Helper functions
+        function showMsg(id, msg, color) { const el = document.getElementById(id); if(el) { el.innerText = msg; el.style.color = color; setTimeout(() => el.innerText = '', 3000); } }
+        window.printAsPDF = async (element, filename) => {
+            if(!element) return;
+            const opt = { margin: [0.5,0.5,0.5,0.5], filename: filename, image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' } };
+            await html2pdf().set(opt).from(element).save();
+        };
+        
+        // Initialize
+        renderApp();
+    </script>
 </body>
 </html>
