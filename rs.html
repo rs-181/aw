@@ -1,474 +1,781 @@
 <!DOCTYPE html>
-<html lang="gu">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>અમૃતમ વોટર સપ્લાયર્સ | Amrutam Water Suppliers</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- html2pdf.js for PDF generation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* Custom print styles for cash memo and monthly card */
-        @media print {
-            body * {
-                visibility: hidden;
-            }
-            .print-area, .print-area * {
-                visibility: visible;
-            }
-            .print-area {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                margin: 0;
-                padding: 1rem;
-            }
-            .no-print {
-                display: none !important;
-            }
-        }
-        /* Custom scroll and modal */
-        .modal-transition {
-            transition: all 0.3s ease;
-        }
-        .grid-31 {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 0.25rem;
-        }
-        .card-day {
-            font-size: 0.7rem;
-            padding: 0.25rem;
-            text-align: center;
-            border: 1px solid #e2e8f0;
-        }
-    </style>
-    <script>
-        // Global API endpoint (deploy as Web App, replace with your GAS URL after deploy)
-        // For local testing, we use relative path but must be replaced with actual GAS URL
-        // The user will set this after deployment. For now it's placeholder.
-        const GAS_API_URL = 'https://script.google.com/macros/s/AKfycbxNEp53SV3BlSm7MCT2U9KQcyt9C8mCLXTLecIqkxNYVZZOja0xR_spr7cCCB28UBMo/exec'; 
-        // To be replaced by actual URL after deployment. We'll allow dynamic update via console but normally hardcoded.
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>2048 · RS Digital Ecosystem</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      user-select: none;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
+    }
+
+    /* Main App Container */
+    #app {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* Page System */
+    .page {
+      position: absolute;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.4s ease, visibility 0.4s;
+    }
+
+    .page.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* ========== WELCOME PAGE ========== */
+    .welcome-container {
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      padding: 40px 30px;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 48px;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(14, 165, 233, 0.1);
+    }
+
+    .game-title {
+      font-size: 5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #7dd3fc, #38bdf8, #0284c7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 40px rgba(56, 189, 248, 0.5);
+      margin-bottom: 10px;
+    }
+
+    .rs-badge {
+      display: inline-block;
+      background: rgba(2, 132, 199, 0.3);
+      backdrop-filter: blur(10px);
+      padding: 8px 24px;
+      border-radius: 50px;
+      color: #7dd3fc;
+      font-weight: 500;
+      letter-spacing: 2px;
+      border: 1px solid #0ea5e9;
+      margin-bottom: 30px;
+    }
+
+    .welcome-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 30px 0;
+    }
+
+    .btn {
+      padding: 18px 32px;
+      font-size: 1.3rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      color: white;
+      box-shadow: 0 10px 25px rgba(2, 132, 199, 0.4), 0 0 0 1px #38bdf8 inset;
+    }
+
+    .btn-primary:hover {
+      transform: scale(0.98);
+      box-shadow: 0 5px 15px rgba(2, 132, 199, 0.5);
+    }
+
+    .btn-secondary {
+      background: rgba(30, 41, 59, 0.8);
+      backdrop-filter: blur(10px);
+      color: #94a3b8;
+      border: 1px solid #334155;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(51, 65, 85, 0.9);
+      color: #cbd5e1;
+    }
+
+    .secret-hint {
+      margin-top: 30px;
+      color: #475569;
+      font-size: 0.85rem;
+      border-top: 1px solid #1e293b;
+      padding-top: 20px;
+    }
+
+    /* ========== GAME PAGE ========== */
+    .game-container {
+      max-width: 550px;
+      width: 95%;
+      margin: 0 auto;
+    }
+
+    .game-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .game-header h2 {
+      color: #7dd3fc;
+      font-size: 2rem;
+    }
+
+    .score-area {
+      display: flex;
+      gap: 15px;
+    }
+
+    .score-box {
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 12px 20px;
+      border-radius: 20px;
+      text-align: center;
+      border: 1px solid #0ea5e9;
+    }
+
+    .score-label {
+      color: #94a3b8;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+    }
+
+    .score-value {
+      color: #f0f9ff;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    /* Perfect Square Grid */
+    .grid-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(15px);
+      border-radius: 24px;
+      padding: 15px;
+      border: 1px solid #0ea5e9;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      margin-bottom: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      width: 100%;
+      height: 100%;
+    }
+
+    .tile {
+      aspect-ratio: 1 / 1;
+      width: 100%;
+      height: 100%;
+      background: #1e293b;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 2.2rem;
+      color: white;
+      transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    /* Tile Colors */
+    .tile-2 { background: #eee4da; color: #776e65; }
+    .tile-4 { background: #ede0c8; color: #776e65; }
+    .tile-8 { background: #f2b179; color: #f9f6f2; }
+    .tile-16 { background: #f59563; color: #f9f6f2; }
+    .tile-32 { background: #f67c5f; color: #f9f6f2; }
+    .tile-64 { background: #f65e3b; color: #f9f6f2; }
+    .tile-128 { background: #edcf72; color: #f9f6f2; box-shadow: 0 0 15px #edcf72; }
+    .tile-256 { background: #edcc61; color: #f9f6f2; box-shadow: 0 0 15px #edcc61; }
+    .tile-512 { background: #edc850; color: #f9f6f2; box-shadow: 0 0 20px #edc850; }
+    .tile-1024 { background: #edc53f; color: #f9f6f2; font-size: 1.8rem; box-shadow: 0 0 20px #edc53f; }
+    .tile-2048 { background: #edc22e; color: #f9f6f2; font-size: 1.8rem; box-shadow: 0 0 30px #ffd700; }
+
+    .game-controls {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .game-btn {
+      padding: 12px 24px;
+      background: #1e293b;
+      color: #94a3b8;
+      border: 1px solid #334155;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .game-btn:hover {
+      background: #334155;
+      color: #cbd5e1;
+    }
+
+    .message-bar {
+      text-align: center;
+      margin-top: 15px;
+      color: #7dd3fc;
+      font-weight: 500;
+    }
+
+    /* Back button */
+    .back-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: rgba(30, 41, 59, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 10px 20px;
+      border-radius: 30px;
+      color: #7dd3fc;
+      border: 1px solid #0ea5e9;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    /* How to Play Modal */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s;
+    }
+
+    .modal.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background: #0f172a;
+      padding: 30px;
+      border-radius: 30px;
+      max-width: 400px;
+      width: 90%;
+      border: 1px solid #0ea5e9;
+      color: #cbd5e1;
+    }
+
+    .modal-content h3 {
+      color: #7dd3fc;
+      margin-bottom: 20px;
+    }
+
+    .modal-content button {
+      margin-top: 20px;
+      padding: 12px 30px;
+      background: #0284c7;
+      border: none;
+      border-radius: 20px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .cheat-toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(2, 132, 199, 0.9);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      backdrop-filter: blur(10px);
+      z-index: 2000;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .cheat-toast.show {
+      opacity: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 500px) {
+      .tile { font-size: 1.8rem; }
+      .tile-1024, .tile-2048 { font-size: 1.4rem; }
+    }
+  </style>
 </head>
-<body class="bg-gray-100 font-sans antialiased">
-
-    <!-- App Container: dynamic views rendered here -->
-    <div id="app" class="min-h-screen"></div>
-
-    <script>
-        // ----------------------------- STATE MANAGEMENT -----------------------------
-        let currentUser = null; // { mobile, name, role, pin? }
+<body>
+  <div id="app">
+    <!-- Welcome Page -->
+    <div class="page" id="welcomePage">
+      <div class="welcome-container">
+        <div class="game-title">2048</div>
+        <div class="rs-badge">⚡ RS DIGITAL ECOSYSTEM ⚡</div>
         
-        // Helper: API caller
-        async function callGAS(action, payload = {}) {
-            const url = new URL(GAS_API_URL);
-            // using POST with JSON
-            const response = await fetch(url.toString(), {
-                method: 'POST',
-                mode: 'cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ action, ...payload })
-            });
-            if (!response.ok) throw new Error('Network error');
-            const data = await response.json();
-            if (data.error) throw new Error(data.error);
-            return data;
-        }
+        <div class="welcome-buttons">
+          <button class="btn btn-primary" id="playNowBtn">▶ PLAY NOW</button>
+          <button class="btn btn-secondary" id="howToPlayBtn">📖 HOW TO PLAY</button>
+        </div>
+        
+        <div class="secret-hint">
+          Created By : Rehan Sandhi
+        </div>
+      </div>
+    </div>
 
-        // Session Management: sessionStorage (clears on tab close)
-        function saveSession(user) {
-            sessionStorage.setItem('amrutam_user', JSON.stringify(user));
-            currentUser = user;
+    <!-- Game Page -->
+    <div class="page hidden" id="gamePage">
+      <div class="back-btn" id="backToWelcome">← Back</div>
+      
+      <div class="game-container">
+        <div class="game-header">
+          <h2>2048</h2>
+          <div class="score-area">
+            <div class="score-box">
+              <div class="score-label">Score</div>
+              <div class="score-value" id="scoreDisplay">0</div>
+            </div>
+            <div class="score-box">
+              <div class="score-label">Best</div>
+              <div class="score-value" id="bestDisplay">0</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-wrapper">
+          <div class="grid" id="gridContainer"></div>
+        </div>
+
+        <div class="game-controls">
+          <button class="game-btn" id="newGameBtn">🔄 New Game</button>
+        </div>
+
+        <div class="message-bar" id="gameMessage">
+          Use Arrow Keys or WASD
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Play Modal -->
+    <div class="modal" id="howToModal">
+      <div class="modal-content">
+        <h3>🎮 How to Play</h3>
+        <p>• Use <strong>Arrow Keys</strong> or <strong>WASD</strong> to move tiles</p>
+        <p>• Combine same numbers to reach 2048</p>
+        <p>• Each move adds a new tile (2 or 4)</p>
+        <br>
+        <button id="closeModalBtn">Got it!</button>
+      </div>
+    </div>
+
+    <!-- Cheat Toast -->
+    <div class="cheat-toast" id="cheatToast">✨ Cheat Activated!</div>
+  </div>
+
+  <script>
+    (function(){
+      "use strict";
+
+      // ========== GAME STATE ==========
+      const SIZE = 4;
+      let board = [];
+      let score = 0;
+      let best = 0;
+      let gameOver = false;
+      
+      // DOM Elements
+      const welcomePage = document.getElementById('welcomePage');
+      const gamePage = document.getElementById('gamePage');
+      const gridEl = document.getElementById('gridContainer');
+      const scoreDisplay = document.getElementById('scoreDisplay');
+      const bestDisplay = document.getElementById('bestDisplay');
+      const gameMessage = document.getElementById('gameMessage');
+      const howToModal = document.getElementById('howToModal');
+      const cheatToast = document.getElementById('cheatToast');
+
+      // Load best score
+      try {
+        const saved = localStorage.getItem('rs2048_best');
+        if (saved) best = parseInt(saved) || 0;
+      } catch(e) {}
+      
+      function updateBest(value) {
+        if (value > best) {
+          best = value;
+          try { localStorage.setItem('rs2048_best', best); } catch(e) {}
         }
-        function loadSession() {
-            const stored = sessionStorage.getItem('amrutam_user');
-            if (stored) {
-                try {
-                    currentUser = JSON.parse(stored);
-                    return currentUser;
-                } catch(e) { return null; }
+        bestDisplay.textContent = best;
+      }
+
+      // Initialize empty board
+      function emptyBoard() {
+        return Array(SIZE).fill().map(() => Array(SIZE).fill(0));
+      }
+
+      // Add random tile
+      function addRandomTile(brd) {
+        const empty = [];
+        for (let r = 0; r < SIZE; r++) {
+          for (let c = 0; c < SIZE; c++) {
+            if (brd[r][c] === 0) empty.push([r, c]);
+          }
+        }
+        if (empty.length === 0) return false;
+        const [r, c] = empty[Math.floor(Math.random() * empty.length)];
+        brd[r][c] = Math.random() < 0.9 ? 2 : 4;
+        return true;
+      }
+
+      // Initialize game
+      function initGame() {
+        board = emptyBoard();
+        score = 0;
+        gameOver = false;
+        addRandomTile(board);
+        addRandomTile(board);
+        renderBoard();
+        gameMessage.textContent = 'Use Arrow Keys or WASD';
+      }
+
+      // Render grid
+      function renderBoard() {
+        gridEl.innerHTML = '';
+        for (let r = 0; r < SIZE; r++) {
+          for (let c = 0; c < SIZE; c++) {
+            const val = board[r][c];
+            const tile = document.createElement('div');
+            tile.className = 'tile';
+            if (val > 0) {
+              tile.textContent = val;
+              tile.classList.add(`tile-${val}`);
             }
-            return null;
+            gridEl.appendChild(tile);
+          }
         }
-        function clearSession() {
-            sessionStorage.removeItem('amrutam_user');
-            currentUser = null;
-        }
+        scoreDisplay.textContent = score;
+        updateBest(score);
         
-        // Render main view based on login state
-        async function renderApp() {
-            const appDiv = document.getElementById('app');
-            const sessionUser = loadSession();
-            if (!sessionUser) {
-                appDiv.innerHTML = renderLoginPage();
-                attachLoginEvents();
-            } else {
-                currentUser = sessionUser;
-                if (currentUser.role === 'Owner') {
-                    appDiv.innerHTML = renderOwnerDashboard();
-                    attachOwnerEvents();
-                } else {
-                    appDiv.innerHTML = renderStaffDashboard();
-                    attachStaffEvents();
-                }
+        if (isGameOver()) {
+          gameOver = true;
+          gameMessage.textContent = '😵 Game Over! Press New Game';
+        } else if (hasWon()) {
+          gameMessage.textContent = '🎉 Congratulations! You reached 2048!';
+        }
+      }
+
+      function hasWon() {
+        return board.some(row => row.includes(2048));
+      }
+
+      function isGameOver() {
+        for (let r = 0; r < SIZE; r++) {
+          for (let c = 0; c < SIZE; c++) {
+            if (board[r][c] === 0) return false;
+          }
+        }
+        for (let r = 0; r < SIZE; r++) {
+          for (let c = 0; c < SIZE; c++) {
+            if (r < SIZE-1 && board[r][c] === board[r+1][c]) return false;
+            if (c < SIZE-1 && board[r][c] === board[r][c+1]) return false;
+          }
+        }
+        return true;
+      }
+
+      // Slide and merge logic
+      function slideAndMerge(line) {
+        let arr = line.filter(v => v !== 0);
+        for (let i = 0; i < arr.length - 1; i++) {
+          if (arr[i] === arr[i+1]) {
+            arr[i] *= 2;
+            score += arr[i];
+            arr[i+1] = 0;
+          }
+        }
+        arr = arr.filter(v => v !== 0);
+        while (arr.length < SIZE) arr.push(0);
+        return arr;
+      }
+
+      function move(direction) {
+        if (gameOver) return false;
+        
+        const oldBoard = board.map(row => [...row]);
+        let moved = false;
+
+        if (direction === 'left') {
+          for (let r = 0; r < SIZE; r++) {
+            const newRow = slideAndMerge(board[r]);
+            if (board[r].some((v, i) => v !== newRow[i])) moved = true;
+            board[r] = newRow;
+          }
+        } else if (direction === 'right') {
+          for (let r = 0; r < SIZE; r++) {
+            const reversed = [...board[r]].reverse();
+            const merged = slideAndMerge(reversed);
+            const newRow = merged.reverse();
+            if (board[r].some((v, i) => v !== newRow[i])) moved = true;
+            board[r] = newRow;
+          }
+        } else if (direction === 'up') {
+          for (let c = 0; c < SIZE; c++) {
+            const col = [board[0][c], board[1][c], board[2][c], board[3][c]];
+            const newCol = slideAndMerge(col);
+            for (let r = 0; r < SIZE; r++) {
+              if (board[r][c] !== newCol[r]) moved = true;
+              board[r][c] = newCol[r];
             }
+          }
+        } else if (direction === 'down') {
+          for (let c = 0; c < SIZE; c++) {
+            const col = [board[0][c], board[1][c], board[2][c], board[3][c]];
+            const reversed = [...col].reverse();
+            const merged = slideAndMerge(reversed);
+            const newCol = merged.reverse();
+            for (let r = 0; r < SIZE; r++) {
+              if (board[r][c] !== newCol[r]) moved = true;
+              board[r][c] = newCol[r];
+            }
+          }
         }
 
-        // ----------------------------- LOGIN PAGE (Gujarati + PIN) -----------------
-        function renderLoginPage() {
-            return `
-                <div class="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-500 to-teal-500 p-4">
-                    <div class="bg-white rounded-2xl shadow-2xl p-6 w-full max-w-md">
-                        <div class="text-center mb-6">
-                            <i class="fas fa-tint text-5xl text-blue-600"></i>
-                            <h1 class="text-3xl font-bold text-gray-800 mt-2">અમૃતમ વોટર</h1>
-                            <p class="text-gray-500">સ્ટાફ લોગિન</p>
-                        </div>
-                        <div class="space-y-4">
-                            <div>
-                                <label class="block text-gray-700 font-medium mb-1">મોબાઇલ નંબર</label>
-                                <input type="tel" id="loginMobile" placeholder="9876543210" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                            </div>
-                            <div>
-                                <label class="block text-gray-700 font-medium mb-1">PIN કોડ</label>
-                                <input type="password" id="loginPin" placeholder="****" maxlength="6" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                            </div>
-                            <button id="loginBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition duration-200">પ્રવેશ કરો</button>
-                            <p id="loginError" class="text-red-500 text-sm text-center hidden"></p>
-                        </div>
-                    </div>
-                </div>
-            `;
+        if (moved) {
+          addRandomTile(board);
+          renderBoard();
+        }
+        return moved;
+      }
+
+      // ========== SECRET FUNCTION KEY CHEATS ==========
+      function showCheatToast(message) {
+        cheatToast.textContent = message;
+        cheatToast.classList.add('show');
+        setTimeout(() => cheatToast.classList.remove('show'), 1500);
+      }
+
+      // F1: Add 1000 score
+      function cheatF1() {
+        score += 1000;
+        updateBest(score);
+        renderBoard();
+        showCheatToast('🔓 F1: +1000 Score!');
+      }
+
+      // F4: Spawn 2048 tile
+      function cheatF4() {
+        const empty = [];
+        for (let r = 0; r < SIZE; r++) {
+          for (let c = 0; c < SIZE; c++) {
+            if (board[r][c] === 0) empty.push([r, c]);
+          }
+        }
+        if (empty.length > 0) {
+          const [r, c] = empty[Math.floor(Math.random() * empty.length)];
+          board[r][c] = 2048;
+          renderBoard();
+          showCheatToast('🔓 F4: 2048 Tile Spawned!');
+        }
+      }
+
+      // F5: Clear all tiles except 2048
+      function cheatF5() {
+        for (let r = 0; r < SIZE; r++) {
+          for (let c = 0; c < SIZE; c++) {
+            if (board[r][c] !== 2048) board[r][c] = 0;
+          }
+        }
+        addRandomTile(board);
+        addRandomTile(board);
+        renderBoard();
+        showCheatToast('🔓 F5: Board Cleared!');
+      }
+
+      // F9: Rainbow mode - make all tiles 128
+      function cheatF9() {
+        for (let r = 0; r < SIZE; r++) {
+          for (let c = 0; c < SIZE; c++) {
+            if (board[r][c] !== 0) board[r][c] = 128;
+          }
+        }
+        renderBoard();
+        showCheatToast('🔓 F9: Rainbow Mode (128)!');
+      }
+
+      // ========== KEYBOARD CONTROLS ==========
+      function handleKeyDown(e) {
+        const key = e.key;
+        
+        // Prevent default for game controls
+        const controlKeys = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'w', 'W', 's', 'S', 'a', 'A', 'd', 'D'];
+        if (controlKeys.includes(key)) {
+          e.preventDefault();
+        }
+
+        // Function key cheats (only in game page)
+        if (!gamePage.classList.contains('hidden')) {
+          if (key === 'F1') {
+            e.preventDefault();
+            cheatF1();
+            return;
+          }
+          if (key === 'F4') {
+            e.preventDefault();
+            cheatF4();
+            return;
+          }
+          if (key === 'F5') {
+            e.preventDefault();
+            cheatF5();
+            return;
+          }
+          if (key === 'F9') {
+            e.preventDefault();
+            cheatF9();
+            return;
+          }
+        }
+
+        // Game moves
+        if (!gamePage.classList.contains('hidden') && !gameOver) {
+          if (key === 'ArrowUp' || key === 'w' || key === 'W') move('up');
+          else if (key === 'ArrowDown' || key === 's' || key === 'S') move('down');
+          else if (key === 'ArrowLeft' || key === 'a' || key === 'A') move('left');
+          else if (key === 'ArrowRight' || key === 'd' || key === 'D') move('right');
+        }
+      }
+
+      // ========== TOUCH SWIPE ==========
+      let touchStart = null;
+      
+      function handleTouchStart(e) {
+        touchStart = e.touches[0];
+      }
+      
+      function handleTouchEnd(e) {
+        if (!touchStart || gamePage.classList.contains('hidden') || gameOver) return;
+        
+        const touchEnd = e.changedTouches[0];
+        const dx = touchEnd.clientX - touchStart.clientX;
+        const dy = touchEnd.clientY - touchStart.clientY;
+        const absDx = Math.abs(dx);
+        const absDy = Math.abs(dy);
+        
+        if (Math.max(absDx, absDy) < 20) return;
+        
+        if (absDx > absDy) {
+          move(dx > 0 ? 'right' : 'left');
+        } else {
+          move(dy > 0 ? 'down' : 'up');
         }
         
-        async function attachLoginEvents() {
-            const btn = document.getElementById('loginBtn');
-            const mobileInput = document.getElementById('loginMobile');
-            const pinInput = document.getElementById('loginPin');
-            const errorDiv = document.getElementById('loginError');
-            if (!btn) return;
-            btn.addEventListener('click', async () => {
-                const mobile = mobileInput.value.trim();
-                const pin = pinInput.value.trim();
-                if (!mobile || !pin) {
-                    errorDiv.innerText = 'કૃપા કરીને મોબાઇલ અને PIN દાખલ કરો';
-                    errorDiv.classList.remove('hidden');
-                    return;
-                }
-                try {
-                    const result = await callGAS('verifyLogin', { mobile, pin });
-                    if (result.success) {
-                        const user = { mobile: result.mobile, name: result.name, role: result.role };
-                        saveSession(user);
-                        renderApp();
-                    } else {
-                        errorDiv.innerText = result.message || 'તમારો નંબર રજીસ્ટર નથી અથવા PIN ખોટો છે.';
-                        errorDiv.classList.remove('hidden');
-                    }
-                } catch(err) {
-                    errorDiv.innerText = 'સર્વર ભૂલ: ' + err.message;
-                    errorDiv.classList.remove('hidden');
-                }
-            });
-        }
-        
-        // ----------------------------- STAFF DASHBOARD -----------------------------
-        function renderStaffDashboard() {
-            return `
-                <div class="max-w-7xl mx-auto p-4">
-                    <div class="flex justify-between items-center bg-white shadow rounded-lg p-4 mb-6">
-                        <div>
-                            <h2 class="text-xl font-bold text-gray-800">સ્વાગત છે, ${currentUser.name} (સ્ટાફ)</h2>
-                            <p class="text-gray-500">અમૃતમ વોટર સપ્લાયર્સ</p>
-                        </div>
-                        <button id="logoutBtnStaff" class="bg-red-500 text-white px-4 py-2 rounded-lg"><i class="fas fa-sign-out-alt"></i> લૉગઆઉટ</button>
-                    </div>
-                    <div class="grid md:grid-cols-3 gap-6">
-                        <!-- Daily Entry Card -->
-                        <div class="bg-white rounded-xl shadow p-5">
-                            <h3 class="text-lg font-bold border-b pb-2 mb-3"><i class="fas fa-clipboard-list"></i> દૈનિક એન્ટ્રી</h3>
-                            <div class="mb-3">
-                                <label class="block text-sm font-medium">ગ્રાહક પસંદ કરો</label>
-                                <select id="staffCustomerSelect" class="w-full border rounded p-2 mt-1">
-                                    <option value="">-- પસંદ કરો --</option>
-                                    <option value="custom">કસ્ટમ (નવો ગ્રાહક)</option>
-                                </select>
-                                <input type="text" id="staffCustomCustomer" placeholder="નવો ગ્રાહક નામ" class="hidden w-full border rounded p-2 mt-2">
-                            </div>
-                            <div class="mb-3">
-                                <label class="block text-sm font-medium">આજની ડિલિવરી (બોટલ)</label>
-                                <input type="number" id="staffBottles" class="w-full border rounded p-2" placeholder="બોટલની સંખ્યા">
-                            </div>
-                            <div class="mb-3">
-                                <label class="block text-sm font-medium">ચુકવણી પદ્ધતિ</label>
-                                <select id="staffPaymentMode" class="w-full border rounded p-2">
-                                    <option value="Cash">રોકડ (Cash)</option>
-                                    <option value="Card">કાર્ડ (Card)</option>
-                                    <option value="custom">કસ્ટમ (Custom)</option>
-                                </select>
-                                <input type="text" id="staffCustomPayment" placeholder="અન્ય પદ્ધતિ" class="hidden w-full border rounded p-2 mt-2">
-                            </div>
-                            <button id="saveDailyEntryBtn" class="bg-green-600 text-white w-full py-2 rounded-lg mt-2">સેવ કરો</button>
-                            <div id="dailyEntryMsg" class="text-sm mt-2 text-center"></div>
-                        </div>
-                        <!-- Add New Customer Card -->
-                        <div class="bg-white rounded-xl shadow p-5">
-                            <h3 class="text-lg font-bold border-b pb-2 mb-3"><i class="fas fa-user-plus"></i> નવો ગ્રાહક ઉમેરો</h3>
-                            <input type="text" id="newCustName" placeholder="ગ્રાહકનું નામ" class="w-full border rounded p-2 mb-2">
-                            <input type="text" id="newCustMobile" placeholder="મોબાઇલ નંબર" class="w-full border rounded p-2 mb-2">
-                            <input type="text" id="newCustAddress" placeholder="સરનામું" class="w-full border rounded p-2 mb-3">
-                            <button id="addCustomerBtn" class="bg-blue-600 text-white w-full py-2 rounded-lg">ગ્રાહક ઉમેરો</button>
-                        </div>
-                        <!-- View Monthly Card -->
-                        <div class="bg-white rounded-xl shadow p-5">
-                            <h3 class="text-lg font-bold border-b pb-2 mb-3"><i class="fas fa-calendar-alt"></i> માસિક કાર્ડ જુઓ</h3>
-                            <select id="monthlyCustomerSelect" class="w-full border rounded p-2 mb-3"><option value="">ગ્રાહક પસંદ કરો</option></select>
-                            <button id="viewMonthlyCardBtn" class="bg-purple-600 text-white w-full py-2 rounded-lg">કાર્ડ બતાવો / PDF</button>
-                            <div id="monthlyCardDisplay" class="mt-4 text-xs overflow-auto max-h-80"></div>
-                        </div>
-                    </div>
-                    <!-- Cash Memo Generation (quick bill) -->
-                    <div class="bg-white rounded-xl shadow p-5 mt-6">
-                        <h3 class="text-lg font-bold"><i class="fas fa-receipt"></i> કેશ મેમો બનાવો</h3>
-                        <div class="grid md:grid-cols-3 gap-3 mt-2">
-                            <input type="text" id="memoCustomer" placeholder="ગ્રાહક નામ" class="border p-2 rounded">
-                            <input type="number" id="memoBottles" placeholder="બોટલ" class="border p-2 rounded">
-                            <input type="text" id="memoAmount" placeholder="કુલ રકમ" class="border p-2 rounded">
-                            <button id="generateCashMemoBtn" class="bg-yellow-600 text-white col-span-1 py-2 rounded-lg">મેમો જનરેટ કરો</button>
-                        </div>
-                        <div id="cashMemoPreview" class="mt-4 border-t pt-3"></div>
-                    </div>
-                </div>
-            `;
-        }
-        
-        async function attachStaffEvents() {
-            // logout
-            document.getElementById('logoutBtnStaff')?.addEventListener('click', () => { clearSession(); renderApp(); });
-            // Load customers for dropdowns
-            await loadCustomerDropdownsStaff();
-            // custom customer show/hide
-            const custSelect = document.getElementById('staffCustomerSelect');
-            const customCustInput = document.getElementById('staffCustomCustomer');
-            custSelect?.addEventListener('change', (e) => {
-                if (e.target.value === 'custom') customCustInput.classList.remove('hidden');
-                else customCustInput.classList.add('hidden');
-            });
-            const payMode = document.getElementById('staffPaymentMode');
-            const customPayInput = document.getElementById('staffCustomPayment');
-            payMode?.addEventListener('change', (e) => {
-                if (e.target.value === 'custom') customPayInput.classList.remove('hidden');
-                else customPayInput.classList.add('hidden');
-            });
-            // Save daily entry
-            document.getElementById('saveDailyEntryBtn')?.addEventListener('click', async () => {
-                let customer = custSelect.value;
-                if (custSelect.value === 'custom') customer = customCustInput.value.trim();
-                if (!customer) { showMsg('dailyEntryMsg', 'ગ્રાહક પસંદ કરો', 'red'); return; }
-                const bottles = document.getElementById('staffBottles').value;
-                if (!bottles) { showMsg('dailyEntryMsg', 'બોટલ નંબર લખો', 'red'); return; }
-                let payment = payMode.value;
-                if (payMode.value === 'custom') payment = customPayInput.value.trim();
-                if (!payment) payment = 'Cash';
-                try {
-                    await callGAS('addDailyEntry', { customer, bottles: parseInt(bottles), payment, staffMobile: currentUser.mobile });
-                    showMsg('dailyEntryMsg', 'એન્ટ્રી સેવ થઈ ગઈ!', 'green');
-                    document.getElementById('staffBottles').value = '';
-                } catch(e) { showMsg('dailyEntryMsg', e.message, 'red'); }
-            });
-            // Add new customer
-            document.getElementById('addCustomerBtn')?.addEventListener('click', async () => {
-                const name = document.getElementById('newCustName').value.trim();
-                const mobile = document.getElementById('newCustMobile').value.trim();
-                const address = document.getElementById('newCustAddress').value.trim();
-                if (!name || !mobile) { alert('નામ અને મોબાઇલ ફરજિયાત'); return; }
-                await callGAS('addCustomer', { name, mobile, address });
-                alert('ગ્રાહક ઉમેરાયો');
-                loadCustomerDropdownsStaff();
-            });
-            // View monthly card
-            document.getElementById('viewMonthlyCardBtn')?.addEventListener('click', async () => {
-                const custId = document.getElementById('monthlyCustomerSelect').value;
-                if (!custId) { alert('ગ્રાહક પસંદ કરો'); return; }
-                const data = await callGAS('getMonthlyCard', { customerId: custId });
-                renderMonthlyCard(data, 'monthlyCardDisplay');
-            });
-            // Cash memo generate
-            document.getElementById('generateCashMemoBtn')?.addEventListener('click', () => {
-                const cust = document.getElementById('memoCustomer').value;
-                const bottles = document.getElementById('memoBottles').value;
-                const amount = document.getElementById('memoAmount').value;
-                if (!cust || !bottles) { alert('ગ્રાહક અને બોટલ ભરો'); return; }
-                const memoHtml = generateCashMemoHTML(cust, bottles, amount);
-                const previewDiv = document.getElementById('cashMemoPreview');
-                previewDiv.innerHTML = memoHtml;
-                // Add print button dynamically
-                const printBtn = document.createElement('button');
-                printBtn.innerText = 'PDF તરીકે છાપો / Print';
-                printBtn.className = 'bg-gray-700 text-white px-3 py-1 rounded mt-2';
-                printBtn.onclick = () => printAsPDF(previewDiv, 'CashMemo.pdf');
-                previewDiv.appendChild(printBtn);
-            });
-        }
-        
-        async function loadCustomerDropdownsStaff() {
-            try {
-                const customers = await callGAS('getCustomers');
-                const select1 = document.getElementById('staffCustomerSelect');
-                const select2 = document.getElementById('monthlyCustomerSelect');
-                if (select1) {
-                    let opts = '<option value="">-- ગ્રાહક --</option>';
-                    customers.forEach(c => { opts += `<option value="${c.name}">${c.name} (${c.mobile})</option>`; });
-                    opts += '<option value="custom">કસ્ટમ (નવો)</option>';
-                    select1.innerHTML = opts;
-                }
-                if (select2) {
-                    let opts = '<option value="">-- પસંદ કરો --</option>';
-                    customers.forEach(c => { opts += `<option value="${c.id || c.name}">${c.name} - ${c.mobile}</option>`; });
-                    select2.innerHTML = opts;
-                }
-            } catch(e) { console.error(e); }
-        }
-        
-        function renderMonthlyCard(data, containerId) {
-            const container = document.getElementById(containerId);
-            if (!container) return;
-            const { customerName, deliveries = [], month = new Date().toLocaleString('default', { month: 'long' }) } = data;
-            let daysHtml = '<div class="grid-31"><div class="font-bold">સો</div><div>મં</div><div>બુ</div><div>ગુ</div><div>શુ</div><div>શ</div><div>ર</div>';
-            for(let i=1;i<=31;i++) {
-                const delivered = deliveries.some(d => new Date(d.date).getDate() === i);
-                daysHtml += `<div class="card-day ${delivered ? 'bg-green-200' : 'bg-gray-100'}">${i}<br>${delivered ? '✓' : ''}</div>`;
-            }
-            daysHtml += '</div>';
-            const fullHtml = `<div class="print-area"><h4 class="font-bold">${customerName} નું માસિક કાર્ડ - ${month}</h4>${daysHtml}<button class="no-print mt-2 bg-blue-500 text-white p-1 text-xs rounded" onclick="printAsPDF(document.querySelector('#monthlyCardDisplay .print-area'), 'MonthlyCard.pdf')">PDF છાપો</button></div>`;
-            container.innerHTML = fullHtml;
-        }
-        
-        function generateCashMemoHTML(customer, bottles, amount) {
-            const date = new Date().toLocaleString();
-            return `<div class="print-area border p-4 rounded-lg bg-white">
-                        <h2 class="text-xl font-bold">અમૃતમ વોટર સપ્લાયર્સ</h2>
-                        <p>કેશ મેમો</p>
-                        <hr>
-                        <p><strong>ગ્રાહક:</strong> ${customer}</p>
-                        <p><strong>બોટલ:</strong> ${bottles}</p>
-                        <p><strong>કુલ રકમ:</strong> ₹ ${amount || parseInt(bottles)*20}</p>
-                        <p><strong>તારીખ:</strong> ${date}</p>
-                        <p>આભાર!</p>
-                    </div>`;
-        }
-        
-        // ----------------------------- OWNER DASHBOARD -----------------------------
-        function renderOwnerDashboard() {
-            return `
-                <div class="max-w-7xl mx-auto p-4">
-                    <div class="flex justify-between items-center bg-white shadow p-4 rounded-lg mb-6">
-                        <div><h2 class="text-2xl font-bold">માલિક પેનલ</h2><p>${currentUser.name}</p></div>
-                        <button id="logoutOwnerBtn" class="bg-red-500 text-white px-4 py-2 rounded">લૉગઆઉટ</button>
-                    </div>
-                    <!-- Dashboard Stats -->
-                    <div class="grid md:grid-cols-3 gap-4 mb-6">
-                        <div class="bg-white p-4 rounded shadow"><h3 class="font-bold">કુલ વેચાણ (આજ)</h3><p id="totalSales" class="text-2xl">₹ 0</p></div>
-                        <div class="bg-white p-4 rounded shadow"><h3 class="font-bold">રોકડ vs કાર્ડ</h3><p id="cashCardStats">Cash: ₹0<br>Card: ₹0</p></div>
-                        <div class="bg-white p-4 rounded shadow"><h3 class="font-bold">સ્ટોક સ્થિતિ</h3><p id="stockStatus">બોટલ સ્ટોક: --</p></div>
-                    </div>
-                    <!-- Tabs -->
-                    <div class="bg-white rounded shadow p-4">
-                        <div class="flex space-x-4 border-b">
-                            <button id="tabDaily" class="py-2 px-4 text-blue-600 border-b-2 border-blue-600">દૈનિક લોગ</button>
-                            <button id="tabUserMgt" class="py-2 px-4">વપરાશકર્તા વ્યવસ્થાપન</button>
-                            <button id="tabInventory" class="py-2 px-4">ઇન્વેન્ટરી અપડેટ</button>
-                        </div>
-                        <div id="ownerContent" class="mt-4">લોડ થઈ રહ્યું છે...</div>
-                    </div>
-                </div>
-            `;
-        }
-        
-        async function attachOwnerEvents() {
-            document.getElementById('logoutOwnerBtn')?.addEventListener('click', () => { clearSession(); renderApp(); });
-            await loadOwnerDashboardStats();
-            await loadDailyLogs();
-            document.getElementById('tabDaily')?.addEventListener('click', () => loadDailyLogs());
-            document.getElementById('tabUserMgt')?.addEventListener('click', () => loadUserManagement());
-            document.getElementById('tabInventory')?.addEventListener('click', () => loadInventoryPanel());
-        }
-        
-        async function loadOwnerDashboardStats() {
-            try {
-                const stats = await callGAS('getOwnerStats');
-                document.getElementById('totalSales').innerText = `₹ ${stats.totalSales || 0}`;
-                document.getElementById('cashCardStats').innerHTML = `Cash: ₹${stats.cash || 0}<br>Card: ₹${stats.card || 0}`;
-                document.getElementById('stockStatus').innerHTML = `બોટલ સ્ટોક: ${stats.stock || 0} બોટલ`;
-            } catch(e) { console.error(e); }
-        }
-        
-        async function loadDailyLogs() {
-            const container = document.getElementById('ownerContent');
-            const logs = await callGAS('getDailyLogs');
-            let html = '<h3 class="font-bold text-lg">દૈનિક એન્ટ્રી લોગ</h3><table class="w-full border mt-2"><tr><th>તારીખ</th><th>ગ્રાહક</th><th>બોટલ</th><th>ચુકવણી</th></tr>';
-            logs.forEach(l => { html += `<tr><td>${l.date}</td><td>${l.customer}</td><td>${l.bottles}</td><td>${l.payment}</td></tr>`; });
-            html += '</table>';
-            container.innerHTML = html;
-        }
-        
-        async function loadUserManagement() {
-            const container = document.getElementById('ownerContent');
-            const users = await callGAS('getAllUsers');
-            let html = `<h3 class="font-bold">સ્ટાફ PIN મેનેજમેન્ટ</h3>
-                        <form id="addStaffForm" class="mt-3 p-3 border rounded"><input type="text" id="staffMobile" placeholder="મોબાઇલ" class="border p-1"><input type="text" id="staffName" placeholder="નામ" class="border p-1"><input type="text" id="staffPin" placeholder="PIN" class="border p-1"><button type="submit" class="bg-green-600 text-white p-1 rounded">સ્ટાફ ઉમેરો</button></form>
-                        <table class="w-full mt-3 border"><tr><th>નામ</th><th>મોબાઇલ</th><th>રોલ</th><th>PIN</th><th>ક્રિયા</th></tr>`;
-            users.forEach(u => {
-                html += `<tr><td>${u.name}</td><td>${u.mobile}</td><td>${u.role}</td><td>${u.role==='Staff' ? u.pin : '---'}</td><td>${u.role==='Staff' ? `<button class="resetPinBtn bg-yellow-500 text-white text-xs p-1" data-mobile="${u.mobile}">PIN રીસેટ</button>` : ''}</td></tr>`;
-            });
-            html += `</table>`;
-            container.innerHTML = html;
-            document.getElementById('addStaffForm')?.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const mobile = document.getElementById('staffMobile').value;
-                const name = document.getElementById('staffName').value;
-                const pin = document.getElementById('staffPin').value;
-                if(mobile && name && pin) await callGAS('addStaffUser', { mobile, name, pin });
-                loadUserManagement();
-            });
-            document.querySelectorAll('.resetPinBtn').forEach(btn => {
-                btn.addEventListener('click', async () => {
-                    const mobile = btn.getAttribute('data-mobile');
-                    const newPin = prompt('નવો PIN દાખલ કરો');
-                    if(newPin) await callGAS('resetStaffPin', { mobile, newPin });
-                    loadUserManagement();
-                });
-            });
-        }
-        
-        async function loadInventoryPanel() {
-            const container = document.getElementById('ownerContent');
-            const inv = await callGAS('getInventory');
-            container.innerHTML = `<h3>ઇન્વેન્ટરી અપડેટ</h3><p>હાલનો સ્ટોક: ${inv.stock} બોટલ</p>
-            <input type="number" id="newStockVal" placeholder="નવો સ્ટોક" class="border p-2"><button id="updateStockBtn" class="bg-blue-600 text-white p-2 rounded">અપડેટ કરો</button>`;
-            document.getElementById('updateStockBtn')?.addEventListener('click', async () => {
-                const val = document.getElementById('newStockVal').value;
-                await callGAS('updateStock', { stock: parseInt(val) });
-                loadInventoryPanel();
-                loadOwnerDashboardStats();
-            });
-        }
-        
-        // Helper functions
-        function showMsg(id, msg, color) { const el = document.getElementById(id); if(el) { el.innerText = msg; el.style.color = color; setTimeout(() => el.innerText = '', 3000); } }
-        window.printAsPDF = async (element, filename) => {
-            if(!element) return;
-            const opt = { margin: [0.5,0.5,0.5,0.5], filename: filename, image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' } };
-            await html2pdf().set(opt).from(element).save();
-        };
-        
-        // Initialize
-        renderApp();
-    </script>
+        touchStart = null;
+      }
+
+      // ========== PAGE NAVIGATION ==========
+      function showWelcome() {
+        welcomePage.classList.remove('hidden');
+        gamePage.classList.add('hidden');
+      }
+
+      function showGame() {
+        if (document.documentElement.requestFullscreen) {
+    document.documentElement.requestFullscreen().catch(err => {
+      console.log('Fullscreen error:', err);
+    });
+  } else if (document.documentElement.webkitRequestFullscreen) {
+    // Safari
+    document.documentElement.webkitRequestFullscreen();
+  } else if (document.documentElement.msRequestFullscreen) {
+    // IE/Edge
+    document.documentElement.msRequestFullscreen();
+  }
+        welcomePage.classList.add('hidden');
+        gamePage.classList.remove('hidden');
+        initGame();
+      }
+
+      // ========== EVENT LISTENERS ==========
+      document.getElementById('playNowBtn').addEventListener('click', showGame);
+      document.getElementById('backToWelcome').addEventListener('click', showWelcome);
+      document.getElementById('newGameBtn').addEventListener('click', initGame);
+      
+      document.getElementById('howToPlayBtn').addEventListener('click', () => {
+        howToModal.classList.add('show');
+      });
+      
+      document.getElementById('closeModalBtn').addEventListener('click', () => {
+        howToModal.classList.remove('show');
+      });
+      
+      howToModal.addEventListener('click', (e) => {
+        if (e.target === howToModal) howToModal.classList.remove('show');
+      });
+
+      // Keyboard
+      window.addEventListener('keydown', handleKeyDown);
+      
+      // Touch
+      const gridWrapper = document.querySelector('.grid-wrapper');
+      gridWrapper.addEventListener('touchstart', handleTouchStart, {passive: true});
+      gridWrapper.addEventListener('touchend', handleTouchEnd);
+
+      // Prevent context menu
+      document.addEventListener('contextmenu', e => e.preventDefault());
+
+      // Initialize
+      updateBest(0);
+      
+      // Secret console message
+      console.log('%c🔐 RS DIGITAL ECOSYSTEM 2048', 'font-size:16px; color:#7dd3fc;');
+      console.log('%cSecret Keys: F1, F4, F5, F9', 'color:#0ea5e9;');
+    })();
+  </script>
 </body>
 </html>
