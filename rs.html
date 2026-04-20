@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <link rel="manifest" href="manifest.json">
   <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>2048 · RS Digital Ecosystem</title>
   <style>
     * {
@@ -652,7 +653,13 @@
 
       // ========== KEYBOARD CONTROLS ==========
       function handleKeyDown(e) {
-        const key = e.key;
+  const key = e.key;
+
+  // Browser ke default refresh aur help ko rokne ke liye
+  const forbiddenKeys = ['F1', 'F5', 'F12'];
+  if (forbiddenKeys.includes(key)) {
+    e.preventDefault(); // Ye refresh hone se rokega
+  }
         
         // Prevent default for game controls
         const controlKeys = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'w', 'W', 's', 'S', 'a', 'A', 'd', 'D'];
